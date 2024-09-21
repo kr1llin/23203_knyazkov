@@ -50,7 +50,6 @@ public:
     return *this;
   }
 
-  //pushback with copies
   void PushBack(const int &item) {
     if (currentSize >= capacity)
       Reallocate(capacity + capacity / 2); // will grow by 50%
@@ -78,7 +77,7 @@ public:
     }
     std::cout << '\n';
   }
-//square pearentheses operator
+
   int &operator[](size_t id) { return data[id]; }
 
 private:
@@ -102,20 +101,3 @@ private:
     capacity = newCapacity;
   }
 };
-
-int main() {
-
-  Vector a, b;
-
-  std::cout << "Push element to a: ";
-  int item;
-  std::cin >> item;
-  a.PushBack(item);
-  std::cout << "First element of a: " << a[0] << '\n';
-  std::cout << "Push element to b: ";
-  std::cin >> item;
-  b.PushBack(item);
-  a = b;
-  std::cout << "a after \"a=b\": ";
-  a.Print();
-}

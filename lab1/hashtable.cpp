@@ -75,6 +75,22 @@ class HashTable{
 
         friend bool operator==(const HashTable& a, const HashTable& b);
         friend bool operator!=(const HashTable& a, const HashTable& b);
+
+    //CONSTRUCTORS & OPERATORS
+    public:
+        HashTable(const HashTable& b);
+        HashTable(HashTable&& b);
+        
+        HashTable& operator=(const HashTable& b);
+        HashTable& operator=(HashTable&& b);
+
+        Value& HashTable::operator[](const Key& k){
+            if (!contains(k))
+        //RETURN VALUE MADE BY DEFAULT CONSTRUCTOR
+        }
+
+        friend bool operator==(const HashTable& a, const HashTable& b);
+        friend bool operator!=(const HashTable& a, const HashTable& b);
 };
 
 size_t HashTable::getSize() const{
@@ -84,6 +100,7 @@ size_t HashTable::getSize() const{
 bool HashTable::empty() const{
     return size == 0;
 }
+
 
 //TODO: exception!
 Value& HashTable::at(const Key& k){
@@ -116,11 +133,6 @@ bool HashTable::insert(const Key& k, const Value& v){
     if (table[index] == nullptr) size++;
     table[index] = newNode;
     return true;
-}
-
-Value& HashTable::operator[](const Key& k){
-    if (!contains(k))
-        //RETURN VALUE MADE BY DEFAULT CONSTRUCTOR
 }
 
 bool HashTable::erase(const Key& k){

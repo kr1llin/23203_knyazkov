@@ -7,8 +7,8 @@
 #include <string>
 #include <utility>
 
-#define DEF_CAPACITY 10
-#define MAX_LOAD_FACTOR 80
+static constexpr size_t DEF_CAPACITY = 10;
+static constexpr size_t MAX_LOAD_FACTOR = 80;
 
 typedef std::string Key;
 

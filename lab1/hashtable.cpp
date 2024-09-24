@@ -103,8 +103,7 @@ Value &HashTable::at(const Key &k) {
   int index = hash(k);
 
   // Checks if hash index is free, if true - this is our target index
-  for (int i = 0; ((table[index] == dummy) || (table[index]->key != k) ||
-                   (!table[index]->key.empty()));
+  for (int i = 0; ((table[index] == dummy) || (table[index]->key != k));
        i++) {
     index = (index + i) % capacity;
     if (i == capacity)

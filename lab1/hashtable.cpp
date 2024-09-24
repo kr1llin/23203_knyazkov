@@ -1,53 +1,6 @@
-#include <cstddef>
-#include <cstring>
-#include <iostream>
-#include <stdexcept>
-#include <string>
-#include <utility>
+#include "hashtable.h"
 
-#define DEF_CAPACITY 10
-#define MAX_LOAD_FACTOR 80
-
-typedef std::string Key;
-
-struct Value {
-  unsigned age;
-  unsigned weight;
-};
-
-struct HashNode {
-  Value value;
-  Key key;
-
-  HashNode(Key key, Value value) {
-    this->value = value;
-    this->key = key;
-  }
-
-  // default = deleted\empty node
-  HashNode() {
-    this->key = "";
-    this->value = {0, 0};
-  }
-};
-
-class HashTable {
-private:
-  HashNode **table;
-  size_t capacity;
-  size_t size;
-  // Empty node to use for deletion
-  HashNode *dummy;
-
-  int hash(const Key &key) const {
-    int sum = 0;
-    for (int i = 0; i < key.length(); i++)
-      sum += int(key[i]);
-    return sum % capacity;
-  }
-
-public:
-  HashTable() : capacity(DEF_CAPACITY), size(0) {
+HashTable::HashTable() : capacity(DEF_CAPACITY), size(0) {
     table = new HashNode *[capacity];
     for (int i = 0; i < capacity; i++)
       table[i] = nullptr;
@@ -56,7 +9,7 @@ public:
     dummy = new HashNode();
   };
 
-  ~HashTable() {
+HashTable::~HashTable(){
     for (size_t i = 0; i < capacity; ++i) {
       if (table[i] != nullptr && table[i] != dummy) {
         delete table[i];
@@ -64,45 +17,6 @@ public:
       }
     }
     free(dummy);
-  }
-
-  HashTable(size_t init_capacity);
-
-  HashTable(const HashTable &other);
-
-  HashTable(HashTable &&other);
-
-  // std::swap uses move semantic
-  // so it'll be expensive to copy and delete large amount of resources
-  // Custom one is simple pointer exchange
-  void swap(HashTable &other);
-
-  // deep copy
-  HashTable &operator=(const HashTable &other);
-
-  HashTable &operator=(HashTable &&other);
-
-  void rehashIfNeeded();
-  // clears table and sets size to 0
-  void clear();
-  // Delete element by key
-  // Returns true on success, false otherwise
-  bool erase(const Key &k);
-  // insertion using linear probing collision resolution
-  bool insert(const Key &k, const Value &v);
-
-  bool contains(const Key &k) const;
-
-  Value &operator[](const Key &k);
-
-  Value &at(const Key &k);
-  const Value &at(const Key &k) const;
-
-  size_t getSize() const;
-  bool empty() const;
-
-  friend bool operator==(const HashTable &a, const HashTable &b);
-  friend bool operator!=(const HashTable &a, const HashTable &b);
 };
 
 HashTable::HashTable(const HashTable &other)
@@ -224,11 +138,11 @@ bool HashTable::insert(const Key &k, const Value &v) {
   }
 
   int index = hash(k);
-  for (int i = 0; ((table[index] != nullptr) &&(table[index] != dummy) && (table[index]->key != k) &&
-                   (!table[index]->key.empty()));
+  for (int i = 0; ((table[index] != nullptr) && (table[index] != dummy) &&
+                   (table[index]->key != k) && (!table[index]->key.empty()));
        i++) {
     index = (index + i) % capacity;
-    if (i == capacity){
+    if (i == capacity) {
       rehashIfNeeded();
       break;
     }
@@ -276,9 +190,7 @@ void HashTable::rehashIfNeeded() {
 Value &HashTable::operator[](const Key &k) {
   int index = hash(k);
 
-  for (int i = 0; ((table[index] == dummy) || (table[index]->key != k) ||
-                   (!table[index]->key.empty()));
-       i++) {
+  for (int i = 0; ((table[index] == dummy) || (table[index]->key != k)); i++) {
     index = (index + i) % capacity;
     if (i == capacity) {
       rehashIfNeeded();
@@ -291,8 +203,8 @@ Value &HashTable::operator[](const Key &k) {
 
 int main() {
   HashTable h(1);
-  h.insert("Blah", {2,2});
+  h.insert("Blah", {2, 2});
   std::cout << h.getSize();
-  h.insert("Blah", {2,2});
+  h.insert("Blah", {2, 2});
   h.at("Blah");
 }

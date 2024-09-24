@@ -58,7 +58,7 @@ public:
 
   ~HashTable() {
     for (size_t i = 0; i < capacity; ++i) {
-      if (table[i] != nullptr && !table[i]->key.empty()) {
+      if (table[i] != nullptr && table[i] != dummy) {
         delete table[i];
         table[i] = nullptr;
       }

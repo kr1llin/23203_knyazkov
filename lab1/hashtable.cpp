@@ -174,7 +174,7 @@ bool HashTable::erase(const Key &k) {
 // if MAX_LOAD_FACTOR is exceeded double the size
 // and rehash everything to the new table
 void HashTable::rehashIfNeeded() {
-  if (size / capacity <= MAX_LOAD_FACTOR) {
+  if ((size / capacity) * 100 <= MAX_LOAD_FACTOR) {
     return;
   }
   capacity *= 2;

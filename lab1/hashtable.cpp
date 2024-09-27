@@ -1,22 +1,23 @@
 #include "hashtable.h"
+#include <stdexcept>
 
 HashTable::HashTable() : capacity(DEF_CAPACITY), size(0) {
-    table = new HashNode *[capacity];
-    for (int i = 0; i < capacity; i++)
-      table[i] = nullptr;
+  table = new HashNode *[capacity];
+  for (int i = 0; i < capacity; i++)
+    table[i] = nullptr;
 
-    // Init deleted node (it's just empty)
-    dummy = new HashNode();
-  };
+  // Init deleted node (it's just empty)
+  dummy = new HashNode();
+};
 
-HashTable::~HashTable(){
-    for (size_t i = 0; i < capacity; ++i) {
-      if (table[i] != nullptr && table[i] != dummy) {
-        delete table[i];
-        table[i] = nullptr;
-      }
+HashTable::~HashTable() {
+  for (size_t i = 0; i < capacity; ++i) {
+    if (table[i] != nullptr && table[i] != dummy) {
+      delete table[i];
     }
-    free(dummy);
+  }
+  delete[] table;
+  free(dummy);
 };
 
 HashTable::HashTable(const HashTable &other)
@@ -50,6 +51,9 @@ HashTable::HashTable(HashTable &&other)
   dummy = new HashNode();
 };
 
+// std::swap uses move semantic
+  // so it'll be expensive to copy and delete large amount of resources
+  // Custom one is simple pointer exchange
 void HashTable::swap(HashTable &other) {
   HashNode **otherT = other.table;
   other.table = table;
@@ -103,11 +107,10 @@ Value &HashTable::at(const Key &k) {
   int index = hash(k);
 
   // Checks if hash index is free, if true - this is our target index
-  for (int i = 0; ((table[index] == dummy) || (table[index]->key != k));
-       i++) {
+  for (int i = 0; ((table[index] == dummy) || (table[index]->key != k)); i++) {
     index = (index + i) % capacity;
     if (i == capacity)
-      throw std::runtime_error("Key is not found!");
+      throw std::runtime_error("Key" + k + "is not found!");
   }
 
   return table[index]->value;
@@ -118,6 +121,7 @@ bool HashTable::contains(const Key &key) const {
   return (!(table[index] == dummy) && !(table[index] == nullptr));
 }
 
+// clears table and sets size to 0
 void HashTable::clear() {
   for (size_t i = 0; i < capacity; ++i) {
     delete table[i];
@@ -136,6 +140,7 @@ bool HashTable::insert(const Key &k, const Value &v) {
     return false;
   }
 
+  // make find
   int index = hash(k);
   for (int i = 0; ((table[index] != nullptr) && (table[index] != dummy) &&
                    (table[index]->key != k) && (!table[index]->key.empty()));
@@ -189,6 +194,7 @@ void HashTable::rehashIfNeeded() {
 Value &HashTable::operator[](const Key &k) {
   int index = hash(k);
 
+  // make find
   for (int i = 0; ((table[index] == dummy) || (table[index]->key != k)); i++) {
     index = (index + i) % capacity;
     if (i == capacity) {
@@ -200,10 +206,55 @@ Value &HashTable::operator[](const Key &k) {
   return table[index]->value;
 }
 
-int main() {
+Value &HashTable::operator[](const Key &k) const{
+  int index = hash(k);
+
+  // make find
+  for (int i = 0; ((table[index] == dummy) || (table[index]->key != k)); i++) {
+    index = (index + i) % capacity;
+    if (i == capacity) {
+      table[index] = new HashNode();
+      return table[index]->value;
+    }
+  }
+  return table[index]->value;
+}
+
+int HashTable::hash(const Key &key) const {
+  int sum = 0;
+  for (int i = 0; i < key.length(); i++)
+    sum += int(key[i]);
+  return sum % capacity;
+}
+
+bool operator==(const HashTable &a, const HashTable &b) {
+  int isEq = true;
+
+  for (size_t i = 0; i < a.capacity; i++) {
+    Key k = a.table[i]->key;
+    if ((b[k].age != a[k].age) && (b[k].weight != a[k].weight)){
+      isEq = false;
+      break;
+    }
+  }
+  return isEq;
+}
+
+bool operator!=(const HashTable &a, const HashTable &b) {
+  return (a==b);
+}
+
+int main(){
   HashTable h(1);
   h.insert("Blah", {2, 2});
   std::cout << h.getSize();
   h.insert("Blah", {2, 2});
   h.at("Blah");
+
+  HashTable a(h);
+  bool iseq = h==a;
+
+  std::cout << iseq;
+
+  return 0;
 }

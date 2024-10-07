@@ -14,9 +14,22 @@ TEST(operators_tests, brackets_test_2){
     EXPECT_TRUE(*empty == a["something"]);
 }
 
-//(???) expect rehashing (new_size == old_size * 2)
-TEST(operators_tests, brackets_test_3){
-    HashTable a = HashTable(1);
-    a.insert("something", {1,1});
-    EXPECT_FALSE(a.insert("some", {1,1}));
+TEST(operators_tests, copy_assignment_test_1){
+   HashTable a = HashTable();
+   Value Value1 = {1,1};
+   Value Value2 = {2,2};
+   Value Value3 = {3,3};
+
+    a.insert("Key1", Value1);
+    a.insert("Key2", Value2);
+    
+
+    HashTable b;
+    b.insert("Key3", Value3);
+
+    b = a;
+
+    EXPECT_TRUE(b["Key1"] == Value1);
+    EXPECT_TRUE(b["Key2"] == Value2);
+    EXPECT_FALSE(b["Key3"] == Value3); // do not need to be here
 }

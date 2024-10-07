@@ -1,5 +1,6 @@
 #include "../methods.cpp"
 #include <gtest/gtest.h>
+#include <gtest/gtest_prod.h>
 #include <string>
 
 TEST(methods_tests, insert_test_1){
@@ -41,11 +42,39 @@ TEST(methods_tests, rehashing_test_1){
     a.insert("Key", {1,1});
     a.insert("Keyy", {1,1});
     a.insert("Kyeyy", {1,1});
-    a.insert("Kyeyy", {1,1});
+    a.insert("Kyeyyy", {1,1});
     EXPECT_EQ(6, a.getCapacity());
-  //NEW TABLE != nullptr or catche bad_alloc
+}
 
-  //TEST IF OLD TABLE IN NEWTABLE (ALL IT'S ELEMENTS)
+TEST(methods_tests, erase_test_1){
+    HashTable a = HashTable(3);
+    a.insert("Key", {1,1});
+    EXPECT_TRUE(a.erase("Key"));
+}
 
-  //CHECK IF OLD TABLE IS REALLY DESTROYED 
+TEST(methods_tests, erase_test_2){
+    HashTable a = HashTable(3);
+    a.insert("Key", {1,1});
+    a.erase("Key");
+    EXPECT_EQ(0, a.getSize());
+}
+
+TEST(methods_tests, erase_test_3){
+    HashTable a = HashTable(3);
+    a.insert("Key", {1,1});
+    a.erase("Key");
+    EXPECT_FALSE(a.contains("Key"));
+}
+
+TEST(methods_tests, erase_test_4){
+    HashTable a = HashTable(3);
+    a.insert("Key", {1,1});
+    EXPECT_FALSE(a.erase("Yek"));
+}
+
+TEST(methods_tests, erase_test_5){
+    HashTable a = HashTable(3);
+    a.insert("Key", {1,1});
+    a.erase("Key");
+    EXPECT_FALSE(a.erase("Key"));
 }

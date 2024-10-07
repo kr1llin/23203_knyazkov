@@ -21,7 +21,6 @@ TEST(ctors_tests, copy_cstor_test_1){
 }
 
 TEST(ctors_tests,copy_cstor_test_2){
-    ASSERT_THROW(HashTable a = HashTable(SIZE_MAX), std::out_of_range);
+    ASSERT_THROW(HashTable a = HashTable(0), std::invalid_argument);
 }
-
 

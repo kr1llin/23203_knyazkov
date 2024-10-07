@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(Sources
     operators_tests.cc
     methods_tests.cc
+    ctors_tests.cc
 )
 
 add_executable(lab1Tests ${Sources})

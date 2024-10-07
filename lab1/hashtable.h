@@ -47,29 +47,21 @@ public:
   HashTable();
   ~HashTable();
 
-  //constructor by capacity
   HashTable(size_t init_capacity);
-  //copy contructor
   HashTable(const HashTable &other);
-  //move constructor
   HashTable(HashTable &&other);
 
   void swap(HashTable &other);
 
-  // deep copy
   HashTable &operator=(const HashTable &other);
 
   HashTable &operator=(HashTable &&other);
 
   void rehashIfNeeded();
-  //find index in hastable by key
   int find(const Key &k) const;
   
   void clear();
-  // Delete element by key
-  // Returns true on success, false otherwise
   bool erase(const Key &k);
-  // insertion using linear probing collision resolution
   bool insert(const Key &k, const Value &v);
 
   bool contains(const Key &k) const;

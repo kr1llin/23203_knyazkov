@@ -38,15 +38,15 @@ HashTable &HashTable::operator=(HashTable &&other) {
   return *this;
 }
 
-Value &HashTable::operator[](const Key &k) const{
+Value &HashTable::operator[](const Key &k) const {
   int index = find(k);
-  if (index == -1){
+  if (index == -1) {
     index = find("");
   }
   return table[index]->value;
 }
 
-bool operator==(const HashTable &a, const HashTable &b){
+bool operator==(const HashTable &a, const HashTable &b) {
   int isEq = true;
 
   for (size_t i = 0; i < a.capacity; i++) {

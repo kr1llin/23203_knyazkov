@@ -11,22 +11,21 @@ int HashTable::hash(const Key &key) const {
 // if MAX_LOAD_FACTOR is exceeded double the size
 // and rehash everything to the new table
 void HashTable::rehashIfNeeded() {
-  double load_factor = (double)size / ((double)capacity);
-
-  std::clog << "load factor is " << load_factor << std::endl;
-  std::clog << "size is " << size << std::endl;
-  
-  if (load_factor < MAX_LOAD_FACTOR) {
+  double load_factor = static_cast<double>(size) / static_cast<double>(capacity);
+  //std::clog << "LOAD FACTORRR = " << load_factor << std::endl;
+  if (load_factor < MAX_LOAD_FACTOR)
     return;
-  }
-
-  std::clog << "ello it's meh!" << std::endl;
 
   capacity *= 2;
   HashNode **newTable = new HashNode *[capacity];
 
+  for (int i = 0; i < capacity; i++)
+    newTable[i] = new HashNode();
+
   for (int i = 0; i < capacity / 2; i++) {
-    newTable[i] = table[i];
+    if (table[i] != nullptr){
+      newTable[hash(table[i]->key)] = table[i];
+    }
   }
   delete[] table;
   table = newTable;
@@ -50,12 +49,14 @@ bool HashTable::erase(const Key &k) {
 // otherwise, search for the first empty node (linear probing)
 // rehash if needed (if container is almost full)
 bool HashTable::insert(const Key &k, const Value &v) {
-  if (size == capacity)
+  if (size == capacity){
+    rehashIfNeeded();
     return false;
+  }
   
-  rehashIfNeeded();
   int index = find(k);
   Value empty = Value();
+  rehashIfNeeded();
 
   if (index == -1 || table[index]->key.empty() || table[index] == nullptr) {
     int index = hash(k);
@@ -65,7 +66,6 @@ bool HashTable::insert(const Key &k, const Value &v) {
   } else {
     table[index]->value = v;
   }
-
   return true;
 }
 
@@ -102,16 +102,16 @@ bool HashTable::empty() const { return size == 0; }
 //-1 if not found
 int HashTable::find(const Key &k) const {
   int index = hash(k);
-  
-    for (int i = 0; ((table[index] == nullptr) && (table[index]->key != k) &&
-                     (table[index]->key.empty()));
-         i++) {
-      index = (index + i) % capacity;
-      if (i == capacity) {
-        index = -1;
-        break;
-      }
+  for (int i = 0; ((table[index] == nullptr) && (table[index]->key != k) &&
+                   (table[index]->key.empty()));
+       i++) {
+
+    index = (index + i) % capacity;
+    if (i == capacity) {
+      index = -1;
+      break;
     }
+  }
   return index;
 }
 

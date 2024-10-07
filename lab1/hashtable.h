@@ -2,19 +2,22 @@
 
 #include <cstddef>
 #include <cstring>
+#include <exception>
 #include <iostream>
-#include <stdexcept>
 #include <string>
-#include <utility>
 
 static constexpr size_t DEF_CAPACITY = 10;
-static constexpr size_t MAX_LOAD_FACTOR = 80;
+static constexpr double MAX_LOAD_FACTOR = 0.8l;
 
 typedef std::string Key;
 
 struct Value {
   unsigned age;
   unsigned weight;
+
+  bool operator==(const Value &b){
+    return ((this->age == b.age) && (this->weight == b.weight));
+  }
 };
 
 struct HashNode {
@@ -38,27 +41,19 @@ private:
   HashNode **table;
   size_t capacity;
   size_t size;
-  // Empty node to use for deletion
-  HashNode *dummy;
-
-  int hash(const Key &key) const {
-    int sum = 0;
-    for (int i = 0; i < key.length(); i++)
-      sum += int(key[i]);
-    return sum % capacity;
-  }
+  int hash(const Key &key) const;
 
 public:
   HashTable();
   ~HashTable();
 
+  //constructor by capacity
   HashTable(size_t init_capacity);
+  //copy contructor
   HashTable(const HashTable &other);
+  //move constructor
   HashTable(HashTable &&other);
 
-  // std::swap uses move semantic
-  // so it'll be expensive to copy and delete large amount of resources
-  // Custom one is simple pointer exchange
   void swap(HashTable &other);
 
   // deep copy
@@ -67,7 +62,9 @@ public:
   HashTable &operator=(HashTable &&other);
 
   void rehashIfNeeded();
-  // clears table and sets size to 0
+  //find index in hastable by key
+  int find(const Key &k) const;
+  
   void clear();
   // Delete element by key
   // Returns true on success, false otherwise
@@ -77,12 +74,13 @@ public:
 
   bool contains(const Key &k) const;
 
-  Value &operator[](const Key &k);
+  Value &operator[](const Key &k) const;
 
   Value &at(const Key &k);
   const Value &at(const Key &k) const;
 
   size_t getSize() const;
+  size_t getCapacity() const;
   bool empty() const;
 
   friend bool operator==(const HashTable &a, const HashTable &b);

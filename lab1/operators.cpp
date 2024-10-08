@@ -1,5 +1,6 @@
 #include "hashtable.h"
 
+//copy assignment
 HashTable &HashTable::operator=(const HashTable &other) {
   if (this == &other)
     return *this;
@@ -18,8 +19,9 @@ HashTable &HashTable::operator=(const HashTable &other) {
   return *this;
 }
 
+//move assignment
 HashTable &HashTable::operator=(HashTable &&other) {
-  if (this != &other) // sus
+  if (this == &other) // sus
     return *this;
 
   for (size_t i = 0; i < capacity; ++i) {
@@ -38,6 +40,7 @@ HashTable &HashTable::operator=(HashTable &&other) {
   return *this;
 }
 
+//returns value by k key
 Value &HashTable::operator[](const Key &k) const {
   int index = find(k);
   if (index == -1) {
@@ -46,6 +49,7 @@ Value &HashTable::operator[](const Key &k) const {
   return table[index]->value;
 }
 
+//comparassion between tables
 bool operator==(const HashTable &a, const HashTable &b) {
   int isEq = true;
 

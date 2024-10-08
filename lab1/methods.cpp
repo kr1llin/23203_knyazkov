@@ -4,7 +4,6 @@
 //magic 33
 int HashTable::hash(const Key &key) const {
   unsigned long hash = 5381;
-  int c;
 
   for (auto c : key)
     hash = ((hash << 5) + hash) + c; // hash * 33 + c
@@ -29,6 +28,7 @@ void HashTable::rehashIfNeeded() {
   for (int i = 0; i < capacity / 2; i++) {
     if (table[i] != nullptr) {
       newTable[hash(table[i]->key)] = table[i];
+      delete table[i];
     }
   }
   delete[] table;
@@ -67,8 +67,6 @@ bool HashTable::insert(const Key &k, const Value &v) {
   int index = -1;
   int hashed_index = hash(k);
 
-  HashNode *newNode = new HashNode(k, v);
-
   //if node is empty or has the same key
   if (table[hashed_index] == nullptr || table[hashed_index]->key.empty() ||
       table[hashed_index]->key == k) {
@@ -84,6 +82,7 @@ bool HashTable::insert(const Key &k, const Value &v) {
     }
   }
 
+  HashNode *newNode = new HashNode(k, v);
   table[index] = newNode;
   ++size;
 
@@ -147,3 +146,4 @@ void HashTable::swap(HashTable &other) {
   std::swap(other.capacity, capacity);
   std::swap(other.size, size);
 }
+

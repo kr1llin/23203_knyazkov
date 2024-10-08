@@ -33,3 +33,45 @@ TEST(operators_tests, copy_assignment_test_1){
     EXPECT_TRUE(b["Key2"] == Value2);
     EXPECT_FALSE(b["Key3"] == Value3); // do not need to be here
 }
+
+TEST(operators_tests, move_assignment_test_1){
+    HashTable a = HashTable();
+    size_t init_size = a.getSize();
+    size_t init_capacity = a.getCapacity();
+    a = std::move(a);
+    EXPECT_EQ(init_size, a.getSize());
+    EXPECT_EQ(init_capacity, a.getCapacity());
+}
+
+TEST(operators_tests, move_assignment_test_2){
+    HashTable a = HashTable();
+    HashTable b = HashTable(1);
+    b.insert("K", {1,1});
+    size_t b_size = b.getSize();
+    size_t b_capacity = b.getCapacity();
+    a = std::move(b);
+
+    EXPECT_EQ(b_size, a.getSize());
+    EXPECT_EQ(b_capacity, a.getCapacity());
+}
+
+TEST(operators_tests, move_assignment_test_3){
+    HashTable a = HashTable();
+    HashTable b = HashTable(1);
+    b.insert("K", {1,1});
+    size_t b_size = b.getSize();
+    size_t b_capacity = b.getCapacity();
+    a = std::move(b);
+
+    EXPECT_EQ(b_size, a.getSize());
+    EXPECT_EQ(b_capacity, a.getCapacity());
+}
+
+TEST(operators_tests, move_assignment_test_4){
+    HashTable a = HashTable();
+    HashTable b = HashTable(2);
+    b.insert("K", {1,1});
+
+    a = std::move(b);
+    EXPECT_TRUE(b.empty());
+}

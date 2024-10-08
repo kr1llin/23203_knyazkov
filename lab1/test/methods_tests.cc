@@ -1,4 +1,5 @@
 #include "../methods.cpp"
+#include <exception>
 #include <gtest/gtest.h>
 #include <gtest/gtest_prod.h>
 #include <string>
@@ -11,11 +12,13 @@ TEST(methods_tests, insert_test_1){
     ASSERT_TRUE(value == a[key]);
 }
 
+//INSERT ШАМАНИТ ЧТО-ТО
 TEST(methods_tests, insert_test_2){
     HashTable a = HashTable();
     Value value = {1, 1};
     const Key key  = "Key";
     a.insert(key, value);
+
     EXPECT_EQ(1, a.getSize()) << "Size hasn't been updated!!\n";
 }
 
@@ -28,8 +31,8 @@ TEST(methods_tests, insert_test_3){
 
 TEST(methods_tests, insert_test_4){
     HashTable a = HashTable();
-
     int number = a.getCapacity();
+
     for (int i = 0; i < number; i++) {
         HashNode node = HashNode(std::to_string(i), {2,2});
         a.insert(node.key, node.value);

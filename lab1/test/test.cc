@@ -1,6 +1,11 @@
 #include "../hashtable.h"
 #include <gtest/gtest.h>
 
+// memory/address sanitizer
+// clang-tidy
+
+//const-cast
+
 // for memory allocation errors - try catch bad_alloc
 
 // dont forget about private methods (use friend)

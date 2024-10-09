@@ -1,6 +1,5 @@
 #pragma once
 
-#include <iostream>
 #include <string>
 
 static constexpr size_t DEF_CAPACITY = 10;
@@ -15,6 +14,7 @@ struct Value {
   bool operator==(const Value &b){
     return ((this->age == b.age) && (this->weight == b.weight));
   }
+
 };
 
 struct HashNode {
@@ -31,6 +31,8 @@ struct HashNode {
     this->key = "";
     this->value = {0, 0};
   }
+
+  ~HashNode(){};
 };
 
 class HashTable {

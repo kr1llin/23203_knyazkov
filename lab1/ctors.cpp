@@ -5,14 +5,15 @@
 
 HashTable::HashTable() : capacity(DEF_CAPACITY), size(0) {
   table = new HashNode *[capacity];
-  for (int i = 0; i < capacity; i++){
+  for (size_t i = 0; i < capacity; i++){
     table[i] = new HashNode();
   }
 };
 
 HashTable::~HashTable() {
   for (size_t i = 0; i < capacity; i++) {
-    delete table[i];
+    if (table[i] != nullptr) 
+      delete table[i];
   }
   delete[] table;
 };
@@ -20,6 +21,7 @@ HashTable::~HashTable() {
 HashTable::HashTable(const HashTable &other)
     : capacity(other.capacity), size(other.size) {
   table = new HashNode *[capacity];
+
   for (int i = 0; i < capacity; i++) {
     if (other.table[i] != nullptr) {
       table[i] = new HashNode(*other.table[i]);

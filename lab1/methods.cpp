@@ -1,5 +1,7 @@
 #include "hashtable.h"
+#include "gmock/gmock.h"
 #include <cstddef>
+#include <stdexcept>
 
 //magic 33
 int HashTable::hash(const Key &key) const {
@@ -20,16 +22,18 @@ void HashTable::rehashIfNeeded() {
     return;
 
   capacity *= 2;
-  HashNode **newTable = new HashNode *[capacity];
-
+  HashNode **newTable = new HashNode *[capacity]();
+ 
   for (int i = 0; i < capacity; i++)
     newTable[i] = new HashNode();
 
   for (int i = 0; i < capacity / 2; i++) {
     if (table[i] != nullptr) {
-      newTable[hash(table[i]->key)] = table[i];
-      delete table[i];
+      int newIndex = hash(table[i]->key);
+        delete newTable[newIndex];
+      newTable[newIndex] = table[i];
     }
+    table[i] = nullptr;
   }
   delete[] table;
   table = newTable;
@@ -93,8 +97,7 @@ Value &HashTable::at(const Key &k) {
   int index = hash(k);
   //index = find(k);
   if (index == -1)
-    throw std::runtime_error("Key" + k + "is not found!");
-
+    throw std::runtime_error("K isn't found!");
   return table[index]->value;
 }
 

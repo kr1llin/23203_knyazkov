@@ -75,3 +75,28 @@ TEST(operators_tests, move_assignment_test_4){
     a = std::move(b);
     EXPECT_TRUE(b.empty());
 }
+
+TEST(operators_tests, isEqual_test_1){
+    HashTable a = HashTable();
+    HashTable b = HashTable();
+
+    a.insert("KeyA", {1,1});
+    b.insert("KeyA", {1,1});
+    EXPECT_TRUE(a == b);
+}
+
+TEST(operators_tests, isEqual_test_2) {
+    HashTable a = HashTable();
+    HashTable b = HashTable();
+
+    a.insert("KeyA", {1,1});
+    b.insert("KeyA", {2,2});
+    EXPECT_FALSE(a == b);
+}
+
+TEST(operators_tests, isEqual_test_3) {
+    HashTable a = HashTable(1);
+    HashTable b = HashTable(2);
+
+    EXPECT_FALSE(a == b);
+}

@@ -4,7 +4,7 @@
 // memory/address sanitizer
 // clang-tidy
 
-//const-cast
+//const-cast (для at())
 
 // for memory allocation errors - try catch bad_alloc
 

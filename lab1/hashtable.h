@@ -3,7 +3,7 @@
 #include <string>
 
 static constexpr size_t DEF_CAPACITY = 10;
-static constexpr double MAX_LOAD_FACTOR = 0.8;
+static constexpr double MAX_LOAD_FACTOR = 0.7;
 
 typedef std::string Key;
 
@@ -11,20 +11,16 @@ struct Value {
   unsigned age;
   unsigned weight;
 
-  bool operator==(const Value &b){
+  bool operator==(const Value &b) {
     return ((this->age == b.age) && (this->weight == b.weight));
   }
 
+  bool operator!=(const Value &b) { return !(*this == b); }
 };
 
 struct HashNode {
   Value value;
   Key key;
-
-  HashNode(Key key, Value value) {
-    this->value = value;
-    this->key = key;
-  }
 
   // default = deleted\empty node
   HashNode() {
@@ -32,7 +28,12 @@ struct HashNode {
     this->value = {0, 0};
   }
 
-  ~HashNode(){};
+  HashNode(Key key, Value value) {
+    this->value = value;
+    this->key = key;
+  }
+
+  ~HashNode() {};
 };
 
 class HashTable {
@@ -56,16 +57,18 @@ public:
 
   HashTable &operator=(HashTable &&other);
 
+  int linearProbing(int startIndex, Key key) const;
   void rehashIfNeeded();
   int find(const Key &k) const;
-  
+  double getLoadFactor(double const &size, double const &capacity);
+
   void clear();
   bool erase(const Key &k);
   bool insert(const Key &k, const Value &v);
 
   bool contains(const Key &k) const;
 
-  Value &operator[](const Key &k) const;
+  Value &operator[](const Key &k);
 
   Value &at(const Key &k);
   const Value &at(const Key &k) const;

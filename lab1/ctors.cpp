@@ -5,14 +5,14 @@
 
 HashTable::HashTable() : capacity(DEF_CAPACITY), size(0) {
   table = new HashNode *[capacity];
-  for (size_t i = 0; i < capacity; i++){
+  for (size_t i = 0; i < capacity; i++) {
     table[i] = new HashNode();
   }
 };
 
 HashTable::~HashTable() {
   for (size_t i = 0; i < capacity; i++) {
-    if (table[i] != nullptr) 
+    if (table[i] != nullptr)
       delete table[i];
   }
   delete[] table;

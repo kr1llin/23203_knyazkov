@@ -9,6 +9,10 @@ add_subdirectory(googletest)
 
 enable_testing()
 
+add_compile_options(-fsanitize=address -Wall)
+add_link_options(-fsanitize=address)
+
+
 set(Headers
     hashtable.h
 )

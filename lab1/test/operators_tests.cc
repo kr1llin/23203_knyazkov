@@ -1,4 +1,4 @@
-#include "../operators.cpp"
+#include "../src/operators.cpp"
 #include <gtest/gtest.h>
 
 TEST(operators_tests, brackets_test_1){
@@ -97,6 +97,7 @@ TEST(operators_tests, isEqual_test_2) {
 TEST(operators_tests, isEqual_test_3) {
     HashTable a = HashTable(1);
     HashTable b = HashTable(2);
+    b.insert("random", {2,2});
 
     EXPECT_FALSE(a == b);
 }

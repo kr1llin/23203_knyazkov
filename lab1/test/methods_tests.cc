@@ -1,4 +1,4 @@
-#include "../methods.cpp"
+#include "../src/methods.cpp"
 #include <exception>
 #include <gtest/gtest.h>
 #include <gtest/gtest_prod.h>
@@ -145,4 +145,26 @@ TEST(methods_tests, linear_probing_test_5) {
   int startIndex = a.find(key1);
   int result = a.linearProbing(startIndex, key2);
   EXPECT_NE(result, startIndex);
+}
+
+
+TEST(methods_tests, clear_test_1) {
+  HashTable a = HashTable();
+  a.insert("key", {1, 1});
+  a.insert("Key2", {2, 2});
+
+  EXPECT_EQ(a.getSize(), 2);
+
+  a.clear();
+
+  EXPECT_EQ(a.getSize(), 0);
+}
+
+TEST(methods_tests, clear_test_2) {
+  HashTable a = HashTable(1);
+    a.clear();
+
+    EXPECT_NO_THROW({
+     a.clear();
+    });
 }

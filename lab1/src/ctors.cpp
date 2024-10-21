@@ -1,6 +1,5 @@
 #include "hashtable.h"
 #include <climits>
-#include <cstdint>
 #include <stdexcept>
 
 HashTable::HashTable() : capacity(DEF_CAPACITY), size(0) {

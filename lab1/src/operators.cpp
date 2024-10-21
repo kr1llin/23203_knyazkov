@@ -1,5 +1,6 @@
 #include "hashtable.h"
-#include <iostream>
+
+
 // copy assignment
 // 1) acquire new resources
 // 2) release old resources
@@ -60,14 +61,17 @@ HashTable &HashTable::operator=(HashTable &&other) {
 
 // returns value by k key
 Value &HashTable::operator[](const Key &k) {
-  int index = find(k);
+  int index = hash(k);
 
-  if (index == -1) {
-    HashNode empty = *new HashNode();
-    this->insert(empty.key, empty.value);
-    return table[find(empty.key)]->value;
+  if (table[index] != nullptr && table[index]->key == k) {
+    return table[index]->value;
   }
-  return table[index]->value;
+
+  HashNode *newNode = new HashNode(); 
+  this->insert(newNode->key, newNode->value);
+
+  // Return the newly inserted value
+  return newNode->value;
 }
 
 // comparassion between tables

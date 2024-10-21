@@ -1,0 +1,1 @@
+/usr/bin/clang++ -g CMakeFiles/corelib.dir/src/ctors.cpp.o CMakeFiles/corelib.dir/src/main.cpp.o CMakeFiles/corelib.dir/src/methods.cpp.o CMakeFiles/corelib.dir/src/operators.cpp.o -o test  -lgtest_main -lgtest 

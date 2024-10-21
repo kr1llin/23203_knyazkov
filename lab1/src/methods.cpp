@@ -127,8 +127,10 @@ void HashTable::clear() {
   }
 
   for (size_t i = 0; i < capacity; ++i) {
-    delete table[i];
-    table[i] = nullptr;
+    if (table[i] != nullptr){
+      delete table[i];
+      table[i] = nullptr;
+    }
   }
   size = 0;
 }
@@ -158,6 +160,7 @@ int HashTable::find(const Key &k) const {
 }
 
 void HashTable::swap(HashTable &other) {
+  //std::swap(other.table, table);
   HashNode **otherT = other.table;
   other.table = table;
   table = otherT;

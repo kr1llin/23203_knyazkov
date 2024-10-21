@@ -1,0 +1,68 @@
+[
+{
+  "directory": "/home/krillin/code/nsu/23203_knyazkov/lab1/build",
+  "command": "/usr/bin/clang++   -g -std=gnu++17 -o CMakeFiles/hashtable.dir/src/operators.cpp.o -c /home/krillin/code/nsu/23203_knyazkov/lab1/src/operators.cpp",
+  "file": "/home/krillin/code/nsu/23203_knyazkov/lab1/src/operators.cpp",
+  "output": "CMakeFiles/hashtable.dir/src/operators.cpp.o"
+},
+{
+  "directory": "/home/krillin/code/nsu/23203_knyazkov/lab1/build",
+  "command": "/usr/bin/clang++   -g -std=gnu++17 -o CMakeFiles/hashtable.dir/src/ctors.cpp.o -c /home/krillin/code/nsu/23203_knyazkov/lab1/src/ctors.cpp",
+  "file": "/home/krillin/code/nsu/23203_knyazkov/lab1/src/ctors.cpp",
+  "output": "CMakeFiles/hashtable.dir/src/ctors.cpp.o"
+},
+{
+  "directory": "/home/krillin/code/nsu/23203_knyazkov/lab1/build",
+  "command": "/usr/bin/clang++   -g -std=gnu++17 -o CMakeFiles/hashtable.dir/src/methods.cpp.o -c /home/krillin/code/nsu/23203_knyazkov/lab1/src/methods.cpp",
+  "file": "/home/krillin/code/nsu/23203_knyazkov/lab1/src/methods.cpp",
+  "output": "CMakeFiles/hashtable.dir/src/methods.cpp.o"
+},
+{
+  "directory": "/home/krillin/code/nsu/23203_knyazkov/lab1/build",
+  "command": "/usr/bin/clang++   -g -std=gnu++17 -o CMakeFiles/hashtable.dir/src/main.cpp.o -c /home/krillin/code/nsu/23203_knyazkov/lab1/src/main.cpp",
+  "file": "/home/krillin/code/nsu/23203_knyazkov/lab1/src/main.cpp",
+  "output": "CMakeFiles/hashtable.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/krillin/code/nsu/23203_knyazkov/lab1/build/googletest/googlemock",
+  "command": "/usr/bin/clang++  -I/home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googlemock/include -I/home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googlemock -isystem /home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googletest/include -isystem /home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googletest -g -std=c++17 -Wall -Wshadow -Wconversion -Wundef -DGTEST_HAS_PTHREAD=1 -fexceptions -W -Wpointer-arith -Wreturn-type -Wcast-qual -Wwrite-strings -Wswitch -Wunused-parameter -Wcast-align -Winline -Wredundant-decls -Wchar-subscripts -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c /home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googlemock/src/gmock-all.cc",
+  "file": "/home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googlemock/src/gmock-all.cc",
+  "output": "googletest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o"
+},
+{
+  "directory": "/home/krillin/code/nsu/23203_knyazkov/lab1/build/googletest/googlemock",
+  "command": "/usr/bin/clang++  -isystem /home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googlemock/include -isystem /home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googlemock -isystem /home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googletest/include -isystem /home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googletest -g -std=c++17 -Wall -Wshadow -Wconversion -Wundef -DGTEST_HAS_PTHREAD=1 -fexceptions -W -Wpointer-arith -Wreturn-type -Wcast-qual -Wwrite-strings -Wswitch -Wunused-parameter -Wcast-align -Winline -Wredundant-decls -Wchar-subscripts -o CMakeFiles/gmock_main.dir/src/gmock_main.cc.o -c /home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googlemock/src/gmock_main.cc",
+  "file": "/home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googlemock/src/gmock_main.cc",
+  "output": "googletest/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o"
+},
+{
+  "directory": "/home/krillin/code/nsu/23203_knyazkov/lab1/build/googletest/googletest",
+  "command": "/usr/bin/clang++  -I/home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googletest/include -I/home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googletest -g -std=c++17 -Wall -Wshadow -Wconversion -Wundef -DGTEST_HAS_PTHREAD=1 -fexceptions -W -Wpointer-arith -Wreturn-type -Wcast-qual -Wwrite-strings -Wswitch -Wunused-parameter -Wcast-align -Winline -Wredundant-decls -Wchar-subscripts -o CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googletest/src/gtest-all.cc",
+  "file": "/home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googletest/src/gtest-all.cc",
+  "output": "googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o"
+},
+{
+  "directory": "/home/krillin/code/nsu/23203_knyazkov/lab1/build/googletest/googletest",
+  "command": "/usr/bin/clang++  -isystem /home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googletest/include -isystem /home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googletest -g -std=c++17 -Wall -Wshadow -Wconversion -Wundef -DGTEST_HAS_PTHREAD=1 -fexceptions -W -Wpointer-arith -Wreturn-type -Wcast-qual -Wwrite-strings -Wswitch -Wunused-parameter -Wcast-align -Winline -Wredundant-decls -Wchar-subscripts -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googletest/src/gtest_main.cc",
+  "file": "/home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googletest/src/gtest_main.cc",
+  "output": "googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o"
+},
+{
+  "directory": "/home/krillin/code/nsu/23203_knyazkov/lab1/build/test",
+  "command": "/usr/bin/clang++  -isystem /home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googletest/include -isystem /home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googletest -g -std=gnu++17 -o CMakeFiles/lab1Tests.dir/operators_tests.cc.o -c /home/krillin/code/nsu/23203_knyazkov/lab1/test/operators_tests.cc",
+  "file": "/home/krillin/code/nsu/23203_knyazkov/lab1/test/operators_tests.cc",
+  "output": "test/CMakeFiles/lab1Tests.dir/operators_tests.cc.o"
+},
+{
+  "directory": "/home/krillin/code/nsu/23203_knyazkov/lab1/build/test",
+  "command": "/usr/bin/clang++  -isystem /home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googletest/include -isystem /home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googletest -g -std=gnu++17 -o CMakeFiles/lab1Tests.dir/methods_tests.cc.o -c /home/krillin/code/nsu/23203_knyazkov/lab1/test/methods_tests.cc",
+  "file": "/home/krillin/code/nsu/23203_knyazkov/lab1/test/methods_tests.cc",
+  "output": "test/CMakeFiles/lab1Tests.dir/methods_tests.cc.o"
+},
+{
+  "directory": "/home/krillin/code/nsu/23203_knyazkov/lab1/build/test",
+  "command": "/usr/bin/clang++  -isystem /home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googletest/include -isystem /home/krillin/code/nsu/23203_knyazkov/lab1/googletest/googletest -g -std=gnu++17 -o CMakeFiles/lab1Tests.dir/ctors_tests.cc.o -c /home/krillin/code/nsu/23203_knyazkov/lab1/test/ctors_tests.cc",
+  "file": "/home/krillin/code/nsu/23203_knyazkov/lab1/test/ctors_tests.cc",
+  "output": "test/CMakeFiles/lab1Tests.dir/ctors_tests.cc.o"
+}
+]

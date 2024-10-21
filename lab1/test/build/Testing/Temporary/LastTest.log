@@ -1,0 +1,82 @@
+Start testing: Oct 21 22:26 +07
+----------------------------------------------------------
+1/1 Testing: output_test
+1/1 Test: output_test
+Command: "/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/TestCoverage"
+Directory: /home/krillin/code/nsu/23203_knyazkov/lab1/test/build
+"output_test" start time: Oct 21 22:26 +07
+Output:
+----------------------------------------------------------
+[==========] Running 25 tests from 3 test suites.
+[----------] Global test environment set-up.
+[----------] 1 test from operators_tests
+[ RUN      ] operators_tests.brackets_test_1
+[       OK ] operators_tests.brackets_test_1 (0 ms)
+[----------] 1 test from operators_tests (0 ms total)
+
+[----------] 17 tests from methods_tests
+[ RUN      ] methods_tests.insert_test_1
+[       OK ] methods_tests.insert_test_1 (0 ms)
+[ RUN      ] methods_tests.insert_test_2
+[       OK ] methods_tests.insert_test_2 (0 ms)
+[ RUN      ] methods_tests.insert_test_3
+[       OK ] methods_tests.insert_test_3 (0 ms)
+[ RUN      ] methods_tests.insert_test_4
+[       OK ] methods_tests.insert_test_4 (0 ms)
+[ RUN      ] methods_tests.rehashing_test_1
+[       OK ] methods_tests.rehashing_test_1 (0 ms)
+[ RUN      ] methods_tests.erase_test_1
+[       OK ] methods_tests.erase_test_1 (0 ms)
+[ RUN      ] methods_tests.erase_test_2
+[       OK ] methods_tests.erase_test_2 (0 ms)
+[ RUN      ] methods_tests.erase_test_3
+[       OK ] methods_tests.erase_test_3 (0 ms)
+[ RUN      ] methods_tests.erase_test_4
+[       OK ] methods_tests.erase_test_4 (0 ms)
+[ RUN      ] methods_tests.erase_test_5
+[       OK ] methods_tests.erase_test_5 (0 ms)
+[ RUN      ] methods_tests.linear_probing_test_1
+[       OK ] methods_tests.linear_probing_test_1 (0 ms)
+[ RUN      ] methods_tests.linear_probing_test_2
+[       OK ] methods_tests.linear_probing_test_2 (0 ms)
+[ RUN      ] methods_tests.linear_probing_test_3
+[       OK ] methods_tests.linear_probing_test_3 (0 ms)
+[ RUN      ] methods_tests.linear_probing_test_4
+[       OK ] methods_tests.linear_probing_test_4 (0 ms)
+[ RUN      ] methods_tests.linear_probing_test_5
+[       OK ] methods_tests.linear_probing_test_5 (0 ms)
+[ RUN      ] methods_tests.clear_test_1
+[       OK ] methods_tests.clear_test_1 (0 ms)
+[ RUN      ] methods_tests.clear_test_2
+[       OK ] methods_tests.clear_test_2 (0 ms)
+[----------] 17 tests from methods_tests (0 ms total)
+
+[----------] 7 tests from ctors_tests
+[ RUN      ] ctors_tests.empty_ctor_test
+[       OK ] ctors_tests.empty_ctor_test (0 ms)
+[ RUN      ] ctors_tests.copy_cstor_test_1
+[       OK ] ctors_tests.copy_cstor_test_1 (0 ms)
+[ RUN      ] ctors_tests.copy_cstor_test_2
+[       OK ] ctors_tests.copy_cstor_test_2 (0 ms)
+[ RUN      ] ctors_tests.capacity_cstor_test_1
+[       OK ] ctors_tests.capacity_cstor_test_1 (0 ms)
+[ RUN      ] ctors_tests.capacity_cstor_test_2
+[       OK ] ctors_tests.capacity_cstor_test_2 (0 ms)
+[ RUN      ] ctors_tests.move_cstor_test_1
+[       OK ] ctors_tests.move_cstor_test_1 (0 ms)
+[ RUN      ] ctors_tests.move_cstor_test_2
+[       OK ] ctors_tests.move_cstor_test_2 (0 ms)
+[----------] 7 tests from ctors_tests (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 25 tests from 3 test suites ran. (0 ms total)
+[  PASSED  ] 25 tests.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"output_test" end time: Oct 21 22:26 +07
+"output_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 21 22:26 +07

@@ -1445,6 +1445,52 @@ function _ZN7testing4Test5SetupEv called 0 returned 0% blocks executed 0%
     #####: 1379:                   FormatForComparisonFailureMessage(rhs, lhs), false);
         -: 1380:}
 ------------------
+_ZN7testing8internal18CmpHelperEQFailureImmEENS_15AssertionResultEPKcS4_RKT_RKT0_:
+function _ZN7testing8internal18CmpHelperEQFailureImmEENS_15AssertionResultEPKcS4_RKT_RKT0_ called 0 returned 0% blocks executed 0%
+    #####: 1374:AssertionResult CmpHelperEQFailure(const char* lhs_expression,
+        -: 1375:                                   const char* rhs_expression, const T1& lhs,
+        -: 1376:                                   const T2& rhs) {
+        -: 1377:  return EqFailure(lhs_expression, rhs_expression,
+    #####: 1378:                   FormatForComparisonFailureMessage(lhs, rhs),
+call    0 never executed
+branch  1 never executed (fallthrough)
+branch  2 never executed (throw)
+call    3 never executed
+call    4 never executed
+    #####: 1379:                   FormatForComparisonFailureMessage(rhs, lhs), false);
+call    0 never executed
+branch  1 never executed (fallthrough)
+branch  2 never executed (throw)
+call    3 never executed
+branch  4 never executed (fallthrough)
+branch  5 never executed (throw)
+call    6 never executed
+call    7 never executed
+        -: 1380:}
+------------------
+_ZN7testing8internal18CmpHelperEQFailureImiEENS_15AssertionResultEPKcS4_RKT_RKT0_:
+function _ZN7testing8internal18CmpHelperEQFailureImiEENS_15AssertionResultEPKcS4_RKT_RKT0_ called 0 returned 0% blocks executed 0%
+    #####: 1374:AssertionResult CmpHelperEQFailure(const char* lhs_expression,
+        -: 1375:                                   const char* rhs_expression, const T1& lhs,
+        -: 1376:                                   const T2& rhs) {
+        -: 1377:  return EqFailure(lhs_expression, rhs_expression,
+    #####: 1378:                   FormatForComparisonFailureMessage(lhs, rhs),
+call    0 never executed
+branch  1 never executed (fallthrough)
+branch  2 never executed (throw)
+call    3 never executed
+call    4 never executed
+    #####: 1379:                   FormatForComparisonFailureMessage(rhs, lhs), false);
+call    0 never executed
+branch  1 never executed (fallthrough)
+branch  2 never executed (throw)
+call    3 never executed
+branch  4 never executed (fallthrough)
+branch  5 never executed (throw)
+call    6 never executed
+call    7 never executed
+        -: 1380:}
+------------------
 _ZN7testing8internal18CmpHelperEQFailureImiEENS_15AssertionResultEPKcS4_RKT_RKT0_:
 function _ZN7testing8internal18CmpHelperEQFailureImiEENS_15AssertionResultEPKcS4_RKT_RKT0_ called 0 returned 0% blocks executed 0%
     #####: 1374:AssertionResult CmpHelperEQFailure(const char* lhs_expression,
@@ -1662,26 +1708,58 @@ call    7 never executed
         -: 1388:
         -: 1389:// The helper function for {ASSERT|EXPECT}_EQ.
         -: 1390:template <typename T1, typename T2>
-      28*: 1391:AssertionResult CmpHelperEQ(const char* lhs_expression,
+     101*: 1391:AssertionResult CmpHelperEQ(const char* lhs_expression,
         -: 1392:                            const char* rhs_expression, const T1& lhs,
         -: 1393:                            const T2& rhs) {
-      28*: 1394:  if (lhs == rhs) {
-      28*: 1395:    return AssertionSuccess();
+     101*: 1394:  if (lhs == rhs) {
+     101*: 1395:    return AssertionSuccess();
         -: 1396:  }
         -: 1397:
     #####: 1398:  return CmpHelperEQFailure(lhs_expression, rhs_expression, lhs, rhs);
         -: 1399:}
 ------------------
-_ZN7testing8internal11CmpHelperEQImiEENS_15AssertionResultEPKcS4_RKT_RKT0_:
-function _ZN7testing8internal11CmpHelperEQImiEENS_15AssertionResultEPKcS4_RKT_RKT0_ called 4 returned 100% blocks executed 75%
-        4: 1391:AssertionResult CmpHelperEQ(const char* lhs_expression,
+_ZN7testing8internal11CmpHelperEQImmEENS_15AssertionResultEPKcS4_RKT_RKT0_:
+function _ZN7testing8internal11CmpHelperEQImmEENS_15AssertionResultEPKcS4_RKT_RKT0_ called 24 returned 100% blocks executed 75%
+       24: 1391:AssertionResult CmpHelperEQ(const char* lhs_expression,
         -: 1392:                            const char* rhs_expression, const T1& lhs,
         -: 1393:                            const T2& rhs) {
-        4: 1394:  if (lhs == rhs) {
+       24: 1394:  if (lhs == rhs) {
 branch  0 taken 100% (fallthrough)
 branch  1 taken 0%
-        4: 1395:    return AssertionSuccess();
+       24: 1395:    return AssertionSuccess();
 call    0 returned 100%
+        -: 1396:  }
+        -: 1397:
+    #####: 1398:  return CmpHelperEQFailure(lhs_expression, rhs_expression, lhs, rhs);
+call    0 never executed
+        -: 1399:}
+------------------
+_ZN7testing8internal11CmpHelperEQImiEENS_15AssertionResultEPKcS4_RKT_RKT0_:
+function _ZN7testing8internal11CmpHelperEQImiEENS_15AssertionResultEPKcS4_RKT_RKT0_ called 21 returned 100% blocks executed 75%
+       21: 1391:AssertionResult CmpHelperEQ(const char* lhs_expression,
+        -: 1392:                            const char* rhs_expression, const T1& lhs,
+        -: 1393:                            const T2& rhs) {
+       21: 1394:  if (lhs == rhs) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+       21: 1395:    return AssertionSuccess();
+call    0 returned 100%
+        -: 1396:  }
+        -: 1397:
+    #####: 1398:  return CmpHelperEQFailure(lhs_expression, rhs_expression, lhs, rhs);
+call    0 never executed
+        -: 1399:}
+------------------
+_ZN7testing8internal11CmpHelperEQImiEENS_15AssertionResultEPKcS4_RKT_RKT0_:
+function _ZN7testing8internal11CmpHelperEQImiEENS_15AssertionResultEPKcS4_RKT_RKT0_ called 0 returned 0% blocks executed 0%
+    #####: 1391:AssertionResult CmpHelperEQ(const char* lhs_expression,
+        -: 1392:                            const char* rhs_expression, const T1& lhs,
+        -: 1393:                            const T2& rhs) {
+    #####: 1394:  if (lhs == rhs) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####: 1395:    return AssertionSuccess();
+call    0 never executed
         -: 1396:  }
         -: 1397:
     #####: 1398:  return CmpHelperEQFailure(lhs_expression, rhs_expression, lhs, rhs);
@@ -1705,14 +1783,14 @@ call    0 never executed
         -: 1399:}
 ------------------
 _ZN7testing8internal11CmpHelperEQIimEENS_15AssertionResultEPKcS4_RKT_RKT0_:
-function _ZN7testing8internal11CmpHelperEQIimEENS_15AssertionResultEPKcS4_RKT_RKT0_ called 11 returned 100% blocks executed 75%
-       11: 1391:AssertionResult CmpHelperEQ(const char* lhs_expression,
+function _ZN7testing8internal11CmpHelperEQIimEENS_15AssertionResultEPKcS4_RKT_RKT0_ called 13 returned 100% blocks executed 75%
+       13: 1391:AssertionResult CmpHelperEQ(const char* lhs_expression,
         -: 1392:                            const char* rhs_expression, const T1& lhs,
         -: 1393:                            const T2& rhs) {
-       11: 1394:  if (lhs == rhs) {
+       13: 1394:  if (lhs == rhs) {
 branch  0 taken 100% (fallthrough)
 branch  1 taken 0%
-       11: 1395:    return AssertionSuccess();
+       13: 1395:    return AssertionSuccess();
 call    0 returned 100%
         -: 1396:  }
         -: 1397:
@@ -1721,14 +1799,14 @@ call    0 never executed
         -: 1399:}
 ------------------
 _ZN7testing8internal11CmpHelperEQIjjEENS_15AssertionResultEPKcS4_RKT_RKT0_:
-function _ZN7testing8internal11CmpHelperEQIjjEENS_15AssertionResultEPKcS4_RKT_RKT0_ called 4 returned 100% blocks executed 75%
-        4: 1391:AssertionResult CmpHelperEQ(const char* lhs_expression,
+function _ZN7testing8internal11CmpHelperEQIjjEENS_15AssertionResultEPKcS4_RKT_RKT0_ called 20 returned 100% blocks executed 75%
+       20: 1391:AssertionResult CmpHelperEQ(const char* lhs_expression,
         -: 1392:                            const char* rhs_expression, const T1& lhs,
         -: 1393:                            const T2& rhs) {
-        4: 1394:  if (lhs == rhs) {
+       20: 1394:  if (lhs == rhs) {
 branch  0 taken 100% (fallthrough)
 branch  1 taken 0%
-        4: 1395:    return AssertionSuccess();
+       20: 1395:    return AssertionSuccess();
 call    0 returned 100%
         -: 1396:  }
         -: 1397:
@@ -1753,15 +1831,15 @@ call    0 never executed
         -: 1399:}
 ------------------
 _ZN7testing8internal11CmpHelperEQImmEENS_15AssertionResultEPKcS4_RKT_RKT0_:
-function _ZN7testing8internal11CmpHelperEQImmEENS_15AssertionResultEPKcS4_RKT_RKT0_ called 2 returned 100% blocks executed 75%
-        2: 1391:AssertionResult CmpHelperEQ(const char* lhs_expression,
+function _ZN7testing8internal11CmpHelperEQImmEENS_15AssertionResultEPKcS4_RKT_RKT0_ called 0 returned 0% blocks executed 0%
+    #####: 1391:AssertionResult CmpHelperEQ(const char* lhs_expression,
         -: 1392:                            const char* rhs_expression, const T1& lhs,
         -: 1393:                            const T2& rhs) {
-        2: 1394:  if (lhs == rhs) {
-branch  0 taken 100% (fallthrough)
-branch  1 taken 0%
-        2: 1395:    return AssertionSuccess();
-call    0 returned 100%
+    #####: 1394:  if (lhs == rhs) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####: 1395:    return AssertionSuccess();
+call    0 never executed
         -: 1396:  }
         -: 1397:
     #####: 1398:  return CmpHelperEQFailure(lhs_expression, rhs_expression, lhs, rhs);
@@ -1769,14 +1847,14 @@ call    0 never executed
         -: 1399:}
 ------------------
 _ZN7testing8internal11CmpHelperEQIbbEENS_15AssertionResultEPKcS4_RKT_RKT0_:
-function _ZN7testing8internal11CmpHelperEQIbbEENS_15AssertionResultEPKcS4_RKT_RKT0_ called 3 returned 100% blocks executed 75%
-        3: 1391:AssertionResult CmpHelperEQ(const char* lhs_expression,
+function _ZN7testing8internal11CmpHelperEQIbbEENS_15AssertionResultEPKcS4_RKT_RKT0_ called 15 returned 100% blocks executed 75%
+       15: 1391:AssertionResult CmpHelperEQ(const char* lhs_expression,
         -: 1392:                            const char* rhs_expression, const T1& lhs,
         -: 1393:                            const T2& rhs) {
-        3: 1394:  if (lhs == rhs) {
+       15: 1394:  if (lhs == rhs) {
 branch  0 taken 100% (fallthrough)
 branch  1 taken 0%
-        3: 1395:    return AssertionSuccess();
+       15: 1395:    return AssertionSuccess();
 call    0 returned 100%
         -: 1396:  }
         -: 1397:
@@ -1785,14 +1863,14 @@ call    0 never executed
         -: 1399:}
 ------------------
 _ZN7testing8internal11CmpHelperEQIijEENS_15AssertionResultEPKcS4_RKT_RKT0_:
-function _ZN7testing8internal11CmpHelperEQIijEENS_15AssertionResultEPKcS4_RKT_RKT0_ called 1 returned 100% blocks executed 75%
-        1: 1391:AssertionResult CmpHelperEQ(const char* lhs_expression,
+function _ZN7testing8internal11CmpHelperEQIijEENS_15AssertionResultEPKcS4_RKT_RKT0_ called 5 returned 100% blocks executed 75%
+        5: 1391:AssertionResult CmpHelperEQ(const char* lhs_expression,
         -: 1392:                            const char* rhs_expression, const T1& lhs,
         -: 1393:                            const T2& rhs) {
-        1: 1394:  if (lhs == rhs) {
+        5: 1394:  if (lhs == rhs) {
 branch  0 taken 100% (fallthrough)
 branch  1 taken 0%
-        1: 1395:    return AssertionSuccess();
+        5: 1395:    return AssertionSuccess();
 call    0 returned 100%
         -: 1396:  }
         -: 1397:
@@ -1826,19 +1904,37 @@ call    0 never executed
         -: 1407:      // and the other is the null pointer constant.
         -: 1408:      typename std::enable_if<!std::is_integral<T1>::value ||
         -: 1409:                              !std::is_pointer<T2>::value>::type* = nullptr>
-      28*: 1410:  static AssertionResult Compare(const char* lhs_expression,
+     101*: 1410:  static AssertionResult Compare(const char* lhs_expression,
         -: 1411:                                 const char* rhs_expression, const T1& lhs,
         -: 1412:                                 const T2& rhs) {
-      28*: 1413:    return CmpHelperEQ(lhs_expression, rhs_expression, lhs, rhs);
+     101*: 1413:    return CmpHelperEQ(lhs_expression, rhs_expression, lhs, rhs);
+        -: 1414:  }
+------------------
+_ZN7testing8internal8EqHelper7CompareImmLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_:
+function _ZN7testing8internal8EqHelper7CompareImmLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_ called 24 returned 100% blocks executed 100%
+       24: 1410:  static AssertionResult Compare(const char* lhs_expression,
+        -: 1411:                                 const char* rhs_expression, const T1& lhs,
+        -: 1412:                                 const T2& rhs) {
+       24: 1413:    return CmpHelperEQ(lhs_expression, rhs_expression, lhs, rhs);
+call    0 returned 100%
         -: 1414:  }
 ------------------
 _ZN7testing8internal8EqHelper7CompareImiLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_:
-function _ZN7testing8internal8EqHelper7CompareImiLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_ called 4 returned 100% blocks executed 100%
-        4: 1410:  static AssertionResult Compare(const char* lhs_expression,
+function _ZN7testing8internal8EqHelper7CompareImiLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_ called 21 returned 100% blocks executed 100%
+       21: 1410:  static AssertionResult Compare(const char* lhs_expression,
         -: 1411:                                 const char* rhs_expression, const T1& lhs,
         -: 1412:                                 const T2& rhs) {
-        4: 1413:    return CmpHelperEQ(lhs_expression, rhs_expression, lhs, rhs);
+       21: 1413:    return CmpHelperEQ(lhs_expression, rhs_expression, lhs, rhs);
 call    0 returned 100%
+        -: 1414:  }
+------------------
+_ZN7testing8internal8EqHelper7CompareImiLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_:
+function _ZN7testing8internal8EqHelper7CompareImiLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_ called 0 returned 0% blocks executed 0%
+    #####: 1410:  static AssertionResult Compare(const char* lhs_expression,
+        -: 1411:                                 const char* rhs_expression, const T1& lhs,
+        -: 1412:                                 const T2& rhs) {
+    #####: 1413:    return CmpHelperEQ(lhs_expression, rhs_expression, lhs, rhs);
+call    0 never executed
         -: 1414:  }
 ------------------
 _ZN7testing8internal8EqHelper7CompareIiiLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_:
@@ -1851,20 +1947,20 @@ call    0 returned 100%
         -: 1414:  }
 ------------------
 _ZN7testing8internal8EqHelper7CompareIimLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_:
-function _ZN7testing8internal8EqHelper7CompareIimLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_ called 11 returned 100% blocks executed 100%
-       11: 1410:  static AssertionResult Compare(const char* lhs_expression,
+function _ZN7testing8internal8EqHelper7CompareIimLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_ called 13 returned 100% blocks executed 100%
+       13: 1410:  static AssertionResult Compare(const char* lhs_expression,
         -: 1411:                                 const char* rhs_expression, const T1& lhs,
         -: 1412:                                 const T2& rhs) {
-       11: 1413:    return CmpHelperEQ(lhs_expression, rhs_expression, lhs, rhs);
+       13: 1413:    return CmpHelperEQ(lhs_expression, rhs_expression, lhs, rhs);
 call    0 returned 100%
         -: 1414:  }
 ------------------
 _ZN7testing8internal8EqHelper7CompareIjjLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_:
-function _ZN7testing8internal8EqHelper7CompareIjjLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_ called 4 returned 100% blocks executed 100%
-        4: 1410:  static AssertionResult Compare(const char* lhs_expression,
+function _ZN7testing8internal8EqHelper7CompareIjjLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_ called 20 returned 100% blocks executed 100%
+       20: 1410:  static AssertionResult Compare(const char* lhs_expression,
         -: 1411:                                 const char* rhs_expression, const T1& lhs,
         -: 1412:                                 const T2& rhs) {
-        4: 1413:    return CmpHelperEQ(lhs_expression, rhs_expression, lhs, rhs);
+       20: 1413:    return CmpHelperEQ(lhs_expression, rhs_expression, lhs, rhs);
 call    0 returned 100%
         -: 1414:  }
 ------------------
@@ -1878,29 +1974,29 @@ call    0 never executed
         -: 1414:  }
 ------------------
 _ZN7testing8internal8EqHelper7CompareImmLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_:
-function _ZN7testing8internal8EqHelper7CompareImmLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_ called 2 returned 100% blocks executed 100%
-        2: 1410:  static AssertionResult Compare(const char* lhs_expression,
+function _ZN7testing8internal8EqHelper7CompareImmLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_ called 0 returned 0% blocks executed 0%
+    #####: 1410:  static AssertionResult Compare(const char* lhs_expression,
         -: 1411:                                 const char* rhs_expression, const T1& lhs,
         -: 1412:                                 const T2& rhs) {
-        2: 1413:    return CmpHelperEQ(lhs_expression, rhs_expression, lhs, rhs);
-call    0 returned 100%
+    #####: 1413:    return CmpHelperEQ(lhs_expression, rhs_expression, lhs, rhs);
+call    0 never executed
         -: 1414:  }
 ------------------
 _ZN7testing8internal8EqHelper7CompareIbbLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_:
-function _ZN7testing8internal8EqHelper7CompareIbbLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_ called 3 returned 100% blocks executed 100%
-        3: 1410:  static AssertionResult Compare(const char* lhs_expression,
+function _ZN7testing8internal8EqHelper7CompareIbbLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_ called 15 returned 100% blocks executed 100%
+       15: 1410:  static AssertionResult Compare(const char* lhs_expression,
         -: 1411:                                 const char* rhs_expression, const T1& lhs,
         -: 1412:                                 const T2& rhs) {
-        3: 1413:    return CmpHelperEQ(lhs_expression, rhs_expression, lhs, rhs);
+       15: 1413:    return CmpHelperEQ(lhs_expression, rhs_expression, lhs, rhs);
 call    0 returned 100%
         -: 1414:  }
 ------------------
 _ZN7testing8internal8EqHelper7CompareIijLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_:
-function _ZN7testing8internal8EqHelper7CompareIijLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_ called 1 returned 100% blocks executed 100%
-        1: 1410:  static AssertionResult Compare(const char* lhs_expression,
+function _ZN7testing8internal8EqHelper7CompareIijLPv0EEENS_15AssertionResultEPKcS6_RKT_RKT0_ called 5 returned 100% blocks executed 100%
+        5: 1410:  static AssertionResult Compare(const char* lhs_expression,
         -: 1411:                                 const char* rhs_expression, const T1& lhs,
         -: 1412:                                 const T2& rhs) {
-        1: 1413:    return CmpHelperEQ(lhs_expression, rhs_expression, lhs, rhs);
+        5: 1413:    return CmpHelperEQ(lhs_expression, rhs_expression, lhs, rhs);
 call    0 returned 100%
         -: 1414:  }
 ------------------
@@ -2886,8 +2982,8 @@ call    3 never executed
         -: 2331:// namespace and has an all-caps name.
         -: 2332:int RUN_ALL_TESTS() GTEST_MUST_USE_RESULT_;
         -: 2333:
-function _Z13RUN_ALL_TESTSv called 1 returned 100% blocks executed 100%
-        1: 2334:inline int RUN_ALL_TESTS() { return ::testing::UnitTest::GetInstance()->Run(); }
+function _Z13RUN_ALL_TESTSv called 5 returned 100% blocks executed 100%
+        5: 2334:inline int RUN_ALL_TESTS() { return ::testing::UnitTest::GetInstance()->Run(); }
 call    0 returned 100%
 call    1 returned 100%
         -: 2335:

@@ -71,10 +71,10 @@
         -:   70:}
         -:   71:*/
         -:   72:
-function main called 1 returned 100% blocks executed 100%
-        1:   73:int main(int argc, char **argv){
-        1:   74:  testing::InitGoogleTest(&argc, argv);
+function main called 5 returned 100% blocks executed 100%
+        5:   73:int main(int argc, char **argv){
+        5:   74:  testing::InitGoogleTest(&argc, argv);
 call    0 returned 100%
-        1:   75:  return RUN_ALL_TESTS();
+        5:   75:  return RUN_ALL_TESTS();
 call    0 returned 100%
         -:   76:}

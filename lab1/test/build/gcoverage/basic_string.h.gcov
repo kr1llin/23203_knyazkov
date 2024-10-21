@@ -358,7 +358,7 @@
         -:  357:	  for (size_type __i = 0; __i <= _S_local_capacity; ++__i)
         -:  358:	    _M_local_buf[__i] = _CharT();
         -:  359:#endif
-     105*:  360:      }
+     449*:  360:      }
         -:  361:
         -:  362:      __attribute__((__always_inline__))
         -:  363:      _GLIBCXX14_CONSTEXPR
@@ -644,40 +644,40 @@
         -:  643:      template<typename = _RequireAllocator<_Alloc>>
         -:  644:#endif
         -:  645:      _GLIBCXX20_CONSTEXPR
-     137*:  646:      basic_string(const _CharT* __s, const _Alloc& __a = _Alloc())
-     137*:  647:      : _M_dataplus(_M_local_data(), __a)
+     610*:  646:      basic_string(const _CharT* __s, const _Alloc& __a = _Alloc())
+     610*:  647:      : _M_dataplus(_M_local_data(), __a)
         -:  648:      {
         -:  649:	// NB: Not required, but considered best practice.
-     137*:  650:	if (__s == 0)
+     610*:  650:	if (__s == 0)
     #####:  651:	  std::__throw_logic_error(__N("basic_string: "
         -:  652:				       "construction from null is not valid"));
-     137*:  653:	const _CharT* __end = __s + traits_type::length(__s);
-     137*:  654:	_M_construct(__s, __end, forward_iterator_tag());
-     137*:  655:      }
+     610*:  653:	const _CharT* __end = __s + traits_type::length(__s);
+     610*:  654:	_M_construct(__s, __end, forward_iterator_tag());
+     610*:  655:      }
 ------------------
 _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC2IS3_EEPKcRKS3_:
-function _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC2IS3_EEPKcRKS3_ called 137 returned 100% blocks executed 78%
-      137:  646:      basic_string(const _CharT* __s, const _Alloc& __a = _Alloc())
-      137:  647:      : _M_dataplus(_M_local_data(), __a)
+function _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC2IS3_EEPKcRKS3_ called 610 returned 100% blocks executed 78%
+      610:  646:      basic_string(const _CharT* __s, const _Alloc& __a = _Alloc())
+      610:  647:      : _M_dataplus(_M_local_data(), __a)
 call    0 returned 100%
 call    1 returned 100%
         -:  648:      {
         -:  649:	// NB: Not required, but considered best practice.
-      137:  650:	if (__s == 0)
+      610:  650:	if (__s == 0)
 branch  0 taken 0% (fallthrough)
 branch  1 taken 100%
     #####:  651:	  std::__throw_logic_error(__N("basic_string: "
 call    0 never executed
         -:  652:				       "construction from null is not valid"));
-      137:  653:	const _CharT* __end = __s + traits_type::length(__s);
+      610:  653:	const _CharT* __end = __s + traits_type::length(__s);
 call    0 returned 100%
 branch  1 taken 100% (fallthrough)
 branch  2 taken 0% (throw)
-      137:  654:	_M_construct(__s, __end, forward_iterator_tag());
+      610:  654:	_M_construct(__s, __end, forward_iterator_tag());
 call    0 returned 100%
 branch  1 taken 100% (fallthrough)
 branch  2 taken 0% (throw)
-      137:  655:      }
+      610:  655:      }
 call    0 never executed
 ------------------
 _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC2IS3_EEPKcRKS3_:
@@ -3647,8 +3647,8 @@ call    0 never executed
         -: 3570:  template<typename _Str>
         -: 3571:    _GLIBCXX20_CONSTEXPR
         -: 3572:    inline _Str
-function _ZSt12__str_concatINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEET_PKNS6_10value_typeENS6_9size_typeES9_SA_RKNS6_14allocator_typeE called 25 returned 100% blocks executed 93%
-       25: 3573:    __str_concat(typename _Str::value_type const* __lhs,
+function _ZSt12__str_concatINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEET_PKNS6_10value_typeENS6_9size_typeES9_SA_RKNS6_14allocator_typeE called 41 returned 100% blocks executed 93%
+       41: 3573:    __str_concat(typename _Str::value_type const* __lhs,
         -: 3574:		 typename _Str::size_type __lhs_len,
         -: 3575:		 typename _Str::value_type const* __rhs,
         -: 3576:		 typename _Str::size_type __rhs_len,
@@ -3656,21 +3656,21 @@ function _ZSt12__str_concatINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
         -: 3578:    {
         -: 3579:      typedef typename _Str::allocator_type allocator_type;
         -: 3580:      typedef __gnu_cxx::__alloc_traits<allocator_type> _Alloc_traits;
-       25: 3581:      _Str __str(_Alloc_traits::_S_select_on_copy(__a));
+       41: 3581:      _Str __str(_Alloc_traits::_S_select_on_copy(__a));
 call    0 returned 100%
-       25: 3582:      __str.reserve(__lhs_len + __rhs_len);
-call    0 returned 100%
-branch  1 taken 100% (fallthrough)
-branch  2 taken 0% (throw)
-       25: 3583:      __str.append(__lhs, __lhs_len);
+       41: 3582:      __str.reserve(__lhs_len + __rhs_len);
 call    0 returned 100%
 branch  1 taken 100% (fallthrough)
 branch  2 taken 0% (throw)
-       25: 3584:      __str.append(__rhs, __rhs_len);
+       41: 3583:      __str.append(__lhs, __lhs_len);
 call    0 returned 100%
 branch  1 taken 100% (fallthrough)
 branch  2 taken 0% (throw)
-       25: 3585:      return __str;
+       41: 3584:      __str.append(__rhs, __rhs_len);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       41: 3585:      return __str;
     =====: 3586:    }
 call    0 never executed
         -: 3587:
@@ -3702,24 +3702,24 @@ call    0 never executed
         -: 3613:  template<typename _CharT, typename _Traits, typename _Alloc>
         -: 3614:    _GLIBCXX_NODISCARD _GLIBCXX20_CONSTEXPR
         -: 3615:    inline basic_string<_CharT,_Traits,_Alloc>
-function _ZStplIcSt11char_traitsIcESaIcEENSt7__cxx1112basic_stringIT_T0_T1_EEPKS5_RKS8_ called 0 returned 0% blocks executed 0%
-    #####: 3616:    operator+(const _CharT* __lhs,
+function _ZStplIcSt11char_traitsIcESaIcEENSt7__cxx1112basic_stringIT_T0_T1_EEPKS5_RKS8_ called 1 returned 100% blocks executed 83%
+        1: 3616:    operator+(const _CharT* __lhs,
         -: 3617:	      const basic_string<_CharT,_Traits,_Alloc>& __rhs)
         -: 3618:    {
         -: 3619:      __glibcxx_requires_string(__lhs);
         -: 3620:      typedef basic_string<_CharT, _Traits, _Alloc> _Str;
         -: 3621:      return std::__str_concat<_Str>(__lhs, _Traits::length(__lhs),
         -: 3622:				     __rhs.c_str(), __rhs.size(),
-    #####: 3623:				     __rhs.get_allocator());
-call    0 never executed
-call    1 never executed
-call    2 never executed
-call    3 never executed
-branch  4 never executed (fallthrough)
-branch  5 never executed (throw)
-call    6 never executed
-branch  7 never executed (fallthrough)
-branch  8 never executed (throw)
+        2: 3623:				     __rhs.get_allocator());
+call    0 returned 100%
+call    1 returned 100%
+call    2 returned 100%
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+branch  7 taken 100% (fallthrough)
+branch  8 taken 0% (throw)
         -: 3624:    }
         -: 3625:
         -: 3626:  /**
@@ -3855,32 +3855,32 @@ call    2 returned 100%
         -: 3752:  template<typename _CharT, typename _Traits, typename _Alloc>
         -: 3753:    _GLIBCXX_NODISCARD _GLIBCXX20_CONSTEXPR
         -: 3754:    inline bool
-      84*: 3755:    operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     390*: 3755:    operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
         -: 3756:	       const basic_string<_CharT, _Traits, _Alloc>& __rhs)
         -: 3757:    _GLIBCXX_NOEXCEPT
         -: 3758:    {
-      84*: 3759:      return __lhs.size() == __rhs.size()
-      84*: 3760:	       && !_Traits::compare(__lhs.data(), __rhs.data(), __lhs.size());
+     390*: 3759:      return __lhs.size() == __rhs.size()
+     390*: 3760:	       && !_Traits::compare(__lhs.data(), __rhs.data(), __lhs.size());
         -: 3761:    }
 ------------------
 _ZSteqIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EESA_:
-function _ZSteqIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EESA_ called 84 returned 100% blocks executed 100%
-       84: 3755:    operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+function _ZSteqIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EESA_ called 390 returned 100% blocks executed 100%
+      390: 3755:    operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
         -: 3756:	       const basic_string<_CharT, _Traits, _Alloc>& __rhs)
         -: 3757:    _GLIBCXX_NOEXCEPT
         -: 3758:    {
-       84: 3759:      return __lhs.size() == __rhs.size()
+      390: 3759:      return __lhs.size() == __rhs.size()
 call    0 returned 100%
 call    1 returned 100%
-       84: 3760:	       && !_Traits::compare(__lhs.data(), __rhs.data(), __lhs.size());
-branch  0 taken 57% (fallthrough)
-branch  1 taken 43%
+      390: 3760:	       && !_Traits::compare(__lhs.data(), __rhs.data(), __lhs.size());
+branch  0 taken 64% (fallthrough)
+branch  1 taken 36%
 call    2 returned 100%
 call    3 returned 100%
 call    4 returned 100%
 call    5 returned 100%
-branch  6 taken 90% (fallthrough)
-branch  7 taken 10%
+branch  6 taken 92% (fallthrough)
+branch  7 taken 8%
         -: 3761:    }
 ------------------
 _ZSteqIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EESA_:
@@ -3974,12 +3974,12 @@ branch  7 never executed
         -: 3830:  template<typename _CharT, typename _Traits, typename _Alloc>
         -: 3831:    _GLIBCXX_NODISCARD
         -: 3832:    inline bool
-function _ZStneIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EESA_ called 0 returned 0% blocks executed 0%
-    #####: 3833:    operator!=(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+function _ZStneIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EESA_ called 45 returned 100% blocks executed 100%
+       45: 3833:    operator!=(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
         -: 3834:	       const basic_string<_CharT, _Traits, _Alloc>& __rhs)
         -: 3835:    _GLIBCXX_NOEXCEPT
-    #####: 3836:    { return !(__lhs == __rhs); }
-call    0 never executed
+       45: 3836:    { return !(__lhs == __rhs); }
+call    0 returned 100%
         -: 3837:
         -: 3838:  /**
         -: 3839:   *  @brief  Test difference of C string and string.

@@ -153,23 +153,23 @@
         -:  152:  // the argument is implicitly convertible to AssertionResult. In that case
         -:  153:  // we want AssertionResult's copy constructor to be used.
         -:  154:  template <typename T>
-      37*:  155:  explicit AssertionResult(
+     181*:  155:  explicit AssertionResult(
         -:  156:      const T& success,
         -:  157:      typename std::enable_if<
         -:  158:          !std::is_convertible<T, AssertionResult>::value>::type*
         -:  159:      /*enabler*/
         -:  160:      = nullptr)
-      37*:  161:      : success_(success) {}
+     181*:  161:      : success_(success) {}
 ------------------
 _ZN7testing15AssertionResultC2IbEERKT_PNSt9enable_ifIXntsrSt14is_convertibleIS2_S0_E5valueEvE4typeE:
-function _ZN7testing15AssertionResultC2IbEERKT_PNSt9enable_ifIXntsrSt14is_convertibleIS2_S0_E5valueEvE4typeE called 37 returned 100% blocks executed 100%
-       37:  155:  explicit AssertionResult(
+function _ZN7testing15AssertionResultC2IbEERKT_PNSt9enable_ifIXntsrSt14is_convertibleIS2_S0_E5valueEvE4typeE called 181 returned 100% blocks executed 100%
+      181:  155:  explicit AssertionResult(
         -:  156:      const T& success,
         -:  157:      typename std::enable_if<
         -:  158:          !std::is_convertible<T, AssertionResult>::value>::type*
         -:  159:      /*enabler*/
         -:  160:      = nullptr)
-       37:  161:      : success_(success) {}
+      181:  161:      : success_(success) {}
 call    0 returned 100%
 ------------------
 _ZN7testing15AssertionResultC2IbEERKT_PNSt9enable_ifIXntsrSt14is_convertibleIS2_S0_E5valueEvE4typeE:
@@ -195,11 +195,11 @@ call    0 never executed
         -:  171:  }
         -:  172:
         -:  173:  // Returns true if and only if the assertion succeeded.
-      37*:  174:  operator bool() const { return success_; }  // NOLINT
+     181*:  174:  operator bool() const { return success_; }  // NOLINT
 ------------------
 _ZNK7testing15AssertionResultcvbEv:
-function _ZNK7testing15AssertionResultcvbEv called 37 returned 100% blocks executed 100%
-       37:  174:  operator bool() const { return success_; }  // NOLINT
+function _ZNK7testing15AssertionResultcvbEv called 181 returned 100% blocks executed 100%
+      181:  174:  operator bool() const { return success_; }  // NOLINT
 ------------------
 _ZNK7testing15AssertionResultcvbEv:
 function _ZNK7testing15AssertionResultcvbEv called 0 returned 0% blocks executed 0%
@@ -243,8 +243,24 @@ call    3 never executed
 call    4 never executed
         -:  185:  }
 ------------------
+_ZNK7testing15AssertionResult7messageEv:
+function _ZNK7testing15AssertionResult7messageEv called 0 returned 0% blocks executed 0%
+    #####:  183:  const char* message() const {
+    #####:  184:    return message_ != nullptr ? message_->c_str() : "";
+call    0 never executed
+branch  1 never executed (fallthrough)
+branch  2 never executed
+call    3 never executed
+call    4 never executed
+        -:  185:  }
+------------------
         -:  186:  // Deprecated; please use message() instead.
     #####:  187:  const char* failure_message() const { return message(); }
+------------------
+_ZNK7testing15AssertionResult15failure_messageEv:
+function _ZNK7testing15AssertionResult15failure_messageEv called 0 returned 0% blocks executed 0%
+    #####:  187:  const char* failure_message() const { return message(); }
+call    0 never executed
 ------------------
 _ZNK7testing15AssertionResult15failure_messageEv:
 function _ZNK7testing15AssertionResult15failure_messageEv called 0 returned 0% blocks executed 0%

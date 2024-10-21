@@ -1,4 +1,4 @@
-#include "../src/methods.cpp"
+#include "../../src/methods.cpp"
 #include <gtest/gtest.h>
 #include <gtest/gtest_prod.h>
 #include <string>
@@ -146,7 +146,6 @@ TEST(methods_tests, linear_probing_test_5) {
   EXPECT_NE(result, startIndex);
 }
 
-
 TEST(methods_tests, clear_test_1) {
   HashTable a = HashTable();
   a.insert("key", {1, 1});
@@ -161,9 +160,43 @@ TEST(methods_tests, clear_test_1) {
 
 TEST(methods_tests, clear_test_2) {
   HashTable a = HashTable(1);
-    a.clear();
+  a.clear();
 
-    EXPECT_NO_THROW({
-     a.clear();
-    });
+  EXPECT_NO_THROW({ a.clear(); });
+}
+
+TEST(methods_tests, at_test_1) {
+  HashTable a = HashTable();
+  const Value value1 = {1, 1};
+  const Value value2 = {2, 2};
+
+  a.insert("1", value1);
+  a.insert("2", value2);
+
+  EXPECT_TRUE(a.at("1") == value1);
+  EXPECT_TRUE(a.at("2") == value2);
+}
+
+TEST(methods_tests, at_test_2) {
+  HashTable a = HashTable();
+  const Value value1 = {1, 1};
+
+  a.insert("1", value1);
+
+  EXPECT_THROW(a.at("2"), std::runtime_error);
+}
+
+TEST(methods_tests, swap_test_1){
+  HashTable a = HashTable();
+  const Value value1 = {1, 1};
+  a.insert("1", value1);
+  HashTable b = HashTable();
+  const Value value2 = {2,2};
+  b.insert("2", value2);
+  b.insert("3", value2);
+
+  a.swap(b);
+  EXPECT_EQ(2, a.getSize());
+  EXPECT_EQ(1, b.getSize());
+  EXPECT_FALSE(a.contains("1"));
 }

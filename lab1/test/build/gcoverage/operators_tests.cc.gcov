@@ -1,39 +1,40 @@
         -:    0:Source:/home/krillin/code/nsu/23203_knyazkov/lab1/test/src/operators_tests.cc
-        -:    1:#include "../src/operators.cpp"
-        -:    2:#include <gtest/gtest.h>
-        -:    3:
-        4:    4:TEST(operators_tests, brackets_test_1){
-        1:    5:    HashTable a = HashTable();
-        1:    6:    const Value value = {1, 1};
-        2:    7:    a.insert("Key", value);
-       2*:    8:    EXPECT_TRUE(a["Key"] == value);
-        1:    9:}
+        -:    1:#include "../../src/operators.cpp"
+        -:    2:#include "hashtable.h"
+        -:    3:#include <gtest/gtest.h>
+        -:    4:
+       12:    5:TEST(operators_tests, brackets_test_1) {
+        3:    6:  HashTable a = HashTable();
+        3:    7:  const Value value = {1, 1};
+        6:    8:  a.insert("Key", value);
+       6*:    9:  EXPECT_TRUE(a["Key"] == value);
+        3:   10:}
 ------------------
 _ZN36operators_tests_brackets_test_1_TestC2Ev:
-function _ZN36operators_tests_brackets_test_1_TestC2Ev called 1 returned 100% blocks executed 100%
-        1:    4:TEST(operators_tests, brackets_test_1){
+function _ZN36operators_tests_brackets_test_1_TestC2Ev called 3 returned 100% blocks executed 100%
+        3:    5:TEST(operators_tests, brackets_test_1) {
 call    0 returned 100%
 ------------------
 _ZN36operators_tests_brackets_test_1_TestD0Ev:
-function _ZN36operators_tests_brackets_test_1_TestD0Ev called 1 returned 100% blocks executed 100%
-        1:    4:TEST(operators_tests, brackets_test_1){
+function _ZN36operators_tests_brackets_test_1_TestD0Ev called 3 returned 100% blocks executed 100%
+        3:    5:TEST(operators_tests, brackets_test_1) {
 call    0 returned 100%
 call    1 returned 100%
 ------------------
 _ZN36operators_tests_brackets_test_1_TestD2Ev:
-function _ZN36operators_tests_brackets_test_1_TestD2Ev called 1 returned 100% blocks executed 100%
-        1:    4:TEST(operators_tests, brackets_test_1){
+function _ZN36operators_tests_brackets_test_1_TestD2Ev called 3 returned 100% blocks executed 100%
+        3:    5:TEST(operators_tests, brackets_test_1) {
 call    0 returned 100%
 ------------------
 _ZN36operators_tests_brackets_test_1_Test8TestBodyEv:
-function _ZN36operators_tests_brackets_test_1_Test8TestBodyEv called 1 returned 100% blocks executed 37%
-        1:    4:TEST(operators_tests, brackets_test_1){
-        1:    5:    HashTable a = HashTable();
+function _ZN36operators_tests_brackets_test_1_Test8TestBodyEv called 3 returned 100% blocks executed 37%
+        3:    5:TEST(operators_tests, brackets_test_1) {
+        3:    6:  HashTable a = HashTable();
 call    0 returned 100%
 branch  1 taken 100% (fallthrough)
 branch  2 taken 0% (throw)
-        1:    6:    const Value value = {1, 1};
-        2:    7:    a.insert("Key", value);
+        3:    7:  const Value value = {1, 1};
+        6:    8:  a.insert("Key", value);
 call    0 returned 100%
 branch  1 taken 100% (fallthrough)
 branch  2 taken 0% (throw)
@@ -42,7 +43,7 @@ branch  4 taken 100% (fallthrough)
 branch  5 taken 0% (throw)
 call    6 returned 100%
 call    7 never executed
-       2*:    8:    EXPECT_TRUE(a["Key"] == value);
+       6*:    9:  EXPECT_TRUE(a["Key"] == value);
 call    0 returned 100%
 branch  1 taken 100% (fallthrough)
 branch  2 taken 0% (throw)
@@ -77,101 +78,1318 @@ call   30 never executed
 call   31 never executed
 call   32 never executed
 call   33 never executed
-        1:    9:}
+        3:   10:}
 call    0 returned 100%
 call    1 never executed
 ------------------
-        -:   10:
-        -:   11:// TEST(operators_tests, brackets_test_2){
-        -:   12://     HashTable a = HashTable();
-        -:   13://     Value empty = Value();
-        -:   14://     EXPECT_TRUE(empty == a["something"]);
-        -:   15:// }
-        -:   16:
-        -:   17:// TEST(operators_tests, copy_assignment_test_1){
-        -:   18://    HashTable a = HashTable();
-        -:   19://    Value Value1 = {1,1};
-        -:   20://    Value Value2 = {2,2};
-        -:   21://    Value Value3 = {3,3};
-        -:   22:
-        -:   23://     a.insert("Key1", Value1);
-        -:   24://     a.insert("Key2", Value2);
-        -:   25:    
+        -:   11:
+       12:   12:TEST(operators_tests, brackets_test_2) {
+        3:   13:  HashTable a = HashTable();
+        3:   14:  Value empty = Value();
+       6*:   15:  EXPECT_TRUE(empty == a["something"]);
+        3:   16:}
+------------------
+_ZN36operators_tests_brackets_test_2_TestC2Ev:
+function _ZN36operators_tests_brackets_test_2_TestC2Ev called 3 returned 100% blocks executed 100%
+        3:   12:TEST(operators_tests, brackets_test_2) {
+call    0 returned 100%
+------------------
+_ZN36operators_tests_brackets_test_2_TestD0Ev:
+function _ZN36operators_tests_brackets_test_2_TestD0Ev called 3 returned 100% blocks executed 100%
+        3:   12:TEST(operators_tests, brackets_test_2) {
+call    0 returned 100%
+call    1 returned 100%
+------------------
+_ZN36operators_tests_brackets_test_2_TestD2Ev:
+function _ZN36operators_tests_brackets_test_2_TestD2Ev called 3 returned 100% blocks executed 100%
+        3:   12:TEST(operators_tests, brackets_test_2) {
+call    0 returned 100%
+------------------
+_ZN36operators_tests_brackets_test_2_Test8TestBodyEv:
+function _ZN36operators_tests_brackets_test_2_Test8TestBodyEv called 3 returned 100% blocks executed 33%
+        3:   12:TEST(operators_tests, brackets_test_2) {
+        3:   13:  HashTable a = HashTable();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        3:   14:  Value empty = Value();
+       6*:   15:  EXPECT_TRUE(empty == a["something"]);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+call    7 returned 100%
+call    8 returned 100%
+call    9 returned 100%
+branch 10 taken 0% (fallthrough)
+branch 11 taken 100%
+call   12 never executed
+branch 13 never executed (fallthrough)
+branch 14 never executed (throw)
+call   15 never executed
+branch 16 never executed (fallthrough)
+branch 17 never executed (throw)
+call   18 never executed
+call   19 never executed
+branch 20 never executed (fallthrough)
+branch 21 never executed (throw)
+call   22 never executed
+branch 23 never executed (fallthrough)
+branch 24 never executed (throw)
+call   25 never executed
+call   26 never executed
+call   27 never executed
+call   28 returned 100%
+call   29 never executed
+call   30 never executed
+call   31 never executed
+call   32 never executed
+call   33 never executed
+        3:   16:}
+call    0 returned 100%
+call    1 never executed
+------------------
+        -:   17:
+       12:   18:TEST(operators_tests, copy_assignment_test_1) {
+        3:   19:  HashTable a = HashTable();
+        3:   20:  Value Value1 = {1, 1};
+        3:   21:  Value Value2 = {2, 2};
+        3:   22:  Value Value3 = {3, 3};
+        -:   23:
+        6:   24:  a.insert("Key1", Value1);
+        3:   25:  a.insert("Key2", Value2);
         -:   26:
-        -:   27://     HashTable b;
-        -:   28://     b.insert("Key3", Value3);
+        3:   27:  HashTable b;
+        3:   28:  b.insert("Key3", Value3);
         -:   29:
-        -:   30://     b = a;
+        3:   30:  b = a;
         -:   31:
-        -:   32://     EXPECT_TRUE(b["Key1"] == Value1);
-        -:   33://     EXPECT_TRUE(b["Key2"] == Value2);
-        -:   34://     EXPECT_FALSE(b["Key3"] == Value3); // do not need to be here
-        -:   35:// }
+       9*:   32:  EXPECT_TRUE(b["Key1"] == Value1);
+       6*:   33:  EXPECT_TRUE(b["Key2"] == Value2);
+       6*:   34:  EXPECT_FALSE(b["Key3"] == Value3); // do not need to be here
+        3:   35:}
+------------------
+_ZN43operators_tests_copy_assignment_test_1_TestC2Ev:
+function _ZN43operators_tests_copy_assignment_test_1_TestC2Ev called 3 returned 100% blocks executed 100%
+        3:   18:TEST(operators_tests, copy_assignment_test_1) {
+call    0 returned 100%
+------------------
+_ZN43operators_tests_copy_assignment_test_1_TestD0Ev:
+function _ZN43operators_tests_copy_assignment_test_1_TestD0Ev called 3 returned 100% blocks executed 100%
+        3:   18:TEST(operators_tests, copy_assignment_test_1) {
+call    0 returned 100%
+call    1 returned 100%
+------------------
+_ZN43operators_tests_copy_assignment_test_1_TestD2Ev:
+function _ZN43operators_tests_copy_assignment_test_1_TestD2Ev called 3 returned 100% blocks executed 100%
+        3:   18:TEST(operators_tests, copy_assignment_test_1) {
+call    0 returned 100%
+------------------
+_ZN43operators_tests_copy_assignment_test_1_Test8TestBodyEv:
+function _ZN43operators_tests_copy_assignment_test_1_Test8TestBodyEv called 3 returned 100% blocks executed 35%
+        3:   18:TEST(operators_tests, copy_assignment_test_1) {
+        3:   19:  HashTable a = HashTable();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        3:   20:  Value Value1 = {1, 1};
+        3:   21:  Value Value2 = {2, 2};
+        3:   22:  Value Value3 = {3, 3};
+        -:   23:
+        6:   24:  a.insert("Key1", Value1);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+call    7 never executed
+        3:   25:  a.insert("Key2", Value2);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+call    7 never executed
+        -:   26:
+        3:   27:  HashTable b;
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        3:   28:  b.insert("Key3", Value3);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+call    7 never executed
+        -:   29:
+        3:   30:  b = a;
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        -:   31:
+       9*:   32:  EXPECT_TRUE(b["Key1"] == Value1);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+call    7 returned 100%
+call    8 returned 100%
+call    9 returned 100%
+branch 10 taken 0% (fallthrough)
+branch 11 taken 100%
+call   12 never executed
+branch 13 never executed (fallthrough)
+branch 14 never executed (throw)
+call   15 never executed
+branch 16 never executed (fallthrough)
+branch 17 never executed (throw)
+call   18 never executed
+call   19 never executed
+branch 20 never executed (fallthrough)
+branch 21 never executed (throw)
+call   22 never executed
+branch 23 never executed (fallthrough)
+branch 24 never executed (throw)
+call   25 never executed
+call   26 never executed
+call   27 never executed
+call   28 returned 100%
+call   29 never executed
+call   30 never executed
+call   31 never executed
+call   32 never executed
+call   33 never executed
+       6*:   33:  EXPECT_TRUE(b["Key2"] == Value2);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+call    7 returned 100%
+call    8 returned 100%
+call    9 returned 100%
+branch 10 taken 0% (fallthrough)
+branch 11 taken 100%
+call   12 never executed
+branch 13 never executed (fallthrough)
+branch 14 never executed (throw)
+call   15 never executed
+branch 16 never executed (fallthrough)
+branch 17 never executed (throw)
+call   18 never executed
+call   19 never executed
+branch 20 never executed (fallthrough)
+branch 21 never executed (throw)
+call   22 never executed
+branch 23 never executed (fallthrough)
+branch 24 never executed (throw)
+call   25 never executed
+call   26 never executed
+call   27 never executed
+call   28 returned 100%
+call   29 never executed
+call   30 never executed
+call   31 never executed
+call   32 never executed
+call   33 never executed
+       6*:   34:  EXPECT_FALSE(b["Key3"] == Value3); // do not need to be here
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+call    7 returned 100%
+call    8 returned 100%
+call    9 returned 100%
+branch 10 taken 0% (fallthrough)
+branch 11 taken 100%
+call   12 never executed
+branch 13 never executed (fallthrough)
+branch 14 never executed (throw)
+call   15 never executed
+branch 16 never executed (fallthrough)
+branch 17 never executed (throw)
+call   18 never executed
+call   19 never executed
+branch 20 never executed (fallthrough)
+branch 21 never executed (throw)
+call   22 never executed
+branch 23 never executed (fallthrough)
+branch 24 never executed (throw)
+call   25 never executed
+call   26 never executed
+call   27 never executed
+call   28 returned 100%
+call   29 never executed
+call   30 never executed
+call   31 never executed
+call   32 never executed
+call   33 never executed
+        3:   35:}
+call    0 returned 100%
+call    1 returned 100%
+call    2 never executed
+call    3 never executed
+------------------
         -:   36:
-        -:   37:// TEST(operators_tests, move_assignment_test_1){
-        -:   38://     HashTable a = HashTable();
-        -:   39://     size_t init_size = a.getSize();
-        -:   40://     size_t init_capacity = a.getCapacity();
-        -:   41://     a = std::move(a);
-        -:   42://     EXPECT_EQ(init_size, a.getSize());
-        -:   43://     EXPECT_EQ(init_capacity, a.getCapacity());
-        -:   44:// }
-        -:   45:
-        -:   46:// TEST(operators_tests, move_assignment_test_2){
-        -:   47://     HashTable a = HashTable();
-        -:   48://     HashTable b = HashTable(1);
-        -:   49://     b.insert("K", {1,1});
-        -:   50://     size_t b_size = b.getSize();
-        -:   51://     size_t b_capacity = b.getCapacity();
-        -:   52://     a = std::move(b);
-        -:   53:
-        -:   54://     EXPECT_EQ(b_size, a.getSize());
-        -:   55://     EXPECT_EQ(b_capacity, a.getCapacity());
-        -:   56:// }
+       12:   37:TEST(operators_tests, copy_assignment_test_2) {
+        3:   38:  HashTable a = HashTable();
+        3:   39:  a = a;
+       3*:   40:  EXPECT_EQ(a.getSize(), 0);
+        3:   41:}
+------------------
+_ZN43operators_tests_copy_assignment_test_2_TestC2Ev:
+function _ZN43operators_tests_copy_assignment_test_2_TestC2Ev called 3 returned 100% blocks executed 100%
+        3:   37:TEST(operators_tests, copy_assignment_test_2) {
+call    0 returned 100%
+------------------
+_ZN43operators_tests_copy_assignment_test_2_TestD0Ev:
+function _ZN43operators_tests_copy_assignment_test_2_TestD0Ev called 3 returned 100% blocks executed 100%
+        3:   37:TEST(operators_tests, copy_assignment_test_2) {
+call    0 returned 100%
+call    1 returned 100%
+------------------
+_ZN43operators_tests_copy_assignment_test_2_TestD2Ev:
+function _ZN43operators_tests_copy_assignment_test_2_TestD2Ev called 3 returned 100% blocks executed 100%
+        3:   37:TEST(operators_tests, copy_assignment_test_2) {
+call    0 returned 100%
+------------------
+_ZN43operators_tests_copy_assignment_test_2_Test8TestBodyEv:
+function _ZN43operators_tests_copy_assignment_test_2_Test8TestBodyEv called 3 returned 100% blocks executed 33%
+        3:   37:TEST(operators_tests, copy_assignment_test_2) {
+        3:   38:  HashTable a = HashTable();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        3:   39:  a = a;
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       3*:   40:  EXPECT_EQ(a.getSize(), 0);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+branch  7 taken 0% (fallthrough)
+branch  8 taken 100%
+call    9 never executed
+branch 10 never executed (fallthrough)
+branch 11 never executed (throw)
+call   12 never executed
+call   13 never executed
+branch 14 never executed (fallthrough)
+branch 15 never executed (throw)
+call   16 never executed
+branch 17 never executed (fallthrough)
+branch 18 never executed (throw)
+call   19 never executed
+call   20 never executed
+call   21 returned 100%
+call   22 never executed
+call   23 never executed
+call   24 never executed
+        3:   41:}
+call    0 returned 100%
+call    1 never executed
+------------------
+        -:   42:
+       12:   43:TEST(operators_tests, copy_assignment_test_3) {
+        3:   44:    HashTable a = HashTable();
+        3:   45:    HashTable b = HashTable();
+        -:   46:
+        6:   47:    b.insert("1", {1,1});
+        6:   48:    b.insert("2", {2,2});
+        -:   49:
+        3:   50:    a = b; 
+        -:   51:
+       3*:   52:    EXPECT_EQ(a.getSize(), 2); // Size should be 2
+       3*:   53:    EXPECT_EQ(a.getCapacity(), 10); // Capacity should remain the same
+       6*:   54:    EXPECT_TRUE(a.contains("1")); // Check if the value is copied correctly
+       6*:   55:    EXPECT_TRUE(a.contains("2"));
+        3:   56:}
+------------------
+_ZN43operators_tests_copy_assignment_test_3_TestC2Ev:
+function _ZN43operators_tests_copy_assignment_test_3_TestC2Ev called 3 returned 100% blocks executed 100%
+        3:   43:TEST(operators_tests, copy_assignment_test_3) {
+call    0 returned 100%
+------------------
+_ZN43operators_tests_copy_assignment_test_3_TestD0Ev:
+function _ZN43operators_tests_copy_assignment_test_3_TestD0Ev called 3 returned 100% blocks executed 100%
+        3:   43:TEST(operators_tests, copy_assignment_test_3) {
+call    0 returned 100%
+call    1 returned 100%
+------------------
+_ZN43operators_tests_copy_assignment_test_3_TestD2Ev:
+function _ZN43operators_tests_copy_assignment_test_3_TestD2Ev called 3 returned 100% blocks executed 100%
+        3:   43:TEST(operators_tests, copy_assignment_test_3) {
+call    0 returned 100%
+------------------
+_ZN43operators_tests_copy_assignment_test_3_Test8TestBodyEv:
+function _ZN43operators_tests_copy_assignment_test_3_Test8TestBodyEv called 3 returned 100% blocks executed 31%
+        3:   43:TEST(operators_tests, copy_assignment_test_3) {
+        3:   44:    HashTable a = HashTable();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        3:   45:    HashTable b = HashTable();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        -:   46:
+        6:   47:    b.insert("1", {1,1});
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+call    7 never executed
+        6:   48:    b.insert("2", {2,2});
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+call    7 never executed
+        -:   49:
+        3:   50:    a = b; 
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        -:   51:
+       3*:   52:    EXPECT_EQ(a.getSize(), 2); // Size should be 2
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+branch  7 taken 0% (fallthrough)
+branch  8 taken 100%
+call    9 never executed
+branch 10 never executed (fallthrough)
+branch 11 never executed (throw)
+call   12 never executed
+call   13 never executed
+branch 14 never executed (fallthrough)
+branch 15 never executed (throw)
+call   16 never executed
+branch 17 never executed (fallthrough)
+branch 18 never executed (throw)
+call   19 never executed
+call   20 never executed
+call   21 returned 100%
+call   22 never executed
+call   23 never executed
+call   24 never executed
+       3*:   53:    EXPECT_EQ(a.getCapacity(), 10); // Capacity should remain the same
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+branch  7 taken 0% (fallthrough)
+branch  8 taken 100%
+call    9 never executed
+branch 10 never executed (fallthrough)
+branch 11 never executed (throw)
+call   12 never executed
+call   13 never executed
+branch 14 never executed (fallthrough)
+branch 15 never executed (throw)
+call   16 never executed
+branch 17 never executed (fallthrough)
+branch 18 never executed (throw)
+call   19 never executed
+call   20 never executed
+call   21 returned 100%
+call   22 never executed
+call   23 never executed
+call   24 never executed
+       6*:   54:    EXPECT_TRUE(a.contains("1")); // Check if the value is copied correctly
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+call    7 returned 100%
+call    8 returned 100%
+branch  9 taken 0% (fallthrough)
+branch 10 taken 100%
+call   11 never executed
+branch 12 never executed (fallthrough)
+branch 13 never executed (throw)
+call   14 never executed
+branch 15 never executed (fallthrough)
+branch 16 never executed (throw)
+call   17 never executed
+call   18 never executed
+branch 19 never executed (fallthrough)
+branch 20 never executed (throw)
+call   21 never executed
+branch 22 never executed (fallthrough)
+branch 23 never executed (throw)
+call   24 never executed
+call   25 never executed
+call   26 never executed
+call   27 returned 100%
+call   28 never executed
+call   29 never executed
+call   30 never executed
+call   31 never executed
+call   32 never executed
+       6*:   55:    EXPECT_TRUE(a.contains("2"));
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+call    7 returned 100%
+call    8 returned 100%
+branch  9 taken 0% (fallthrough)
+branch 10 taken 100%
+call   11 never executed
+branch 12 never executed (fallthrough)
+branch 13 never executed (throw)
+call   14 never executed
+branch 15 never executed (fallthrough)
+branch 16 never executed (throw)
+call   17 never executed
+call   18 never executed
+branch 19 never executed (fallthrough)
+branch 20 never executed (throw)
+call   21 never executed
+branch 22 never executed (fallthrough)
+branch 23 never executed (throw)
+call   24 never executed
+call   25 never executed
+call   26 never executed
+call   27 returned 100%
+call   28 never executed
+call   29 never executed
+call   30 never executed
+call   31 never executed
+call   32 never executed
+        3:   56:}
+call    0 returned 100%
+call    1 returned 100%
+call    2 never executed
+call    3 never executed
+------------------
         -:   57:
-        -:   58:// TEST(operators_tests, move_assignment_test_3){
-        -:   59://     HashTable a = HashTable();
-        -:   60://     HashTable b = HashTable(1);
-        -:   61://     b.insert("K", {1,1});
-        -:   62://     size_t b_size = b.getSize();
-        -:   63://     size_t b_capacity = b.getCapacity();
-        -:   64://     a = std::move(b);
-        -:   65:
-        -:   66://     EXPECT_EQ(b_size, a.getSize());
-        -:   67://     EXPECT_EQ(b_capacity, a.getCapacity());
-        -:   68:// }
-        -:   69:
-        -:   70:// TEST(operators_tests, move_assignment_test_4){
-        -:   71://     HashTable a = HashTable();
-        -:   72://     HashTable b = HashTable(2);
-        -:   73://     b.insert("K", {1,1});
+       12:   58:TEST(operators_tests, move_assignment_test_1) {
+        3:   59:  HashTable a = HashTable();
+        3:   60:  size_t init_size = a.getSize();
+        3:   61:  size_t init_capacity = a.getCapacity();
+        3:   62:  a = std::move(a);
+       3*:   63:  EXPECT_EQ(init_size, a.getSize());
+       3*:   64:  EXPECT_EQ(init_capacity, a.getCapacity());
+        3:   65:}
+------------------
+_ZN43operators_tests_move_assignment_test_1_TestC2Ev:
+function _ZN43operators_tests_move_assignment_test_1_TestC2Ev called 3 returned 100% blocks executed 100%
+        3:   58:TEST(operators_tests, move_assignment_test_1) {
+call    0 returned 100%
+------------------
+_ZN43operators_tests_move_assignment_test_1_TestD0Ev:
+function _ZN43operators_tests_move_assignment_test_1_TestD0Ev called 3 returned 100% blocks executed 100%
+        3:   58:TEST(operators_tests, move_assignment_test_1) {
+call    0 returned 100%
+call    1 returned 100%
+------------------
+_ZN43operators_tests_move_assignment_test_1_TestD2Ev:
+function _ZN43operators_tests_move_assignment_test_1_TestD2Ev called 3 returned 100% blocks executed 100%
+        3:   58:TEST(operators_tests, move_assignment_test_1) {
+call    0 returned 100%
+------------------
+_ZN43operators_tests_move_assignment_test_1_Test8TestBodyEv:
+function _ZN43operators_tests_move_assignment_test_1_Test8TestBodyEv called 3 returned 100% blocks executed 33%
+        3:   58:TEST(operators_tests, move_assignment_test_1) {
+        3:   59:  HashTable a = HashTable();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        3:   60:  size_t init_size = a.getSize();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        3:   61:  size_t init_capacity = a.getCapacity();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        3:   62:  a = std::move(a);
+call    0 returned 100%
+call    1 returned 100%
+       3*:   63:  EXPECT_EQ(init_size, a.getSize());
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+branch  7 taken 0% (fallthrough)
+branch  8 taken 100%
+call    9 never executed
+branch 10 never executed (fallthrough)
+branch 11 never executed (throw)
+call   12 never executed
+call   13 never executed
+branch 14 never executed (fallthrough)
+branch 15 never executed (throw)
+call   16 never executed
+branch 17 never executed (fallthrough)
+branch 18 never executed (throw)
+call   19 never executed
+call   20 never executed
+call   21 returned 100%
+call   22 never executed
+call   23 never executed
+call   24 never executed
+       3*:   64:  EXPECT_EQ(init_capacity, a.getCapacity());
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+branch  7 taken 0% (fallthrough)
+branch  8 taken 100%
+call    9 never executed
+branch 10 never executed (fallthrough)
+branch 11 never executed (throw)
+call   12 never executed
+call   13 never executed
+branch 14 never executed (fallthrough)
+branch 15 never executed (throw)
+call   16 never executed
+branch 17 never executed (fallthrough)
+branch 18 never executed (throw)
+call   19 never executed
+call   20 never executed
+call   21 returned 100%
+call   22 never executed
+call   23 never executed
+call   24 never executed
+        3:   65:}
+call    0 returned 100%
+call    1 never executed
+------------------
+        -:   66:
+       12:   67:TEST(operators_tests, move_assignment_test_2) {
+        3:   68:  HashTable a = HashTable();
+        3:   69:  HashTable b = HashTable(1);
+        6:   70:  b.insert("K", {1, 1});
+        3:   71:  size_t b_size = b.getSize();
+        3:   72:  size_t b_capacity = b.getCapacity();
+        3:   73:  a = std::move(b);
         -:   74:
-        -:   75://     a = std::move(b);
-        -:   76://     EXPECT_TRUE(b.empty());
-        -:   77:// }
+       3*:   75:  EXPECT_EQ(b_size, a.getSize());
+       3*:   76:  EXPECT_EQ(b_capacity, a.getCapacity());
+        3:   77:}
+------------------
+_ZN43operators_tests_move_assignment_test_2_TestC2Ev:
+function _ZN43operators_tests_move_assignment_test_2_TestC2Ev called 3 returned 100% blocks executed 100%
+        3:   67:TEST(operators_tests, move_assignment_test_2) {
+call    0 returned 100%
+------------------
+_ZN43operators_tests_move_assignment_test_2_TestD0Ev:
+function _ZN43operators_tests_move_assignment_test_2_TestD0Ev called 3 returned 100% blocks executed 100%
+        3:   67:TEST(operators_tests, move_assignment_test_2) {
+call    0 returned 100%
+call    1 returned 100%
+------------------
+_ZN43operators_tests_move_assignment_test_2_TestD2Ev:
+function _ZN43operators_tests_move_assignment_test_2_TestD2Ev called 3 returned 100% blocks executed 100%
+        3:   67:TEST(operators_tests, move_assignment_test_2) {
+call    0 returned 100%
+------------------
+_ZN43operators_tests_move_assignment_test_2_Test8TestBodyEv:
+function _ZN43operators_tests_move_assignment_test_2_Test8TestBodyEv called 3 returned 100% blocks executed 37%
+        3:   67:TEST(operators_tests, move_assignment_test_2) {
+        3:   68:  HashTable a = HashTable();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        3:   69:  HashTable b = HashTable(1);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        6:   70:  b.insert("K", {1, 1});
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+call    7 never executed
+        3:   71:  size_t b_size = b.getSize();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        3:   72:  size_t b_capacity = b.getCapacity();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        3:   73:  a = std::move(b);
+call    0 returned 100%
+call    1 returned 100%
+        -:   74:
+       3*:   75:  EXPECT_EQ(b_size, a.getSize());
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+branch  7 taken 0% (fallthrough)
+branch  8 taken 100%
+call    9 never executed
+branch 10 never executed (fallthrough)
+branch 11 never executed (throw)
+call   12 never executed
+call   13 never executed
+branch 14 never executed (fallthrough)
+branch 15 never executed (throw)
+call   16 never executed
+branch 17 never executed (fallthrough)
+branch 18 never executed (throw)
+call   19 never executed
+call   20 never executed
+call   21 returned 100%
+call   22 never executed
+call   23 never executed
+call   24 never executed
+       3*:   76:  EXPECT_EQ(b_capacity, a.getCapacity());
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+branch  7 taken 0% (fallthrough)
+branch  8 taken 100%
+call    9 never executed
+branch 10 never executed (fallthrough)
+branch 11 never executed (throw)
+call   12 never executed
+call   13 never executed
+branch 14 never executed (fallthrough)
+branch 15 never executed (throw)
+call   16 never executed
+branch 17 never executed (fallthrough)
+branch 18 never executed (throw)
+call   19 never executed
+call   20 never executed
+call   21 returned 100%
+call   22 never executed
+call   23 never executed
+call   24 never executed
+        3:   77:}
+call    0 returned 100%
+call    1 returned 100%
+call    2 never executed
+call    3 never executed
+------------------
         -:   78:
-        -:   79:// TEST(operators_tests, isEqual_test_1){
-        -:   80://     HashTable a = HashTable();
-        -:   81://     HashTable b = HashTable();
-        -:   82:
-        -:   83://     a.insert("KeyA", {1,1});
-        -:   84://     b.insert("KeyA", {1,1});
-        -:   85://     EXPECT_TRUE(a == b);
-        -:   86:// }
-        -:   87:
-        -:   88:// TEST(operators_tests, isEqual_test_2) {
-        -:   89://     HashTable a = HashTable();
-        -:   90://     HashTable b = HashTable();
-        -:   91:
-        -:   92://     a.insert("KeyA", {1,1});
-        -:   93://     b.insert("KeyA", {2,2});
-        -:   94://     EXPECT_FALSE(a == b);
-        -:   95:// }
-        -:   96:
-        -:   97:// TEST(operators_tests, isEqual_test_3) {
-        -:   98://     HashTable a = HashTable(1);
-        -:   99://     HashTable b = HashTable(2);
-        -:  100://     b.insert("random", {2,2});
-        -:  101:
-        -:  102://     EXPECT_FALSE(a == b);
-        -:  103:// }
+       12:   79:TEST(operators_tests, move_assignment_test_3) {
+        3:   80:  HashTable a = HashTable();
+        3:   81:  HashTable b = HashTable(1);
+        6:   82:  b.insert("K", {1, 1});
+        3:   83:  size_t b_size = b.getSize();
+        3:   84:  size_t b_capacity = b.getCapacity();
+        3:   85:  a = std::move(b);
+        -:   86:
+       3*:   87:  EXPECT_EQ(b_size, a.getSize());
+       3*:   88:  EXPECT_EQ(b_capacity, a.getCapacity());
+        3:   89:}
+------------------
+_ZN43operators_tests_move_assignment_test_3_TestC2Ev:
+function _ZN43operators_tests_move_assignment_test_3_TestC2Ev called 3 returned 100% blocks executed 100%
+        3:   79:TEST(operators_tests, move_assignment_test_3) {
+call    0 returned 100%
+------------------
+_ZN43operators_tests_move_assignment_test_3_TestD0Ev:
+function _ZN43operators_tests_move_assignment_test_3_TestD0Ev called 3 returned 100% blocks executed 100%
+        3:   79:TEST(operators_tests, move_assignment_test_3) {
+call    0 returned 100%
+call    1 returned 100%
+------------------
+_ZN43operators_tests_move_assignment_test_3_TestD2Ev:
+function _ZN43operators_tests_move_assignment_test_3_TestD2Ev called 3 returned 100% blocks executed 100%
+        3:   79:TEST(operators_tests, move_assignment_test_3) {
+call    0 returned 100%
+------------------
+_ZN43operators_tests_move_assignment_test_3_Test8TestBodyEv:
+function _ZN43operators_tests_move_assignment_test_3_Test8TestBodyEv called 3 returned 100% blocks executed 37%
+        3:   79:TEST(operators_tests, move_assignment_test_3) {
+        3:   80:  HashTable a = HashTable();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        3:   81:  HashTable b = HashTable(1);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        6:   82:  b.insert("K", {1, 1});
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+call    7 never executed
+        3:   83:  size_t b_size = b.getSize();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        3:   84:  size_t b_capacity = b.getCapacity();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        3:   85:  a = std::move(b);
+call    0 returned 100%
+call    1 returned 100%
+        -:   86:
+       3*:   87:  EXPECT_EQ(b_size, a.getSize());
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+branch  7 taken 0% (fallthrough)
+branch  8 taken 100%
+call    9 never executed
+branch 10 never executed (fallthrough)
+branch 11 never executed (throw)
+call   12 never executed
+call   13 never executed
+branch 14 never executed (fallthrough)
+branch 15 never executed (throw)
+call   16 never executed
+branch 17 never executed (fallthrough)
+branch 18 never executed (throw)
+call   19 never executed
+call   20 never executed
+call   21 returned 100%
+call   22 never executed
+call   23 never executed
+call   24 never executed
+       3*:   88:  EXPECT_EQ(b_capacity, a.getCapacity());
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+branch  7 taken 0% (fallthrough)
+branch  8 taken 100%
+call    9 never executed
+branch 10 never executed (fallthrough)
+branch 11 never executed (throw)
+call   12 never executed
+call   13 never executed
+branch 14 never executed (fallthrough)
+branch 15 never executed (throw)
+call   16 never executed
+branch 17 never executed (fallthrough)
+branch 18 never executed (throw)
+call   19 never executed
+call   20 never executed
+call   21 returned 100%
+call   22 never executed
+call   23 never executed
+call   24 never executed
+        3:   89:}
+call    0 returned 100%
+call    1 returned 100%
+call    2 never executed
+call    3 never executed
+------------------
+        -:   90:
+       12:   91:TEST(operators_tests, move_assignment_test_4) {
+        3:   92:  HashTable a = HashTable();
+        3:   93:  HashTable b = HashTable(2);
+        6:   94:  b.insert("K", {1, 1});
+        -:   95:
+        3:   96:  a = std::move(b);
+       3*:   97:  EXPECT_TRUE(b.empty());
+        3:   98:}
+------------------
+_ZN43operators_tests_move_assignment_test_4_TestC2Ev:
+function _ZN43operators_tests_move_assignment_test_4_TestC2Ev called 3 returned 100% blocks executed 100%
+        3:   91:TEST(operators_tests, move_assignment_test_4) {
+call    0 returned 100%
+------------------
+_ZN43operators_tests_move_assignment_test_4_TestD0Ev:
+function _ZN43operators_tests_move_assignment_test_4_TestD0Ev called 3 returned 100% blocks executed 100%
+        3:   91:TEST(operators_tests, move_assignment_test_4) {
+call    0 returned 100%
+call    1 returned 100%
+------------------
+_ZN43operators_tests_move_assignment_test_4_TestD2Ev:
+function _ZN43operators_tests_move_assignment_test_4_TestD2Ev called 3 returned 100% blocks executed 100%
+        3:   91:TEST(operators_tests, move_assignment_test_4) {
+call    0 returned 100%
+------------------
+_ZN43operators_tests_move_assignment_test_4_Test8TestBodyEv:
+function _ZN43operators_tests_move_assignment_test_4_Test8TestBodyEv called 3 returned 100% blocks executed 37%
+        3:   91:TEST(operators_tests, move_assignment_test_4) {
+        3:   92:  HashTable a = HashTable();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        3:   93:  HashTable b = HashTable(2);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        6:   94:  b.insert("K", {1, 1});
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+call    7 never executed
+        -:   95:
+        3:   96:  a = std::move(b);
+call    0 returned 100%
+call    1 returned 100%
+       3*:   97:  EXPECT_TRUE(b.empty());
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+call    4 returned 100%
+branch  5 taken 0% (fallthrough)
+branch  6 taken 100%
+call    7 never executed
+branch  8 never executed (fallthrough)
+branch  9 never executed (throw)
+call   10 never executed
+branch 11 never executed (fallthrough)
+branch 12 never executed (throw)
+call   13 never executed
+call   14 never executed
+branch 15 never executed (fallthrough)
+branch 16 never executed (throw)
+call   17 never executed
+branch 18 never executed (fallthrough)
+branch 19 never executed (throw)
+call   20 never executed
+call   21 never executed
+call   22 never executed
+call   23 returned 100%
+call   24 never executed
+call   25 never executed
+call   26 never executed
+call   27 never executed
+        3:   98:}
+call    0 returned 100%
+call    1 returned 100%
+call    2 never executed
+call    3 never executed
+------------------
+        -:   99:
+       12:  100:TEST(operators_tests, isEqual_test_1) {
+        3:  101:  HashTable a = HashTable();
+        3:  102:  HashTable b = HashTable();
+        -:  103:
+        6:  104:  a.insert("KeyA", {1, 1});
+        6:  105:  b.insert("KeyA", {1, 1});
+       3*:  106:  EXPECT_TRUE(a == b);
+        3:  107:}
+------------------
+_ZN35operators_tests_isEqual_test_1_TestC2Ev:
+function _ZN35operators_tests_isEqual_test_1_TestC2Ev called 3 returned 100% blocks executed 100%
+        3:  100:TEST(operators_tests, isEqual_test_1) {
+call    0 returned 100%
+------------------
+_ZN35operators_tests_isEqual_test_1_TestD0Ev:
+function _ZN35operators_tests_isEqual_test_1_TestD0Ev called 3 returned 100% blocks executed 100%
+        3:  100:TEST(operators_tests, isEqual_test_1) {
+call    0 returned 100%
+call    1 returned 100%
+------------------
+_ZN35operators_tests_isEqual_test_1_TestD2Ev:
+function _ZN35operators_tests_isEqual_test_1_TestD2Ev called 3 returned 100% blocks executed 100%
+        3:  100:TEST(operators_tests, isEqual_test_1) {
+call    0 returned 100%
+------------------
+_ZN35operators_tests_isEqual_test_1_Test8TestBodyEv:
+function _ZN35operators_tests_isEqual_test_1_Test8TestBodyEv called 3 returned 100% blocks executed 37%
+        3:  100:TEST(operators_tests, isEqual_test_1) {
+        3:  101:  HashTable a = HashTable();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        3:  102:  HashTable b = HashTable();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        -:  103:
+        6:  104:  a.insert("KeyA", {1, 1});
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+call    7 never executed
+        6:  105:  b.insert("KeyA", {1, 1});
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+call    7 never executed
+       3*:  106:  EXPECT_TRUE(a == b);
+call    0 returned 100%
+call    1 returned 100%
+call    2 returned 100%
+branch  3 taken 0% (fallthrough)
+branch  4 taken 100%
+call    5 never executed
+branch  6 never executed (fallthrough)
+branch  7 never executed (throw)
+call    8 never executed
+branch  9 never executed (fallthrough)
+branch 10 never executed (throw)
+call   11 never executed
+call   12 never executed
+branch 13 never executed (fallthrough)
+branch 14 never executed (throw)
+call   15 never executed
+branch 16 never executed (fallthrough)
+branch 17 never executed (throw)
+call   18 never executed
+call   19 never executed
+call   20 never executed
+call   21 returned 100%
+call   22 never executed
+call   23 never executed
+call   24 never executed
+call   25 never executed
+        3:  107:}
+call    0 returned 100%
+call    1 returned 100%
+call    2 never executed
+call    3 never executed
+------------------
+        -:  108:
+       12:  109:TEST(operators_tests, isEqual_test_2) {
+        3:  110:  HashTable a = HashTable();
+        3:  111:  HashTable b = HashTable();
+        -:  112:
+        6:  113:  a.insert("KeyA", {1, 1});
+        6:  114:  b.insert("KeyA", {2, 2});
+       3*:  115:  EXPECT_FALSE(a == b);
+        3:  116:}
+------------------
+_ZN35operators_tests_isEqual_test_2_TestC2Ev:
+function _ZN35operators_tests_isEqual_test_2_TestC2Ev called 3 returned 100% blocks executed 100%
+        3:  109:TEST(operators_tests, isEqual_test_2) {
+call    0 returned 100%
+------------------
+_ZN35operators_tests_isEqual_test_2_TestD0Ev:
+function _ZN35operators_tests_isEqual_test_2_TestD0Ev called 3 returned 100% blocks executed 100%
+        3:  109:TEST(operators_tests, isEqual_test_2) {
+call    0 returned 100%
+call    1 returned 100%
+------------------
+_ZN35operators_tests_isEqual_test_2_TestD2Ev:
+function _ZN35operators_tests_isEqual_test_2_TestD2Ev called 3 returned 100% blocks executed 100%
+        3:  109:TEST(operators_tests, isEqual_test_2) {
+call    0 returned 100%
+------------------
+_ZN35operators_tests_isEqual_test_2_Test8TestBodyEv:
+function _ZN35operators_tests_isEqual_test_2_Test8TestBodyEv called 3 returned 100% blocks executed 37%
+        3:  109:TEST(operators_tests, isEqual_test_2) {
+        3:  110:  HashTable a = HashTable();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        3:  111:  HashTable b = HashTable();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        -:  112:
+        6:  113:  a.insert("KeyA", {1, 1});
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+call    7 never executed
+        6:  114:  b.insert("KeyA", {2, 2});
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+call    7 never executed
+       3*:  115:  EXPECT_FALSE(a == b);
+call    0 returned 100%
+call    1 returned 100%
+call    2 returned 100%
+branch  3 taken 0% (fallthrough)
+branch  4 taken 100%
+call    5 never executed
+branch  6 never executed (fallthrough)
+branch  7 never executed (throw)
+call    8 never executed
+branch  9 never executed (fallthrough)
+branch 10 never executed (throw)
+call   11 never executed
+call   12 never executed
+branch 13 never executed (fallthrough)
+branch 14 never executed (throw)
+call   15 never executed
+branch 16 never executed (fallthrough)
+branch 17 never executed (throw)
+call   18 never executed
+call   19 never executed
+call   20 never executed
+call   21 returned 100%
+call   22 never executed
+call   23 never executed
+call   24 never executed
+call   25 never executed
+        3:  116:}
+call    0 returned 100%
+call    1 returned 100%
+call    2 never executed
+call    3 never executed
+------------------
+        -:  117:
+       12:  118:TEST(operators_tests, isEqual_test_3) {
+        3:  119:  HashTable a = HashTable(1);
+        3:  120:  HashTable b = HashTable(2);
+        6:  121:  b.insert("random", {2, 2});
+        -:  122:
+       3*:  123:  EXPECT_FALSE(a == b);
+        3:  124:}
+------------------
+_ZN35operators_tests_isEqual_test_3_TestC2Ev:
+function _ZN35operators_tests_isEqual_test_3_TestC2Ev called 3 returned 100% blocks executed 100%
+        3:  118:TEST(operators_tests, isEqual_test_3) {
+call    0 returned 100%
+------------------
+_ZN35operators_tests_isEqual_test_3_TestD0Ev:
+function _ZN35operators_tests_isEqual_test_3_TestD0Ev called 3 returned 100% blocks executed 100%
+        3:  118:TEST(operators_tests, isEqual_test_3) {
+call    0 returned 100%
+call    1 returned 100%
+------------------
+_ZN35operators_tests_isEqual_test_3_TestD2Ev:
+function _ZN35operators_tests_isEqual_test_3_TestD2Ev called 3 returned 100% blocks executed 100%
+        3:  118:TEST(operators_tests, isEqual_test_3) {
+call    0 returned 100%
+------------------
+_ZN35operators_tests_isEqual_test_3_Test8TestBodyEv:
+function _ZN35operators_tests_isEqual_test_3_Test8TestBodyEv called 3 returned 100% blocks executed 35%
+        3:  118:TEST(operators_tests, isEqual_test_3) {
+        3:  119:  HashTable a = HashTable(1);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        3:  120:  HashTable b = HashTable(2);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        6:  121:  b.insert("random", {2, 2});
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+call    7 never executed
+        -:  122:
+       3*:  123:  EXPECT_FALSE(a == b);
+call    0 returned 100%
+call    1 returned 100%
+call    2 returned 100%
+branch  3 taken 0% (fallthrough)
+branch  4 taken 100%
+call    5 never executed
+branch  6 never executed (fallthrough)
+branch  7 never executed (throw)
+call    8 never executed
+branch  9 never executed (fallthrough)
+branch 10 never executed (throw)
+call   11 never executed
+call   12 never executed
+branch 13 never executed (fallthrough)
+branch 14 never executed (throw)
+call   15 never executed
+branch 16 never executed (fallthrough)
+branch 17 never executed (throw)
+call   18 never executed
+call   19 never executed
+call   20 never executed
+call   21 returned 100%
+call   22 never executed
+call   23 never executed
+call   24 never executed
+call   25 never executed
+        3:  124:}
+call    0 returned 100%
+call    1 returned 100%
+call    2 never executed
+call    3 never executed
+------------------
+        -:  125:
+       12:  126:TEST(operators_tests, isNotEqual_test_1) {
+        3:  127:  HashTable a = HashTable(1);
+        3:  128:  HashTable b = HashTable(2);
+        6:  129:  b.insert("random", {2, 2});
+        -:  130:
+       3*:  131:  EXPECT_TRUE(a != b);
+       3*:  132:  EXPECT_FALSE(a != a);
+        3:  133:}
+------------------
+_ZN38operators_tests_isNotEqual_test_1_TestC2Ev:
+function _ZN38operators_tests_isNotEqual_test_1_TestC2Ev called 3 returned 100% blocks executed 100%
+        3:  126:TEST(operators_tests, isNotEqual_test_1) {
+call    0 returned 100%
+------------------
+_ZN38operators_tests_isNotEqual_test_1_TestD0Ev:
+function _ZN38operators_tests_isNotEqual_test_1_TestD0Ev called 3 returned 100% blocks executed 100%
+        3:  126:TEST(operators_tests, isNotEqual_test_1) {
+call    0 returned 100%
+call    1 returned 100%
+------------------
+_ZN38operators_tests_isNotEqual_test_1_TestD2Ev:
+function _ZN38operators_tests_isNotEqual_test_1_TestD2Ev called 3 returned 100% blocks executed 100%
+        3:  126:TEST(operators_tests, isNotEqual_test_1) {
+call    0 returned 100%
+------------------
+_ZN38operators_tests_isNotEqual_test_1_Test8TestBodyEv:
+function _ZN38operators_tests_isNotEqual_test_1_Test8TestBodyEv called 3 returned 100% blocks executed 29%
+        3:  126:TEST(operators_tests, isNotEqual_test_1) {
+        3:  127:  HashTable a = HashTable(1);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        3:  128:  HashTable b = HashTable(2);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        6:  129:  b.insert("random", {2, 2});
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+call    7 never executed
+        -:  130:
+       3*:  131:  EXPECT_TRUE(a != b);
+call    0 returned 100%
+call    1 returned 100%
+call    2 returned 100%
+branch  3 taken 0% (fallthrough)
+branch  4 taken 100%
+call    5 never executed
+branch  6 never executed (fallthrough)
+branch  7 never executed (throw)
+call    8 never executed
+branch  9 never executed (fallthrough)
+branch 10 never executed (throw)
+call   11 never executed
+call   12 never executed
+branch 13 never executed (fallthrough)
+branch 14 never executed (throw)
+call   15 never executed
+branch 16 never executed (fallthrough)
+branch 17 never executed (throw)
+call   18 never executed
+call   19 never executed
+call   20 never executed
+call   21 returned 100%
+call   22 never executed
+call   23 never executed
+call   24 never executed
+call   25 never executed
+       3*:  132:  EXPECT_FALSE(a != a);
+call    0 returned 100%
+call    1 returned 100%
+call    2 returned 100%
+branch  3 taken 0% (fallthrough)
+branch  4 taken 100%
+call    5 never executed
+branch  6 never executed (fallthrough)
+branch  7 never executed (throw)
+call    8 never executed
+branch  9 never executed (fallthrough)
+branch 10 never executed (throw)
+call   11 never executed
+call   12 never executed
+branch 13 never executed (fallthrough)
+branch 14 never executed (throw)
+call   15 never executed
+branch 16 never executed (fallthrough)
+branch 17 never executed (throw)
+call   18 never executed
+call   19 never executed
+call   20 never executed
+call   21 returned 100%
+call   22 never executed
+call   23 never executed
+call   24 never executed
+call   25 never executed
+        3:  133:}
+call    0 returned 100%
+call    1 returned 100%
+call    2 never executed
+call    3 never executed
+------------------

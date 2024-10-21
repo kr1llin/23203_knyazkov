@@ -12,16 +12,16 @@
         -:   11:  unsigned age;
         -:   12:  unsigned weight;
         -:   13:
-       2*:   14:  bool operator==(const Value &b) {
-       2*:   15:    return ((this->age == b.age) && (this->weight == b.weight));
+      67*:   14:  bool operator==(const Value &b) {
+      67*:   15:    return ((this->age == b.age) && (this->weight == b.weight));
         -:   16:  }
 ------------------
 _ZN5ValueeqERKS_:
-function _ZN5ValueeqERKS_ called 2 returned 100% blocks executed 83%
-        2:   14:  bool operator==(const Value &b) {
-       2*:   15:    return ((this->age == b.age) && (this->weight == b.weight));
-branch  0 taken 100% (fallthrough)
-branch  1 taken 0%
+function _ZN5ValueeqERKS_ called 67 returned 100% blocks executed 100%
+       67:   14:  bool operator==(const Value &b) {
+       67:   15:    return ((this->age == b.age) && (this->weight == b.weight));
+branch  0 taken 91% (fallthrough)
+branch  1 taken 9%
 branch  2 taken 100% (fallthrough)
 branch  3 taken 0%
         -:   16:  }
@@ -37,9 +37,9 @@ branch  3 never executed
         -:   16:  }
 ------------------
         -:   17:
-function _ZN5ValueneERKS_ called 0 returned 0% blocks executed 0%
-    #####:   18:  bool operator!=(const Value &b) { return !(*this == b); }
-call    0 never executed
+function _ZN5ValueneERKS_ called 45 returned 100% blocks executed 100%
+       45:   18:  bool operator!=(const Value &b) { return !(*this == b); }
+call    0 returned 100%
         -:   19:};
         -:   20:
         -:   21:struct HashNode {
@@ -47,21 +47,21 @@ call    0 never executed
         -:   23:  Key key;
         -:   24:
         -:   25:  // default = deleted\empty node
-     232*:   26:  HashNode() {
-     232*:   27:    this->key = "";
-     232*:   28:    this->value = {0, 0};
-     232*:   29:  }
+    1212*:   26:  HashNode() {
+    1212*:   27:    this->key = "";
+    1212*:   28:    this->value = {0, 0};
+    1212*:   29:  }
 ------------------
 _ZN8HashNodeC2Ev:
-function _ZN8HashNodeC2Ev called 232 returned 100% blocks executed 80%
-      232:   26:  HashNode() {
+function _ZN8HashNodeC2Ev called 1212 returned 100% blocks executed 80%
+     1212:   26:  HashNode() {
 call    0 returned 100%
-      232:   27:    this->key = "";
+     1212:   27:    this->key = "";
 call    0 returned 100%
 branch  1 taken 100% (fallthrough)
 branch  2 taken 0% (throw)
-      232:   28:    this->value = {0, 0};
-      232:   29:  }
+     1212:   28:    this->value = {0, 0};
+     1212:   29:  }
 call    0 never executed
 ------------------
 _ZN8HashNodeC2Ev:
@@ -89,22 +89,22 @@ branch  2 never executed (throw)
 call    0 never executed
 ------------------
         -:   30:
-function _ZN8HashNodeC2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE5Value called 57 returned 100% blocks executed 80%
-       57:   31:  HashNode(Key key, Value value) {
+function _ZN8HashNodeC2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE5Value called 79 returned 100% blocks executed 80%
+       79:   31:  HashNode(Key key, Value value) {
 call    0 returned 100%
-       57:   32:    this->value = value;
-       57:   33:    this->key = key;
+       79:   32:    this->value = value;
+       79:   33:    this->key = key;
 call    0 returned 100%
 branch  1 taken 100% (fallthrough)
 branch  2 taken 0% (throw)
-       57:   34:  }
+       79:   34:  }
 call    0 never executed
         -:   35:
-     253*:   36:  ~HashNode() {};
+    1329*:   36:  ~HashNode() {};
 ------------------
 _ZN8HashNodeD2Ev:
-function _ZN8HashNodeD2Ev called 253 returned 100% blocks executed 100%
-      253:   36:  ~HashNode() {};
+function _ZN8HashNodeD2Ev called 1329 returned 100% blocks executed 100%
+     1329:   36:  ~HashNode() {};
 call    0 returned 100%
 ------------------
 _ZN8HashNodeD2Ev:

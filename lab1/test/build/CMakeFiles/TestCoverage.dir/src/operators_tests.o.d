@@ -1,8 +1,8 @@
 CMakeFiles/TestCoverage.dir/src/operators_tests.o: \
  /home/krillin/code/nsu/23203_knyazkov/lab1/test/src/operators_tests.cc \
  /usr/include/stdc-predef.h \
- /home/krillin/code/nsu/23203_knyazkov/lab1/test/../src/../src/operators.cpp \
- /home/krillin/code/nsu/23203_knyazkov/lab1/test/../src/../src/hashtable.h \
+ /home/krillin/code/nsu/23203_knyazkov/lab1/test/src/../../src/operators.cpp \
+ /home/krillin/code/nsu/23203_knyazkov/lab1/test/src/../../src/hashtable.h \
  /usr/include/c++/14/string /usr/include/c++/14/bits/requires_hosted.h \
  /usr/include/c++/14/x86_64-redhat-linux/bits/c++config.h \
  /usr/include/bits/wordsize.h \

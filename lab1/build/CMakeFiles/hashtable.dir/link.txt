@@ -1,2 +1,0 @@
-/usr/bin/llvm-ar qc libhashtable.a CMakeFiles/hashtable.dir/src/operators.cpp.o CMakeFiles/hashtable.dir/src/ctors.cpp.o CMakeFiles/hashtable.dir/src/methods.cpp.o CMakeFiles/hashtable.dir/src/main.cpp.o
-/usr/bin/llvm-ranlib libhashtable.a

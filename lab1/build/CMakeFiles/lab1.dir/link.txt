@@ -1,2 +1,0 @@
-/usr/bin/llvm-ar qc liblab1.a CMakeFiles/lab1.dir/hashtable.cpp.o
-/usr/bin/llvm-ranlib liblab1.a

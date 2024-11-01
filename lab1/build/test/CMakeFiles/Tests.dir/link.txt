@@ -1,1 +1,0 @@
-/usr/bin/clang++ -g CMakeFiles/Tests.dir/test.cc.o -o Tests 

@@ -8,16 +8,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #enable_testing()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
-#add_compile_options(-fsanitize=address -Wall)
-#add_link_options(-fsanitize=address)
+add_compile_options(-fsanitize=address -Wall)
+add_link_options(-fsanitize=address)
+set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-checks=*")
 
 set(Headers
     src/hashtable.h
 )
 set(Sources
-    src/operators.cpp
-    src/ctors.cpp
-    src/methods.cpp
+    # src/operators.cpp
+    # src/ctors.cpp
+    # src/methods.cpp
+    src/hashtable.cpp
     src/main.cpp
 )
 

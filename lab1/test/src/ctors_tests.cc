@@ -1,4 +1,4 @@
-#include "../src/ctors.cpp"
+#include "../../src/hashtable.cpp"
 #include <gtest/gtest.h>
 #include <limits.h>
 #include <stdexcept>
@@ -8,7 +8,7 @@ TEST(ctors_tests, empty_ctor_test) {
   EXPECT_EQ(0, h.getSize());
   EXPECT_EQ(0, h[""].weight);
   EXPECT_EQ(true, h.empty());
-  ASSERT_EQ(DEF_CAPACITY, h.getCapacity());
+  ASSERT_EQ(10, h.getCapacity());
 }
 
 TEST(ctors_tests, copy_cstor_test_1) {

@@ -1,5 +1,4 @@
-#include "../../src/operators.cpp"
-#include "hashtable.h"
+#include "../../src/hashtable.cpp"
 #include <gtest/gtest.h>
 
 TEST(operators_tests, brackets_test_1) {
@@ -121,6 +120,17 @@ TEST(operators_tests, isEqual_test_3) {
   b.insert("random", {2, 2});
 
   EXPECT_FALSE(a == b);
+}
+
+TEST(operators_tests, isEqual_test_4) {
+  HashTable a = HashTable(5);
+  HashTable b = HashTable(5);
+  b.insert("random", {2, 2});
+  a.insert("random", {2, 2});
+  b.insert("notSoRandom", {3, 3});
+  EXPECT_FALSE(a == b);
+  b.erase("notSoRandom");
+  EXPECT_TRUE(a == b);
 }
 
 TEST(operators_tests, isNotEqual_test_1) {

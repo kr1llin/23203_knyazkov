@@ -26,11 +26,11 @@ include_directories(${GTEST_INCLUDE_DIRS})
 
 # Set the sources
 set(Sources
-    src/test.cc
-    src/operators_tests.cc
-    src/methods_tests.cc
-    src/ctors_tests.cc
-    #src/main_test.cc
+    src/all_tests.cc
+    # src/test.cc
+    # src/operators_tests.cc
+    # src/methods_tests.cc
+    # src/ctors_tests.cc
 )
 
 # Set Include directories

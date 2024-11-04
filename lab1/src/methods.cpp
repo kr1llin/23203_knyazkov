@@ -1,9 +1,11 @@
 #include "hashtable.h"
+#include <algorithm>
+#include <cassert>
 #include <cstddef>
 #include <stdexcept>
 
 // magic 33 (hashing func for string key)
-int HashTable::hash(const Key &key) const {
+size_t HashTable::hash(const Key &key) const {
   unsigned long hash = 5381;
 
   for (auto c : key)
@@ -12,71 +14,65 @@ int HashTable::hash(const Key &key) const {
   return hash % capacity;
 }
 
-double HashTable::getLoadFactor(double const &size, double const &capacity) {
-  return size / capacity;
+double HashTable::getLoadFactor() const {
+  return static_cast<double>(size) / capacity;
 }
 
 // if MAX_LOAD_FACTOR is exceeded double the size
 // and rehash everything to the new table
 void HashTable::rehashIfNeeded() {
-  double load_factor =
-      getLoadFactor(static_cast<double>(size), static_cast<double>(capacity));
+  double load_factor = getLoadFactor();
   if (load_factor < MAX_LOAD_FACTOR)
     return;
 
-  capacity *= 2;
-  HashNode **newTable = new HashNode *[capacity]();
-  for (int i = 0; i < capacity; i++)
-    newTable[i] = new HashNode();
+  capacity *= CAPACITY_MULTIPLIER;
+
+  HashTable newTable = HashTable(capacity);
 
   for (int i = 0; i < capacity / 2; i++) {
-    if (table[i] != nullptr) {
-      int newIndex = hash(table[i]->key);
-      if (newTable[newIndex] != nullptr) {
-        delete newTable[newIndex]; // Free the existing node
-      }
-      newTable[newIndex] = std::move(table[i]);
-    }
+    newTable.insert(table[i]->key, table[i]->value);
+    erase(table[i]->key);
     table[i] = nullptr;
   }
   delete[] table;
-  table = newTable;
+  table = newTable.table;
 }
 
 // delete element by key k
 // return if it was successuful (key is found and deleted)
 bool HashTable::erase(const Key &k) {
-  int hashed_index = hash(k);
-  int index = -1;
+  size_t hashed_index = hash(k);
+  size_t index = capacity; //out of range
+
   if (table[hashed_index]->key == k) {
     index = hashed_index;
   } else {
     index = find(k);
   }
 
-  if (index == -1)
+  if (index == capacity)
     return false;
 
+  // *table[index] = HashNode(); //if we want to place default value
   delete table[index];
-  HashNode *empty = new HashNode();
-  table[index] = empty;
+  table[index] = nullptr; //node is deleted = nullptr
   size--;
   return true;
 }
 
 // collission resolution
 // lineary go through table and search for empty/free or with the same key node
-int HashTable::linearProbing(int startIndex, Key key) const {
-  int i = startIndex;
-  ++startIndex;
-  while (i != startIndex) {
-    if (table[i] == nullptr || table[i]->key.empty() || table[i]->key == key) {
-      return i;
+//index = capacity => index wasn't found
+size_t HashTable::linearProbing(int startIndex, Key key) const {
+  size_t curIndex = startIndex;
+
+  for(size_t i = 0; i != capacity; i++){
+    curIndex = (curIndex + i) % capacity;
+    if (table[curIndex] == nullptr || table[curIndex]->key == key) {
+      return curIndex;
     }
-    i = (i + 1) % capacity;
   }
-  return -1; // Indicate that no suitable index was found (should not happen if
-             // table is not full)
+  return capacity; // Indicate that no suitable index was found (returns value outside of range)
 }
 
 // insertion using linear probing collision resolution
@@ -84,22 +80,19 @@ int HashTable::linearProbing(int startIndex, Key key) const {
 // otherwise, search for the first empty node (linear probing)
 bool HashTable::insert(const Key &k, const Value &v) {
   rehashIfNeeded();
-  if (size == capacity) {
-    return false;
-  }
-  int index = -1;
-  int hashed_index = hash(k);
+
+  size_t index = capacity;
+  size_t hashed_index = hash(k);
 
   // if node is empty or has the same key
-  if (table[hashed_index] == nullptr || table[hashed_index]->key.empty() ||
-      table[hashed_index]->key == k) {
+  if (table[hashed_index] == nullptr || table[hashed_index]->key == k) {
     index = hashed_index;
   } else { // collission resolution
-    index = linearProbing((hashed_index + 1) % capacity, k);
+    index = linearProbing(hashed_index, k);
   }
-  if (index != -1) {
-    HashNode *newNode = new HashNode(k, v);
-    table[index] = newNode;
+  
+  if (index != capacity) {
+    *table[index] = HashNode(k,v);
     ++size;
     return true;
   }
@@ -107,9 +100,8 @@ bool HashTable::insert(const Key &k, const Value &v) {
 }
 
 const Value &HashTable::at(const Key &k) const {
-  int index = find(k);
-
-  if (index == -1)
+  size_t index = find(k);
+  if (index == capacity)
     throw std::runtime_error("Key not found: " + k);
 
   return table[index]->value;
@@ -122,10 +114,6 @@ Value &HashTable::at(const Key &k) {
 bool HashTable::contains(const Key &key) const { return (find(key) != -1); }
 
 void HashTable::clear() {
-  if (table == nullptr) {
-    return;
-  }
-
   for (size_t i = 0; i < capacity; ++i) {
     if (table[i] != nullptr){
       delete table[i];
@@ -140,31 +128,27 @@ size_t HashTable::getCapacity() const { return capacity; }
 
 bool HashTable::empty() const { return size == 0; }
 
-int HashTable::find(const Key &k) const {
-  int index = hash(k);
+size_t HashTable::find(const Key &k) const {
+  size_t index = hash(k);
 
   if (table[index]->key == k)
     return index;
 
   if (table[index] == nullptr)
-    return -1;
-
-  int i = (index + 1) % capacity;
+    return capacity;
+  
+  size_t i = (index + 1) % capacity;
   while (i != index && table[i] != nullptr) {
     if (table[i]->key == k) {
       return i;
     }
     i = (i + 1) % capacity;
   }
-  return -1;
+  return capacity;
 }
 
 void HashTable::swap(HashTable &other) {
-  //std::swap(other.table, table);
-  HashNode **otherT = other.table;
-  other.table = table;
-  table = otherT;
-
+  std::swap(other.table, table);
   std::swap(other.capacity, capacity);
   std::swap(other.size, size);
 }

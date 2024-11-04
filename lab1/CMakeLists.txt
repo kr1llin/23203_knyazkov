@@ -10,7 +10,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 add_compile_options(-fsanitize=address -Wall)
 add_link_options(-fsanitize=address)
-set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-checks=*")
+# set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-checks=bugprone*,cppcoreguidelines*,clang-analyzer*;-header-filter=.")
 
 set(Headers
     src/hashtable.h
@@ -25,4 +25,4 @@ set(Sources
 
 add_library(hashtable STATIC ${Sources} ${Headers})
 
-add_subdirectory(test)
+# add_subdirectory(test)

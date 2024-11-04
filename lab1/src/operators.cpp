@@ -1,6 +1,5 @@
 #include "hashtable.h"
 
-
 // copy assignment
 // 1) acquire new resources
 // 2) release old resources
@@ -10,7 +9,6 @@ HashTable &HashTable::operator=(const HashTable &other) {
     return *this;
 
   // deallocating old resources
-
   for (size_t i = 0; i < capacity; i++) {
     if (table[i] != nullptr)
       delete table[i];
@@ -39,7 +37,7 @@ HashTable &HashTable::operator=(const HashTable &other) {
 // 2) copy other's data
 // 3) mark other data as nullptr
 HashTable &HashTable::operator=(HashTable &&other) {
-  if (this == &other) // sus
+  if (this == &other)
     return *this;
 
   for (size_t i = 0; i < capacity; ++i) {
@@ -67,27 +65,25 @@ Value &HashTable::operator[](const Key &k) {
     return table[index]->value;
   }
 
-  HashNode *newNode = new HashNode(); 
+  HashNode *newNode = new HashNode();
   this->insert(newNode->key, newNode->value);
 
   // Return the newly inserted value
   return newNode->value;
 }
 
-// comparassion between tables
+// comparasion between tables
 bool operator==(const HashTable &a, const HashTable &b) {
   if (a.size != b.size) {
     return false;
   }
 
-  for (size_t i = 0; i < a.capacity; i++) {
+  for (size_t i = 0; i < a.capacity; i++) { ///!!!!!!!!!!!
     if (a.table[i] != nullptr) {
-      if (b.table[i] == nullptr || b.table[i]->key != a.table[i]->key ||
-          b.table[i]->value != a.table[i]->value) {
+      if (b.find(a.table[i]->key) == b.capacity)
         return false;
       }
     }
-  }
   return true;
 }
 

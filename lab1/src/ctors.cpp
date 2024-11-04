@@ -1,12 +1,11 @@
 #include "hashtable.h"
+#include <algorithm>
 #include <climits>
 #include <stdexcept>
 
 HashTable::HashTable() : capacity(DEF_CAPACITY), size(0) {
   table = new HashNode *[capacity];
-  for (size_t i = 0; i < capacity; i++) {
-    table[i] = new HashNode();
-  }
+  std::generate(table[0], table[capacity], HashNode());
 };
 
 HashTable::~HashTable() {
@@ -20,14 +19,14 @@ HashTable::~HashTable() {
 HashTable::HashTable(const HashTable &other)
     : capacity(other.capacity), size(other.size) {
   table = new HashNode *[capacity];
-
-  for (int i = 0; i < capacity; i++) {
-    if (other.table[i] != nullptr) {
-      table[i] = new HashNode(*other.table[i]);
-    } else {
-      table[i] = new HashNode(); // empty node
-    }
-  }
+  std::transform(other.table, other.table + capacity, table,
+                 [](HashNode *node) {
+                   return node ? new HashNode(*node)
+                               : nullptr; // Use copy constructor or nullptr
+                 });
+//  for (int i = 0; i < capacity; i++) {
+//    table[i] = new HashNode(*other.table[i]); // std::transform / generate
+//  }
 };
 
 HashTable::HashTable(size_t init_capacity) : size(0) {
@@ -36,8 +35,9 @@ HashTable::HashTable(size_t init_capacity) : size(0) {
   }
   capacity = init_capacity;
   table = new HashNode *[capacity];
-  for (int i = 0; i < capacity; i++)
-    table[i] = new HashNode();
+  std::generate(table[0], table[capacity], HashNode());
+  // for (int i = 0; i < capacity; i++) //generate
+  //   table[i] = new HashNode();
 };
 
 HashTable::HashTable(HashTable &&other)

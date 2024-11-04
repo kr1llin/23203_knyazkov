@@ -2,65 +2,32 @@
 
 #include <string>
 
-static constexpr size_t DEF_CAPACITY = 10;
-static constexpr double MAX_LOAD_FACTOR = 0.7;
-
-typedef std::string Key;
+using Key = std::string;
 
 struct Value {
-  unsigned age;
-  unsigned weight;
+  unsigned age = 0;
+  unsigned weight = 0;
 
-  bool operator==(const Value &b) {
+  bool operator==(const Value &b) const {
     return ((this->age == b.age) && (this->weight == b.weight));
   }
 
-  bool operator!=(const Value &b) { return !(*this == b); }
-};
-
-struct HashNode {
-  Value value;
-  Key key;
-
-  // default = deleted\empty node
-  HashNode() {
-    this->key = "";
-    this->value = {0, 0};
-  }
-
-  HashNode(Key key, Value value) {
-    this->value = value;
-    this->key = key;
-  }
-
-  ~HashNode() {};
+  bool operator!=(const Value &b) const { return !(*this == b); }
 };
 
 class HashTable {
-private:
-  HashNode **table;
-  size_t capacity;
-  size_t size;
-  int hash(const Key &key) const;
-
 public:
   HashTable();
   ~HashTable();
 
-  HashTable(size_t init_capacity);
+  explicit HashTable(size_t init_capacity);
   HashTable(const HashTable &other);
   HashTable(HashTable &&other);
 
   void swap(HashTable &other);
 
   HashTable &operator=(const HashTable &other);
-
   HashTable &operator=(HashTable &&other);
-
-  int linearProbing(int startIndex, Key key) const;
-  void rehashIfNeeded();
-  int find(const Key &k) const;
-  double getLoadFactor(double const &size, double const &capacity);
 
   void clear();
   bool erase(const Key &k);
@@ -79,4 +46,51 @@ public:
 
   friend bool operator==(const HashTable &a, const HashTable &b);
   friend bool operator!=(const HashTable &a, const HashTable &b);
+
+private:
+  static constexpr size_t DEF_CAPACITY = 10;
+  static constexpr double MAX_LOAD_FACTOR = 0.6;
+  static constexpr size_t CAPACITY_MULTIPLIER = 2;
+
+  size_t capacity = 0;
+  size_t size = 0;
+
+  struct HashNode {
+    Value value = {0, 0};
+    Key key = "";
+    HashNode() = default;
+    ~HashNode() = default;
+    HashNode(Key key, Value value) : value(value), key(key) {};
+    HashNode(const HashNode &other) = default;
+    HashNode &operator=(const HashNode &other) {
+      if (this == &other) {
+        return *this;
+      }
+      value = other.value;
+      key = other.key;
+      return *this;
+    }
+    HashNode(HashNode &&other) noexcept
+        : value(std::move(other.value)), key(std::move(other.key)) {}
+    HashNode &operator=(HashNode &&other) noexcept {
+      if (this == &other) {
+        return *this;
+      }
+      value = other.value;
+      key = other.key;
+
+      other.value = {};
+      other.key = "";
+      return *this;
+    }
+  };
+
+  HashNode **table = nullptr;
+
+  auto hash(const Key &key) const;
+
+  size_t linearProbing(int startIndex, Key key) const;
+  void rehashIfNeeded();
+  auto getLoadFactor() const;
+  auto find(const Key &k) const;
 };

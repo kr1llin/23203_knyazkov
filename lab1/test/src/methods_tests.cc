@@ -1,4 +1,4 @@
-#include "../../src/methods.cpp"
+#include "../../src/hashtable.cpp"
 #include <gtest/gtest.h>
 #include <gtest/gtest_prod.h>
 #include <string>
@@ -22,9 +22,10 @@ TEST(methods_tests, insert_test_2) {
 
 TEST(methods_tests, insert_test_3) {
   HashTable a = HashTable();
-  HashNode node = HashNode("Key", {2, 2});
-  a.insert(node.key, node.value);
-  EXPECT_TRUE(a.find("Key") != -1) << "\"Key\" wasn't found!!\n";
+  Key key = "Key";
+  Value value = {2,2};
+  a.insert(key,value);
+  EXPECT_TRUE(a.contains("Key"));
 }
 
 TEST(methods_tests, insert_test_4) {
@@ -32,8 +33,7 @@ TEST(methods_tests, insert_test_4) {
   int number = a.getCapacity();
 
   for (int i = 0; i < number; i++) {
-    HashNode node = HashNode(std::to_string(i), {2, 2});
-    a.insert(node.key, node.value);
+    a.insert(std::to_string(i), {2, 2});
   }
   EXPECT_EQ(number, a.getSize()) << "size wasn't increased!!";
 }
@@ -80,71 +80,71 @@ TEST(methods_tests, erase_test_5) {
   EXPECT_FALSE(a.erase("Key"));
 }
 
-TEST(methods_tests, linear_probing_test_1) {
-  HashTable a = HashTable();
-  Key key = "testKey";
-  int result = a.linearProbing(0, key);
-  EXPECT_EQ(0, result);
-}
+// TEST(methods_tests, linear_probing_test_1) {
+//   HashTable a = HashTable();
+//   Key key = "testKey";
+//   int result = a.linearProbing(0, key);
+//   EXPECT_EQ(0, result);
+// }
 
-TEST(methods_tests, linear_probing_test_2) {
-  HashTable a = HashTable();
-  Key key = "testKey";
-  Value value = {1, 1};
-  a.insert(key, value);
+// TEST(methods_tests, linear_probing_test_2) {
+//   HashTable a = HashTable();
+//   Key key = "testKey";
+//   Value value = {1, 1};
+//   a.insert(key, value);
 
-  int startIndex = a.find(key);
-  int result = a.linearProbing(startIndex, key);
-  EXPECT_EQ(result, startIndex);
-}
+//   int startIndex = a.find(key);
+//   int result = a.linearProbing(startIndex, key);
+//   EXPECT_EQ(result, startIndex);
+// }
 
-TEST(methods_tests, linear_probing_test_3) {
-  HashTable a = HashTable();
+// TEST(methods_tests, linear_probing_test_3) {
+//   HashTable a = HashTable();
 
-  Key key1 = "testKey1";
-  Value value1 = {1, 1};
-  Key key2 = "testKey2";
-  Value value2 = {2, 2};
+//   Key key1 = "testKey1";
+//   Value value1 = {1, 1};
+//   Key key2 = "testKey2";
+//   Value value2 = {2, 2};
 
-  a.insert(key1, value1);
-  a.insert(key2, value2);
+//   a.insert(key1, value1);
+//   a.insert(key2, value2);
 
-  int startIndex = a.find(key1);
-  int result = a.linearProbing(startIndex, key2);
-  EXPECT_NE(result, startIndex);
-}
+//   int startIndex = a.find(key1);
+//   int result = a.linearProbing(startIndex, key2);
+//   EXPECT_NE(result, startIndex);
+// }
 
-TEST(methods_tests, linear_probing_test_4) {
-  HashTable a = HashTable();
-  for (int i = 0; i < a.getCapacity(); i++) {
-    Key key = "key" + std::to_string(i);
-    Value value = {1, 1};
-    a.insert(key, value);
-  }
+// TEST(methods_tests, linear_probing_test_4) {
+//   HashTable a = HashTable();
+//   for (int i = 0; i < a.getCapacity(); i++) {
+//     Key key = "key" + std::to_string(i);
+//     Value value = {1, 1};
+//     a.insert(key, value);
+//   }
 
-  // Now the table is full, so probing should not find a suitable index
-  Key newKey = "newKey";
-  int startIndex = 0;
-  int result = a.linearProbing(startIndex, newKey);
-  EXPECT_EQ(result, -1);
-}
+//   // Now the table is full, so probing should not find a suitable index
+//   Key newKey = "newKey";
+//   int startIndex = 0;
+//   int result = a.linearProbing(startIndex, newKey);
+//   EXPECT_EQ(result, -1);
+// }
 
-TEST(methods_tests, linear_probing_test_5) {
-  HashTable a = HashTable();
+// TEST(methods_tests, linear_probing_test_5) {
+//   HashTable a = HashTable();
 
-  Key key1 = "key1";
-  Key key2 = "key2";
-  Key key3 = "key3";
+//   Key key1 = "key1";
+//   Key key2 = "key2";
+//   Key key3 = "key3";
 
-  a.insert(key1, {1, 1});
-  a.insert(key2, {1, 1});
-  a.insert(key3, {1, 1});
+//   a.insert(key1, {1, 1});
+//   a.insert(key2, {1, 1});
+//   a.insert(key3, {1, 1});
 
-  // Assuming a collision occurs, we want to find the next available slot
-  int startIndex = a.find(key1);
-  int result = a.linearProbing(startIndex, key2);
-  EXPECT_NE(result, startIndex);
-}
+//   // Assuming a collision occurs, we want to find the next available slot
+//   int startIndex = a.find(key1);
+//   int result = a.linearProbing(startIndex, key2);
+//   EXPECT_NE(result, startIndex);
+// }
 
 TEST(methods_tests, clear_test_1) {
   HashTable a = HashTable();

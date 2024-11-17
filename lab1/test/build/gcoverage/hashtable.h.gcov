@@ -1,0 +1,99 @@
+        -:    0:Source:/home/krillin/code/nsu/23203_knyazkov/lab1/src/hashtable.h
+        -:    0:Graph:/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/TestCoverage.dir/src/all_tests.gcno
+        -:    0:Data:/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/TestCoverage.dir/src/all_tests.gcda
+        -:    0:Runs:1
+        -:    1:#pragma once
+        -:    2:
+        -:    3:#include <string>
+        -:    4:
+        -:    5:using Key = std::string;
+        -:    6:
+        -:    7:struct Value {
+        -:    8:  unsigned age;
+        -:    9:  unsigned weight;
+        -:   10:
+function _ZNK5ValueeqERKS_ called 12 returned 100% blocks executed 100%
+       12:   11:  bool operator==(const Value &b) const {
+       12:   12:    return ((this->age == b.age) && (this->weight == b.weight));
+branch  0 taken 75% (fallthrough)
+branch  1 taken 25%
+branch  2 taken 100% (fallthrough)
+branch  3 taken 0%
+        -:   13:  }
+        -:   14:
+function _ZNK5ValueneERKS_ called 4 returned 100% blocks executed 100%
+        4:   15:  bool operator!=(const Value &b) const { return !(*this == b); }
+call    0 returned 100%
+        -:   16:};
+        -:   17:
+        -:   18:class HashTable {
+        -:   19:public:
+        -:   20:  HashTable();
+        -:   21:  ~HashTable();
+        -:   22:
+        -:   23:  explicit HashTable(size_t init_capacity);
+        -:   24:  HashTable(const HashTable &other);
+        -:   25:  HashTable(HashTable &&other);
+        -:   26:
+        -:   27:  void swap(HashTable &other);
+        -:   28:
+        -:   29:  HashTable &operator=(const HashTable &other);
+        -:   30:  HashTable &operator=(HashTable &&other);
+        -:   31:
+        -:   32:  void clear();
+        -:   33:  bool erase(const Key &k);
+        -:   34:  bool insert(const Key &k, const Value &v);
+        -:   35:
+        -:   36:  bool contains(const Key &k) const;
+        -:   37:
+        -:   38:  Value &operator[](const Key &k);
+        -:   39:
+        -:   40:  Value &at(const Key &k);
+        -:   41:  const Value &at(const Key &k) const;
+        -:   42:
+        -:   43:  size_t getSize() const;
+        -:   44:  size_t getCapacity() const;
+        -:   45:  bool empty() const;
+        -:   46:
+        -:   47:  friend bool operator==(const HashTable &a, const HashTable &b);
+        -:   48:  friend bool operator!=(const HashTable &a, const HashTable &b);
+        -:   49:
+        -:   50:private:
+        -:   51:  static constexpr size_t DEF_CAPACITY = 10;
+        -:   52:  static constexpr double MAX_LOAD_FACTOR = 0.6;
+        -:   53:  static constexpr size_t CAPACITY_MULTIPLIER = 2;
+        -:   54:
+        -:   55:  size_t capacity = 0;
+        -:   56:  size_t size = 0;
+        -:   57:
+        -:   58:  struct HashNode {
+        -:   59:    Value value{};
+        -:   60:    Key key;
+function _ZN9HashTable8HashNodeC2Ev called 2 returned 100% blocks executed 100%
+        2:   61:    HashNode() = default;
+call    0 returned 100%
+function _ZN9HashTable8HashNodeD2Ev called 1406 returned 100% blocks executed 100%
+     1406:   62:    ~HashNode() = default;
+call    0 returned 100%
+function _ZN9HashTable8HashNodeC2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE5Value called 1401 returned 100% blocks executed 100%
+     1401:   63:    HashNode(Key key, Value value) : value(value), key(key) {};
+call    0 returned 100%
+function _ZN9HashTable8HashNodeC2ERKS0_ called 5 returned 100% blocks executed 100%
+        5:   64:    HashNode(const HashNode &other) = default;
+call    0 returned 100%
+        -:   65:    HashNode &operator=(const HashNode &other) = default;
+        -:   66:    HashNode(HashNode &&other) = default;
+        -:   67:    HashNode &operator=(HashNode &&other) = default;
+        -:   68:  };
+        -:   69:
+        -:   70:  enum class SearchType { SEARCH_FOR_NULLPTR, SEARCH_FOR_KEY };
+        -:   71:
+        -:   72:  HashNode **table = nullptr;
+        -:   73:
+        -:   74:  size_t hash(const Key &key) const;
+        -:   75:  size_t linearProbing(size_t startIndex, Key const& key, SearchType searchT) const;
+        -:   76:  void rehashIfNeeded();
+        -:   77:  double getLoadFactor() const;
+        -:   78:  size_t find(const Key &k) const;
+        -:   79:  void deleteTable();
+        -:   80:};

@@ -5,8 +5,8 @@
 using Key = std::string;
 
 struct Value {
-  unsigned age = 0;
-  unsigned weight = 0;
+  unsigned age;
+  unsigned weight;
 
   bool operator==(const Value &b) const {
     return ((this->age == b.age) && (this->weight == b.weight));
@@ -56,41 +56,25 @@ private:
   size_t size = 0;
 
   struct HashNode {
-    Value value = {0, 0};
-    Key key = "";
+    Value value{};
+    Key key;
     HashNode() = default;
     ~HashNode() = default;
     HashNode(Key key, Value value) : value(value), key(key) {};
     HashNode(const HashNode &other) = default;
-    HashNode &operator=(const HashNode &other) {
-      if (this == &other) {
-        return *this;
-      }
-      value = other.value;
-      key = other.key;
-      return *this;
-    }
-    HashNode(HashNode &&other) noexcept
-        : value(std::move(other.value)), key(std::move(other.key)) {}
-    HashNode &operator=(HashNode &&other) noexcept {
-      if (this == &other) {
-        return *this;
-      }
-      value = other.value;
-      key = other.key;
-
-      other.value = {};
-      other.key = "";
-      return *this;
-    }
+    HashNode &operator=(const HashNode &other) = default;
+    HashNode(HashNode &&other) = default;
+    HashNode &operator=(HashNode &&other) = default;
   };
+
+  enum class SearchType { SEARCH_FOR_NULLPTR, SEARCH_FOR_KEY };
 
   HashNode **table = nullptr;
 
-  auto hash(const Key &key) const;
-
-  size_t linearProbing(int startIndex, Key key) const;
+  size_t hash(const Key &key) const;
+  size_t linearProbing(size_t startIndex, Key const& key, SearchType searchT) const;
   void rehashIfNeeded();
-  auto getLoadFactor() const;
-  auto find(const Key &k) const;
+  double getLoadFactor() const;
+  size_t find(const Key &k) const;
+  void deleteTable();
 };

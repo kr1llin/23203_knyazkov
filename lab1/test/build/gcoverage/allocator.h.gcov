@@ -1,7 +1,7 @@
         -:    0:Source:/usr/include/c++/14/bits/allocator.h
         -:    0:Graph:/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/TestCoverage.dir/src/all_tests.gcno
         -:    0:Data:/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/TestCoverage.dir/src/all_tests.gcda
-        -:    0:Runs:1
+        -:    0:Runs:2
         -:    1:// Allocators -*- C++ -*-
         -:    2:
         -:    3:// Copyright (C) 2001-2024 Free Software Foundation, Inc.
@@ -162,12 +162,12 @@
         -:  158:      // 3035. std::allocator's constructors should be constexpr
         -:  159:      __attribute__((__always_inline__))
         -:  160:      _GLIBCXX20_CONSTEXPR
-      69*:  161:      allocator() _GLIBCXX_NOTHROW { }
+     298*:  161:      allocator() _GLIBCXX_NOTHROW { }
         -:  162:
         -:  163:      __attribute__((__always_inline__))
         -:  164:      _GLIBCXX20_CONSTEXPR
         -:  165:      allocator(const allocator& __a) _GLIBCXX_NOTHROW
-       44:  166:      : __allocator_base<_Tp>(__a) { }
+       88:  166:      : __allocator_base<_Tp>(__a) { }
         -:  167:
         -:  168:#if __cplusplus >= 201103L
         -:  169:      // Avoid implicit deprecation.
@@ -183,7 +183,7 @@
         -:  179:#if __cpp_constexpr_dynamic_alloc
         -:  180:      constexpr
         -:  181:#endif
-     115*:  182:      ~allocator() _GLIBCXX_NOTHROW { }
+     390*:  182:      ~allocator() _GLIBCXX_NOTHROW { }
 call    0 returned 100%
 call    1 returned 100%
 call    2 never executed
@@ -244,89 +244,91 @@ call   56 never executed
 call   57 never executed
 call   58 never executed
 call   59 returned 100%
-call   60 returned 100%
-call   61 never executed
-call   62 never executed
-call   63 returned 100%
+call   60 never executed
+call   61 returned 100%
+call   62 returned 100%
+call   63 never executed
 call   64 never executed
 call   65 returned 100%
 call   66 never executed
 call   67 returned 100%
-call   68 returned 100%
-call   69 never executed
-call   70 never executed
-call   71 returned 100%
+call   68 never executed
+call   69 returned 100%
+call   70 returned 100%
+call   71 never executed
 call   72 never executed
 call   73 returned 100%
-call   74 returned 100%
+call   74 never executed
 call   75 returned 100%
 call   76 returned 100%
-call   77 never executed
-call   78 never executed
+call   77 returned 100%
+call   78 returned 100%
 call   79 never executed
 call   80 never executed
-call   81 returned 100%
+call   81 never executed
 call   82 never executed
 call   83 returned 100%
-call   84 returned 100%
-call   85 never executed
-call   86 never executed
-call   87 returned 100%
-call   88 returned 100%
-call   89 never executed
-call   90 never executed
-call   91 returned 100%
+call   84 never executed
+call   85 returned 100%
+call   86 returned 100%
+call   87 never executed
+call   88 never executed
+call   89 returned 100%
+call   90 returned 100%
+call   91 never executed
 call   92 never executed
 call   93 returned 100%
-call   94 returned 100%
+call   94 never executed
 call   95 returned 100%
 call   96 returned 100%
-call   97 never executed
-call   98 never executed
+call   97 returned 100%
+call   98 returned 100%
 call   99 never executed
 call   100 never executed
-call   101 returned 100%
-call   102 returned 100%
+call   101 never executed
+call   102 never executed
 call   103 returned 100%
 call   104 returned 100%
 call   105 returned 100%
 call   106 returned 100%
-call   107 never executed
-call   108 never executed
+call   107 returned 100%
+call   108 returned 100%
 call   109 never executed
 call   110 never executed
 call   111 never executed
 call   112 never executed
-call   113 returned 100%
+call   113 never executed
 call   114 never executed
 call   115 returned 100%
-call   116 returned 100%
-call   117 never executed
-call   118 never executed
-call   119 returned 100%
-call   120 returned 100%
+call   116 never executed
+call   117 returned 100%
+call   118 returned 100%
+call   119 never executed
+call   120 never executed
 call   121 returned 100%
 call   122 returned 100%
 call   123 returned 100%
 call   124 returned 100%
-call   125 never executed
-call   126 never executed
+call   125 returned 100%
+call   126 returned 100%
 call   127 never executed
 call   128 never executed
 call   129 never executed
 call   130 never executed
-call   131 returned 100%
-call   132 returned 100%
+call   131 never executed
+call   132 never executed
 call   133 returned 100%
 call   134 returned 100%
 call   135 returned 100%
-call   136 never executed
-call   137 never executed
+call   136 returned 100%
+call   137 returned 100%
 call   138 never executed
 call   139 never executed
 call   140 never executed
 call   141 never executed
 call   142 never executed
+call   143 never executed
+call   144 never executed
         -:  183:
         -:  184:#if __cplusplus > 201703L
         -:  185:      [[nodiscard,__gnu__::__always_inline__]]

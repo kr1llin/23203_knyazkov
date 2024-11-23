@@ -12,7 +12,8 @@
 //GMOCK 
 
 #include "forth.hpp"
-
+#include "parser.hpp"
+#include "scanner.hpp"
 #include <cstdio>
 #include <cstdlib>
 #include <fstream>
@@ -73,6 +74,7 @@ void Forth::runPrompt(){
         std::getline(cin, line);
         if (line.empty()) break;
         run(line);
+        printStack();
         hadError = false;
     }
 }
@@ -82,12 +84,17 @@ void Forth::run(const string& source){
     std::vector<Token> tokens = scanner->scanTokens();
 
     // Create a Parser instance
-    Parser parser(tokens);
+    Parser* parser = new Parser(tokens);
     
     // Parse the tokens to get an expression
-    Expr* expression = parser.parse();
-    expression->execute();
-
+    Expr* expression = parser->parse();
+    if (nullptr != expression) {
+      expression->execute(*this);
+    }
+    else {
+        std::cerr << "Error: Failed to parse expression." << std::endl;
+    }
+    //delete expression
     // Stop if there was a syntax error
     if (hadError) return;
 

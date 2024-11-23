@@ -1,8 +1,10 @@
 #pragma once
 #include "Token.hpp"
+#include "forth.hpp"
 
 #include <iostream>
 #include <memory>
+#include <stack>
 
 
 ///==== COMMANDS ====///
@@ -22,11 +24,38 @@
 //     int value;
 // };
 
-class Expr {
+
+class Expr{
 public:
     virtual ~Expr() = default;
-    virtual void execute() const = 0;
+    virtual void execute(Forth&) = 0;
 
+};
+
+class PushNumberExpr : public Expr {
+public:
+    PushNumberExpr(int value) : value(value) {}
+    void execute(Forth& forth) override;
+private:
+    int value;
+};
+
+class DupExpr : public Expr {
+public:
+    void execute(Forth& forth) override;
+};
+
+class DropExpr : public Expr {
+  public:
+    void execute(Forth& forth) override ;
+};
+
+class SumExpr : public Expr {
+  public:
+    void execute(Forth& forth) override;
+  private:
+    int left;
+    int right;
 };
 
 //+ - / * mod
@@ -35,14 +64,10 @@ public:
   Arithmetical(Expr *left, Expr *right, TokenType operatorToken)
       : left(left), right(right), operatorToken(operatorToken) {}
 
-  void execute() const override {
-    // Evaluating arithmetical expression
-  }
-
-  Token getOperatorToken() { return operatorToken; }
+  void execute(Forth& forth) override ;
 
 private:
   Expr *left;
-  Token operatorToken;
+  TokenType operatorToken;
   Expr *right;
 };

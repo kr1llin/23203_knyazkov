@@ -1,7 +1,7 @@
         -:    0:Source:/usr/local/include/gtest/gtest-assertion-result.h
         -:    0:Graph:/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/TestCoverage.dir/src/all_tests.gcno
         -:    0:Data:/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/TestCoverage.dir/src/all_tests.gcda
-        -:    0:Runs:1
+        -:    0:Runs:2
         -:    1:// Copyright 2005, Google Inc.
         -:    2:// All rights reserved.
         -:    3://
@@ -156,14 +156,14 @@
         -:  152:  // the argument is implicitly convertible to AssertionResult. In that case
         -:  153:  // we want AssertionResult's copy constructor to be used.
         -:  154:  template <typename T>
-function _ZN7testing15AssertionResultC2IbEERKT_PNSt9enable_ifIXntsrSt14is_convertibleIS2_S0_E5valueEvE4typeE called 305 returned 100% blocks executed 100%
-      305:  155:  explicit AssertionResult(
+function _ZN7testing15AssertionResultC2IbEERKT_PNSt9enable_ifIXntsrSt14is_convertibleIS2_S0_E5valueEvE4typeE called 610 returned 100% blocks executed 100%
+      610:  155:  explicit AssertionResult(
         -:  156:      const T& success,
         -:  157:      typename std::enable_if<
         -:  158:          !std::is_convertible<T, AssertionResult>::value>::type*
         -:  159:      /*enabler*/
         -:  160:      = nullptr)
-      305:  161:      : success_(success) {}
+      610:  161:      : success_(success) {}
 call    0 returned 100%
         -:  162:
         -:  163:#if defined(_MSC_VER) && (_MSC_VER < 1910 || _MSC_VER >= 1920)
@@ -177,8 +177,8 @@ call    0 returned 100%
         -:  171:  }
         -:  172:
         -:  173:  // Returns true if and only if the assertion succeeded.
-function _ZNK7testing15AssertionResultcvbEv called 305 returned 100% blocks executed 100%
-      305:  174:  operator bool() const { return success_; }  // NOLINT
+function _ZNK7testing15AssertionResultcvbEv called 610 returned 100% blocks executed 100%
+      610:  174:  operator bool() const { return success_; }  // NOLINT
         -:  175:
         -:  176:  // Returns the assertion's negation. Used with EXPECT/ASSERT_FALSE.
         -:  177:  AssertionResult operator!() const;

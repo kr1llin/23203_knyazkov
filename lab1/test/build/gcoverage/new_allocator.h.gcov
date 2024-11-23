@@ -1,7 +1,7 @@
         -:    0:Source:/usr/include/c++/14/bits/new_allocator.h
         -:    0:Graph:/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/TestCoverage.dir/src/all_tests.gcno
         -:    0:Data:/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/TestCoverage.dir/src/all_tests.gcda
-        -:    0:Runs:1
+        -:    0:Runs:2
         -:    1:// Allocator that wraps operator new -*- C++ -*-
         -:    2:
         -:    3:// Copyright (C) 2001-2024 Free Software Foundation, Inc.
@@ -89,11 +89,11 @@
         -:   85:
         -:   86:      __attribute__((__always_inline__))
         -:   87:      _GLIBCXX20_CONSTEXPR
-      68*:   88:      __new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+     296*:   88:      __new_allocator() _GLIBCXX_USE_NOEXCEPT { }
         -:   89:
         -:   90:      __attribute__((__always_inline__))
         -:   91:      _GLIBCXX20_CONSTEXPR
-       44:   92:      __new_allocator(const __new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
+       88:   92:      __new_allocator(const __new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
         -:   93:
         -:   94:      template<typename _Tp1>
         -:   95:	__attribute__((__always_inline__))
@@ -105,8 +105,8 @@
         -:  101:#endif
         -:  102:
         -:  103:#if __cplusplus <= 201703L
-function _ZNSt15__new_allocatorIcED2Ev called 301 returned 100% blocks executed 100%
-      301:  104:      ~__new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+function _ZNSt15__new_allocatorIcED2Ev called 762 returned 100% blocks executed 100%
+      762:  104:      ~__new_allocator() _GLIBCXX_USE_NOEXCEPT { }
         -:  105:
         -:  106:      pointer
         -:  107:      address(reference __x) const _GLIBCXX_NOEXCEPT

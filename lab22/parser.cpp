@@ -9,9 +9,50 @@ Expr* Parser::parse() {
   try {
     return expression();
   } catch (Parser::ParseError error) {
+    std::cerr << "Parse error!" << std::endl;
     return nullptr;
   }
 }
+
+// Функция для преобразования лексемы в целое число
+    int parseNumber(const std::string& lexeme) {
+        try {
+            // Преобразуем строку в целое число
+            return std::stoi(lexeme);
+        } catch (const std::invalid_argument& e) {
+            std::cerr << "Ошибка: недопустимое число '" << lexeme << "'" << std::endl;
+            throw; // Пробрасываем исключение дальше
+        } catch (const std::out_of_range& e) {
+            std::cerr << "Ошибка: число '" << lexeme << "' выходит за пределы диапазона" << std::endl;
+            throw; // Пробрасываем исключение дальше
+        }
+    }
+    
+//ОН ПРИНИМАЕТ ТОЛЬКО ПО ОДНОМУ ЧИСЛУ СДЕЛАЙ ТАК ЧТОБЫ ОН ЖРАЛ ВСЕ СРАЗУ!!!
+    void parseAllNumbers();
+
+Expr* Parser::expression() {
+    if (check(TokenType::NUMBER)) {
+        return new PushNumberExpr(parseNumber(tokens[current].getLexeme())); 
+    }
+    if (check(TokenType::DUP)) {
+        return new DupExpr();
+    }
+    if (check(TokenType::DROP)) {
+        return new DropExpr();
+    }
+
+    if (check(TokenType::PLUS)) {
+      return new SumExpr();
+    }
+
+    current++;
+    // Add more commands as needed
+    // Handle errors if no valid expression is found
+    throw ParseError("Unexpected token");
+}
+
+    
 
 bool Parser::match(const std::initializer_list<TokenType> &types) {
   for (TokenType type : types) {
@@ -29,23 +70,25 @@ bool Parser::check(TokenType type) {
   return peek().getType() == type;
 }
 
-Token Parser::advance() {
+const Token& Parser::advance() {
   if (!isAtEnd()) {
     current++;
   }
   return previous();
 }
 
-bool Parser::isAtEnd() const { return (peek().getType() == TokenType::END); }
+// bool Parser::isAtEnd() const { return (peek().getType() == TokenType::END); }
+bool Parser::isAtEnd() const { return (current == tokens.size()); }
 
-Token Parser::peek() const {
+
+const Token& Parser::peek() const {
   if (isAtEnd()) {
     throw std::out_of_range("Attempted to peek at the end of the token list");
   }
   return tokens[current];
 }
 
-Token Parser::previous() const {
+const Token& Parser::previous() const {
   if (current == 0) {
     throw std::out_of_range("No previous token available.");
   }

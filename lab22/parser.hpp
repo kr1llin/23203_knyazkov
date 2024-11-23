@@ -7,13 +7,14 @@
 
 //parse tokens into expressions 
 //literals are from parser
-class Parser {
+class Parser{
 public:
-  Parser(const std::vector<Token> &tokens) : tokens(tokens) {};
+  Parser(std::vector<Token> &tokens) : tokens(tokens) {};
   Expr* parse();
+  Expr* expression();
 
 private:
-  const std::vector<Token> tokens;
+  std::vector<Token> tokens;
   size_t current = 0;
 
   /* 
@@ -36,14 +37,14 @@ private:
 
   bool check(TokenType type);
 
-  Token advance();
+  const Token& advance();
 
   bool isAtEnd() const;
 
-  Token peek() const;
+  const Token& peek() const;
 
   // Get the previous token
-  Token previous() const;
+  const Token& previous() const;
 
   void synchronize();
 

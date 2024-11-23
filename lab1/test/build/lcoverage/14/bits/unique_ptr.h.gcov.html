@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2024-11-17 16:46:56</td>
+            <td class="headerValue">2024-11-19 09:07:52</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">60.0&nbsp;%</td>
@@ -146,14 +146,14 @@
 <span id="L84"><span class="lineNum">      84</span>              :       /// Calls `delete __ptr`</span>
 <span id="L85"><span class="lineNum">      85</span>              :       _GLIBCXX23_CONSTEXPR</span>
 <span id="L86"><span class="lineNum">      86</span>              :       void</span>
-<span id="L87"><span class="lineNum">      87</span> <span class="tlaGNC tlaBgGNC">         100 :       operator()(_Tp* __ptr) const</span></span>
+<span id="L87"><span class="lineNum">      87</span> <span class="tlaGNC tlaBgGNC">         200 :       operator()(_Tp* __ptr) const</span></span>
 <span id="L88"><span class="lineNum">      88</span>              :       {</span>
 <span id="L89"><span class="lineNum">      89</span>              :         static_assert(!is_void&lt;_Tp&gt;::value,</span>
 <span id="L90"><span class="lineNum">      90</span>              :                       &quot;can't delete pointer to incomplete type&quot;);</span>
 <span id="L91"><span class="lineNum">      91</span>              :         static_assert(sizeof(_Tp)&gt;0,</span>
 <span id="L92"><span class="lineNum">      92</span>              :                       &quot;can't delete pointer to incomplete type&quot;);</span>
-<span id="L93"><span class="lineNum">      93</span> <span class="tlaGNC">         100 :         delete __ptr;</span></span>
-<span id="L94"><span class="lineNum">      94</span> <span class="tlaGNC">         100 :       }</span></span>
+<span id="L93"><span class="lineNum">      93</span> <span class="tlaGNC">         200 :         delete __ptr;</span></span>
+<span id="L94"><span class="lineNum">      94</span> <span class="tlaGNC">         200 :       }</span></span>
 <span id="L95"><span class="lineNum">      95</span>              :     };</span>
 <span id="L96"><span class="lineNum">      96</span>              : </span>
 <span id="L97"><span class="lineNum">      97</span>              :   // _GLIBCXX_RESOLVE_LIB_DEFECTS</span>
@@ -227,7 +227,7 @@
 <span id="L165"><span class="lineNum">     165</span>              :                      &quot;unique_ptr's deleter type must be a function object type&quot;</span>
 <span id="L166"><span class="lineNum">     166</span>              :                      &quot; or an lvalue reference type&quot; );</span>
 <span id="L167"><span class="lineNum">     167</span>              : </span>
-<span id="L168"><span class="lineNum">     168</span> <span class="tlaGNC">         305 :       __uniq_ptr_impl() = default;</span></span>
+<span id="L168"><span class="lineNum">     168</span> <span class="tlaGNC">         610 :       __uniq_ptr_impl() = default;</span></span>
 <span id="L169"><span class="lineNum">     169</span>              :       _GLIBCXX23_CONSTEXPR</span>
 <span id="L170"><span class="lineNum">     170</span>              :       __uniq_ptr_impl(pointer __p) : _M_t() { _M_ptr() = __p; }</span>
 <span id="L171"><span class="lineNum">     171</span>              : </span>
@@ -250,11 +250,11 @@
 <span id="L188"><span class="lineNum">     188</span>              :       }</span>
 <span id="L189"><span class="lineNum">     189</span>              : </span>
 <span id="L190"><span class="lineNum">     190</span>              :       _GLIBCXX23_CONSTEXPR</span>
-<span id="L191"><span class="lineNum">     191</span> <span class="tlaGNC">         505 :       pointer&amp;   _M_ptr() noexcept { return std::get&lt;0&gt;(_M_t); }</span></span>
+<span id="L191"><span class="lineNum">     191</span> <span class="tlaGNC">        1010 :       pointer&amp;   _M_ptr() noexcept { return std::get&lt;0&gt;(_M_t); }</span></span>
 <span id="L192"><span class="lineNum">     192</span>              :       _GLIBCXX23_CONSTEXPR</span>
-<span id="L193"><span class="lineNum">     193</span> <span class="tlaGNC">         714 :       pointer    _M_ptr() const noexcept { return std::get&lt;0&gt;(_M_t); }</span></span>
+<span id="L193"><span class="lineNum">     193</span> <span class="tlaGNC">        1428 :       pointer    _M_ptr() const noexcept { return std::get&lt;0&gt;(_M_t); }</span></span>
 <span id="L194"><span class="lineNum">     194</span>              :       _GLIBCXX23_CONSTEXPR</span>
-<span id="L195"><span class="lineNum">     195</span> <span class="tlaGNC">         100 :       _Dp&amp;       _M_deleter() noexcept { return std::get&lt;1&gt;(_M_t); }</span></span>
+<span id="L195"><span class="lineNum">     195</span> <span class="tlaGNC">         200 :       _Dp&amp;       _M_deleter() noexcept { return std::get&lt;1&gt;(_M_t); }</span></span>
 <span id="L196"><span class="lineNum">     196</span>              :       _GLIBCXX23_CONSTEXPR</span>
 <span id="L197"><span class="lineNum">     197</span>              :       const _Dp&amp; _M_deleter() const noexcept { return std::get&lt;1&gt;(_M_t); }</span>
 <span id="L198"><span class="lineNum">     198</span>              : </span>
@@ -357,9 +357,9 @@
 <span id="L295"><span class="lineNum">     295</span>              : </span>
 <span id="L296"><span class="lineNum">     296</span>              :       /// Default constructor, creates a unique_ptr that owns nothing.</span>
 <span id="L297"><span class="lineNum">     297</span>              :       template&lt;typename _Del = _Dp, typename = _DeleterConstraint&lt;_Del&gt;&gt;</span>
-<span id="L298"><span class="lineNum">     298</span> <span class="tlaGNC">         305 :         constexpr unique_ptr() noexcept</span></span>
-<span id="L299"><span class="lineNum">     299</span> <span class="tlaGNC">         305 :         : _M_t()</span></span>
-<span id="L300"><span class="lineNum">     300</span> <span class="tlaGNC">         305 :         { }</span></span>
+<span id="L298"><span class="lineNum">     298</span> <span class="tlaGNC">         610 :         constexpr unique_ptr() noexcept</span></span>
+<span id="L299"><span class="lineNum">     299</span> <span class="tlaGNC">         610 :         : _M_t()</span></span>
+<span id="L300"><span class="lineNum">     300</span> <span class="tlaGNC">         610 :         { }</span></span>
 <span id="L301"><span class="lineNum">     301</span>              : </span>
 <span id="L302"><span class="lineNum">     302</span>              :       /** Takes ownership of a pointer.</span>
 <span id="L303"><span class="lineNum">     303</span>              :        *</span>
@@ -451,15 +451,15 @@
 <span id="L389"><span class="lineNum">     389</span>              : #if __cplusplus &gt; 202002L &amp;&amp; __cpp_constexpr_dynamic_alloc</span>
 <span id="L390"><span class="lineNum">     390</span>              :       constexpr</span>
 <span id="L391"><span class="lineNum">     391</span>              : #endif</span>
-<span id="L392"><span class="lineNum">     392</span> <span class="tlaGNC">         405 :       ~unique_ptr() noexcept</span></span>
+<span id="L392"><span class="lineNum">     392</span> <span class="tlaGNC">         810 :       ~unique_ptr() noexcept</span></span>
 <span id="L393"><span class="lineNum">     393</span>              :       {</span>
 <span id="L394"><span class="lineNum">     394</span>              :         static_assert(__is_invocable&lt;deleter_type&amp;, pointer&gt;::value,</span>
 <span id="L395"><span class="lineNum">     395</span>              :                       &quot;unique_ptr's deleter must be invocable with a pointer&quot;);</span>
-<span id="L396"><span class="lineNum">     396</span> <span class="tlaGNC">         405 :         auto&amp; __ptr = _M_t._M_ptr();</span></span>
-<span id="L397"><span class="lineNum">     397</span> <span class="tlaGNC">         405 :         if (__ptr != nullptr)</span></span>
-<span id="L398"><span class="lineNum">     398</span> <span class="tlaGNC">         100 :           get_deleter()(std::move(__ptr));</span></span>
-<span id="L399"><span class="lineNum">     399</span> <span class="tlaGNC">         405 :         __ptr = pointer();</span></span>
-<span id="L400"><span class="lineNum">     400</span> <span class="tlaGNC">         405 :       }</span></span>
+<span id="L396"><span class="lineNum">     396</span> <span class="tlaGNC">         810 :         auto&amp; __ptr = _M_t._M_ptr();</span></span>
+<span id="L397"><span class="lineNum">     397</span> <span class="tlaGNC">         810 :         if (__ptr != nullptr)</span></span>
+<span id="L398"><span class="lineNum">     398</span> <span class="tlaGNC">         200 :           get_deleter()(std::move(__ptr));</span></span>
+<span id="L399"><span class="lineNum">     399</span> <span class="tlaGNC">         810 :         __ptr = pointer();</span></span>
+<span id="L400"><span class="lineNum">     400</span> <span class="tlaGNC">         810 :       }</span></span>
 <span id="L401"><span class="lineNum">     401</span>              : </span>
 <span id="L402"><span class="lineNum">     402</span>              :       // Assignment.</span>
 <span id="L403"><span class="lineNum">     403</span>              : </span>
@@ -504,10 +504,10 @@
 <span id="L442"><span class="lineNum">     442</span>              :       /// Dereference the stored pointer.</span>
 <span id="L443"><span class="lineNum">     443</span>              :       _GLIBCXX23_CONSTEXPR</span>
 <span id="L444"><span class="lineNum">     444</span>              :       typename add_lvalue_reference&lt;element_type&gt;::type</span>
-<span id="L445"><span class="lineNum">     445</span> <span class="tlaGNC">         614 :       operator*() const noexcept(noexcept(*std::declval&lt;pointer&gt;()))</span></span>
+<span id="L445"><span class="lineNum">     445</span> <span class="tlaGNC">        1228 :       operator*() const noexcept(noexcept(*std::declval&lt;pointer&gt;()))</span></span>
 <span id="L446"><span class="lineNum">     446</span>              :       {</span>
-<span id="L447"><span class="lineNum">     447</span> <span class="tlaGNC">         614 :         __glibcxx_assert(get() != pointer());</span></span>
-<span id="L448"><span class="lineNum">     448</span> <span class="tlaGNC">         614 :         return *get();</span></span>
+<span id="L447"><span class="lineNum">     447</span> <span class="tlaGNC">        1228 :         __glibcxx_assert(get() != pointer());</span></span>
+<span id="L448"><span class="lineNum">     448</span> <span class="tlaGNC">        1228 :         return *get();</span></span>
 <span id="L449"><span class="lineNum">     449</span>              :       }</span>
 <span id="L450"><span class="lineNum">     450</span>              : </span>
 <span id="L451"><span class="lineNum">     451</span>              :       /// Return the stored pointer.</span>
@@ -522,14 +522,14 @@
 <span id="L460"><span class="lineNum">     460</span>              :       /// Return the stored pointer.</span>
 <span id="L461"><span class="lineNum">     461</span>              :       _GLIBCXX23_CONSTEXPR</span>
 <span id="L462"><span class="lineNum">     462</span>              :       pointer</span>
-<span id="L463"><span class="lineNum">     463</span> <span class="tlaGNC tlaBgGNC">         714 :       get() const noexcept</span></span>
-<span id="L464"><span class="lineNum">     464</span> <span class="tlaGNC">         714 :       { return _M_t._M_ptr(); }</span></span>
+<span id="L463"><span class="lineNum">     463</span> <span class="tlaGNC tlaBgGNC">        1428 :       get() const noexcept</span></span>
+<span id="L464"><span class="lineNum">     464</span> <span class="tlaGNC">        1428 :       { return _M_t._M_ptr(); }</span></span>
 <span id="L465"><span class="lineNum">     465</span>              : </span>
 <span id="L466"><span class="lineNum">     466</span>              :       /// Return a reference to the stored deleter.</span>
 <span id="L467"><span class="lineNum">     467</span>              :       _GLIBCXX23_CONSTEXPR</span>
 <span id="L468"><span class="lineNum">     468</span>              :       deleter_type&amp;</span>
-<span id="L469"><span class="lineNum">     469</span> <span class="tlaGNC">         100 :       get_deleter() noexcept</span></span>
-<span id="L470"><span class="lineNum">     470</span> <span class="tlaGNC">         100 :       { return _M_t._M_deleter(); }</span></span>
+<span id="L469"><span class="lineNum">     469</span> <span class="tlaGNC">         200 :       get_deleter() noexcept</span></span>
+<span id="L470"><span class="lineNum">     470</span> <span class="tlaGNC">         200 :       { return _M_t._M_deleter(); }</span></span>
 <span id="L471"><span class="lineNum">     471</span>              : </span>
 <span id="L472"><span class="lineNum">     472</span>              :       /// Return a reference to the stored deleter.</span>
 <span id="L473"><span class="lineNum">     473</span>              :       _GLIBCXX23_CONSTEXPR</span>

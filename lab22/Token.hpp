@@ -1,10 +1,6 @@
 #pragma once
 
-#include "value.hpp"
-#include <regex>
 #include <string>
-#include <variant>
-#include <vector>
 
 using string = std::string;
 
@@ -78,17 +74,24 @@ public:
   int getLine() const {return line;}
 
   string toString() const {
-    return std::to_string(static_cast<int>(type)) + " " + lexeme + " " +
-           literal;
+    return std::to_string(static_cast<int>(type)) + " " + lexeme;
   }
 
-  Token(TokenType type, const string lexeme, const string literal,
-        const int line)
-      : type(type), lexeme(lexeme), literal(literal), line(line) {}
+  Token(TokenType type, const string& lexeme, const string& literal, int line)
+      : type(type), lexeme(lexeme), line(line) {}
+
+  // Copy constructor
+  Token(const Token& other)
+      : type(other.type), lexeme(other.lexeme), line(other.line) {}
+
+  // Move constructor
+  Token(Token&& other) noexcept
+      : type(other.type), lexeme(std::move(other.lexeme)), line(other.line) {}
+      
 
 private:
   TokenType type;
   string lexeme;
-  Value literal; // ??? it represents something that we can use later. Number, string, boolean or expression (command)
+  string literal; // ??? it represents something that we can use later. Number, string, boolean or expression (command)
   int line; // where token appeared
 };

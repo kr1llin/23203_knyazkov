@@ -15,14 +15,17 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 set(SOURCES
     forth.cpp
     scanner.cpp
+    parser.cpp
+    expressions.cpp
 )
 
 # Specify the header files (optional, for IDEs)
 set(HEADERS
-    definition.hpp
     forth.hpp
     scanner.hpp
     Token.hpp
+    parser.hpp
+    expressions.hpp
 )
 
 # Create the executable

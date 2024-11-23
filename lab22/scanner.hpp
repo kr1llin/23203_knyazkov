@@ -1,11 +1,11 @@
 #pragma once
 
 #include "Token.hpp"
-#include "forth.hpp"
 #include <unordered_map>
+#include <vector>
 
 //find tokens from input string
-class Scanner : Forth{
+class Scanner{
   public:
     Scanner(const string& source) : source(source){}
     std::vector<Token> scanTokens();

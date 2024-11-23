@@ -1,7 +1,7 @@
         -:    0:Source:/home/krillin/code/nsu/23203_knyazkov/lab1/src/hashtable.h
         -:    0:Graph:/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/TestCoverage.dir/src/all_tests.gcno
         -:    0:Data:/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/TestCoverage.dir/src/all_tests.gcda
-        -:    0:Runs:1
+        -:    0:Runs:2
         -:    1:#pragma once
         -:    2:
         -:    3:#include <string>
@@ -12,17 +12,17 @@
         -:    8:  unsigned age;
         -:    9:  unsigned weight;
         -:   10:
-function _ZNK5ValueeqERKS_ called 12 returned 100% blocks executed 100%
-       12:   11:  bool operator==(const Value &b) const {
-       12:   12:    return ((this->age == b.age) && (this->weight == b.weight));
+function _ZNK5ValueeqERKS_ called 24 returned 100% blocks executed 100%
+       24:   11:  bool operator==(const Value &b) const {
+       24:   12:    return ((this->age == b.age) && (this->weight == b.weight));
 branch  0 taken 75% (fallthrough)
 branch  1 taken 25%
 branch  2 taken 100% (fallthrough)
 branch  3 taken 0%
         -:   13:  }
         -:   14:
-function _ZNK5ValueneERKS_ called 4 returned 100% blocks executed 100%
-        4:   15:  bool operator!=(const Value &b) const { return !(*this == b); }
+function _ZNK5ValueneERKS_ called 8 returned 100% blocks executed 100%
+        8:   15:  bool operator!=(const Value &b) const { return !(*this == b); }
 call    0 returned 100%
         -:   16:};
         -:   17:
@@ -69,17 +69,17 @@ call    0 returned 100%
         -:   58:  struct HashNode {
         -:   59:    Value value{};
         -:   60:    Key key;
-function _ZN9HashTable8HashNodeC2Ev called 2 returned 100% blocks executed 100%
-        2:   61:    HashNode() = default;
+function _ZN9HashTable8HashNodeC2Ev called 4 returned 100% blocks executed 100%
+        4:   61:    HashNode() = default;
 call    0 returned 100%
-function _ZN9HashTable8HashNodeD2Ev called 1406 returned 100% blocks executed 100%
-     1406:   62:    ~HashNode() = default;
+function _ZN9HashTable8HashNodeD2Ev called 2474 returned 100% blocks executed 100%
+     2474:   62:    ~HashNode() = default;
 call    0 returned 100%
-function _ZN9HashTable8HashNodeC2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE5Value called 1401 returned 100% blocks executed 100%
-     1401:   63:    HashNode(Key key, Value value) : value(value), key(key) {};
+function _ZN9HashTable8HashNodeC2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE5Value called 2464 returned 100% blocks executed 100%
+     2464:   63:    HashNode(Key key, Value value) : value(value), key(key) {};
 call    0 returned 100%
-function _ZN9HashTable8HashNodeC2ERKS0_ called 5 returned 100% blocks executed 100%
-        5:   64:    HashNode(const HashNode &other) = default;
+function _ZN9HashTable8HashNodeC2ERKS0_ called 10 returned 100% blocks executed 100%
+       10:   64:    HashNode(const HashNode &other) = default;
 call    0 returned 100%
         -:   65:    HashNode &operator=(const HashNode &other) = default;
         -:   66:    HashNode(HashNode &&other) = default;

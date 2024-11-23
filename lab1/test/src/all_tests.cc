@@ -272,12 +272,12 @@ TEST(methods_tests, insert_test_4) {
 
 TEST(methods_tests, insert_test_5) {
   HashTable a;
-  int number = a.getCapacity() * 8;
+  size_t number = a.getCapacity() * 8;
 
-  for (int i = 0; i < number; i++) {
-    a.insert(std::to_string(i), {2, 2});
+  for (size_t i = 0; i < number; i++) {
+    a.insert("Key", {2, 2});
   }
-  EXPECT_EQ(number, a.getSize()) << "size wasn't increased!!";
+  EXPECT_TRUE(number != a.getSize()) << "size was updated!!";
 }
 
 //

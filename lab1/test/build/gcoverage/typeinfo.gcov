@@ -1,7 +1,7 @@
         -:    0:Source:/usr/include/c++/14/typeinfo
         -:    0:Graph:/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/TestCoverage.dir/src/all_tests.gcno
         -:    0:Data:/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/TestCoverage.dir/src/all_tests.gcda
-        -:    0:Runs:1
+        -:    0:Runs:2
         -:    1:// RTTI support for -*- C++ -*-
         -:    2:// Copyright (C) 1994-2024 Free Software Foundation, Inc.
         -:    3://

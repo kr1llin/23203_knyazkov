@@ -1,7 +1,7 @@
         -:    0:Source:/usr/local/include/gtest/internal/gtest-internal.h
         -:    0:Graph:/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/TestCoverage.dir/src/all_tests.gcno
         -:    0:Data:/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/TestCoverage.dir/src/all_tests.gcda
-        -:    0:Runs:1
+        -:    0:Runs:2
         -:    1:// Copyright 2005, Google Inc.
         -:    2:// All rights reserved.
         -:    3://
@@ -438,7 +438,7 @@
         -:  434:// of a Test object.
         -:  435:class TestFactoryBase {
         -:  436: public:
-      42*:  437:  virtual ~TestFactoryBase() = default;
+      84*:  437:  virtual ~TestFactoryBase() = default;
 ------------------
 _ZN7testing8internal15TestFactoryBaseD0Ev:
 function _ZN7testing8internal15TestFactoryBaseD0Ev called 0 returned 0% blocks executed 0%
@@ -447,8 +447,8 @@ call    0 never executed
 call    1 never executed
 ------------------
 _ZN7testing8internal15TestFactoryBaseD2Ev:
-function _ZN7testing8internal15TestFactoryBaseD2Ev called 42 returned 100% blocks executed 100%
-       42:  437:  virtual ~TestFactoryBase() = default;
+function _ZN7testing8internal15TestFactoryBaseD2Ev called 84 returned 100% blocks executed 100%
+       84:  437:  virtual ~TestFactoryBase() = default;
 ------------------
         -:  438:
         -:  439:  // Creates a test instance to run. The instance is both created and destroyed
@@ -456,8 +456,8 @@ function _ZN7testing8internal15TestFactoryBaseD2Ev called 42 returned 100% block
         -:  441:  virtual Test* CreateTest() = 0;
         -:  442:
         -:  443: protected:
-function _ZN7testing8internal15TestFactoryBaseC2Ev called 42 returned 100% blocks executed 100%
-       42:  444:  TestFactoryBase() {}
+function _ZN7testing8internal15TestFactoryBaseC2Ev called 84 returned 100% blocks executed 100%
+       84:  444:  TestFactoryBase() {}
         -:  445:
         -:  446: private:
         -:  447:  TestFactoryBase(const TestFactoryBase&) = delete;
@@ -469,11 +469,11 @@ function _ZN7testing8internal15TestFactoryBaseC2Ev called 42 returned 100% block
         -:  453:template <class TestClass>
         -:  454:class TestFactoryImpl : public TestFactoryBase {
         -:  455: public:
-       42:  456:  Test* CreateTest() override { return new TestClass; }
+       84:  456:  Test* CreateTest() override { return new TestClass; }
 ------------------
 _ZN7testing8internal15TestFactoryImplI31methods_tests_erase_test_4_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI31methods_tests_erase_test_4_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI31methods_tests_erase_test_4_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -483,8 +483,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI32methods_tests_insert_test_1_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI32methods_tests_insert_test_1_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI32methods_tests_insert_test_1_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -494,8 +494,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI32methods_tests_insert_test_2_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI32methods_tests_insert_test_2_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI32methods_tests_insert_test_2_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -505,8 +505,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI32methods_tests_insert_test_3_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI32methods_tests_insert_test_3_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI32methods_tests_insert_test_3_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -516,8 +516,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI32methods_tests_insert_test_4_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI32methods_tests_insert_test_4_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI32methods_tests_insert_test_4_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -527,8 +527,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI32methods_tests_insert_test_5_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI32methods_tests_insert_test_5_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI32methods_tests_insert_test_5_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -538,8 +538,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI35methods_tests_rehashing_test_1_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI35methods_tests_rehashing_test_1_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI35methods_tests_rehashing_test_1_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -549,8 +549,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI35methods_tests_rehashing_test_2_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI35methods_tests_rehashing_test_2_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI35methods_tests_rehashing_test_2_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -560,8 +560,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI31methods_tests_erase_test_1_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI31methods_tests_erase_test_1_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI31methods_tests_erase_test_1_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -571,8 +571,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI31methods_tests_erase_test_2_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI31methods_tests_erase_test_2_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI31methods_tests_erase_test_2_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -582,8 +582,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI31methods_tests_erase_test_3_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI31methods_tests_erase_test_3_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI31methods_tests_erase_test_3_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -593,8 +593,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI38operators_tests_isNotEqual_test_2_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI38operators_tests_isNotEqual_test_2_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI38operators_tests_isNotEqual_test_2_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -604,8 +604,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI31methods_tests_erase_test_5_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI31methods_tests_erase_test_5_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI31methods_tests_erase_test_5_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -615,8 +615,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI31methods_tests_clear_test_1_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI31methods_tests_clear_test_1_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI31methods_tests_clear_test_1_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -626,8 +626,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI31methods_tests_clear_test_2_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI31methods_tests_clear_test_2_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI31methods_tests_clear_test_2_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -637,8 +637,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI31methods_tests_clear_test_3_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI31methods_tests_clear_test_3_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI31methods_tests_clear_test_3_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -648,8 +648,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI31methods_tests_clear_test_4_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI31methods_tests_clear_test_4_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI31methods_tests_clear_test_4_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -659,8 +659,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI28methods_tests_at_test_1_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI28methods_tests_at_test_1_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI28methods_tests_at_test_1_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -670,8 +670,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI28methods_tests_at_test_2_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI28methods_tests_at_test_2_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI28methods_tests_at_test_2_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -681,8 +681,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI28methods_tests_at_test_3_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI28methods_tests_at_test_3_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI28methods_tests_at_test_3_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -692,8 +692,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI30methods_tests_swap_test_1_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI30methods_tests_swap_test_1_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI30methods_tests_swap_test_1_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -703,8 +703,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI43operators_tests_copy_assignment_test_3_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI43operators_tests_copy_assignment_test_3_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI43operators_tests_copy_assignment_test_3_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -714,8 +714,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI34ctors_tests_copy_cstor_test_1_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI34ctors_tests_copy_cstor_test_1_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI34ctors_tests_copy_cstor_test_1_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -725,8 +725,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI34ctors_tests_copy_cstor_test_2_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI34ctors_tests_copy_cstor_test_2_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI34ctors_tests_copy_cstor_test_2_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -736,8 +736,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI38ctors_tests_capacity_cstor_test_1_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI38ctors_tests_capacity_cstor_test_1_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI38ctors_tests_capacity_cstor_test_1_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -747,8 +747,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI38ctors_tests_capacity_cstor_test_2_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI38ctors_tests_capacity_cstor_test_2_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI38ctors_tests_capacity_cstor_test_2_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -758,8 +758,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI34ctors_tests_move_cstor_test_1_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI34ctors_tests_move_cstor_test_1_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI34ctors_tests_move_cstor_test_1_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -769,8 +769,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI34ctors_tests_move_cstor_test_2_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI34ctors_tests_move_cstor_test_2_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI34ctors_tests_move_cstor_test_2_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -780,8 +780,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI36operators_tests_brackets_test_1_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI36operators_tests_brackets_test_1_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI36operators_tests_brackets_test_1_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -791,8 +791,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI36operators_tests_brackets_test_2_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI36operators_tests_brackets_test_2_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI36operators_tests_brackets_test_2_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -802,8 +802,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI43operators_tests_copy_assignment_test_1_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI43operators_tests_copy_assignment_test_1_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI43operators_tests_copy_assignment_test_1_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -813,8 +813,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI43operators_tests_copy_assignment_test_2_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI43operators_tests_copy_assignment_test_2_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI43operators_tests_copy_assignment_test_2_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -824,8 +824,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI32ctors_tests_empty_ctor_test_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI32ctors_tests_empty_ctor_test_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI32ctors_tests_empty_ctor_test_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -835,8 +835,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI43operators_tests_move_assignment_test_2_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI43operators_tests_move_assignment_test_2_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI43operators_tests_move_assignment_test_2_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -846,8 +846,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI43operators_tests_move_assignment_test_3_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI43operators_tests_move_assignment_test_3_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI43operators_tests_move_assignment_test_3_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -857,8 +857,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI43operators_tests_move_assignment_test_4_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI43operators_tests_move_assignment_test_4_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI43operators_tests_move_assignment_test_4_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -868,8 +868,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI35operators_tests_isEqual_test_1_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI35operators_tests_isEqual_test_1_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI35operators_tests_isEqual_test_1_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -879,8 +879,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI35operators_tests_isEqual_test_2_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI35operators_tests_isEqual_test_2_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI35operators_tests_isEqual_test_2_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -890,8 +890,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI35operators_tests_isEqual_test_3_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI35operators_tests_isEqual_test_3_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI35operators_tests_isEqual_test_3_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -901,8 +901,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI35operators_tests_isEqual_test_4_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI35operators_tests_isEqual_test_4_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI35operators_tests_isEqual_test_4_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -912,8 +912,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI35operators_tests_isEqual_test_5_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI35operators_tests_isEqual_test_5_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI35operators_tests_isEqual_test_5_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -923,8 +923,8 @@ branch  5 never executed
 call    6 never executed
 ------------------
 _ZN7testing8internal15TestFactoryImplI38operators_tests_isNotEqual_test_1_TestE10CreateTestEv:
-function _ZN7testing8internal15TestFactoryImplI38operators_tests_isNotEqual_test_1_TestE10CreateTestEv called 1 returned 100% blocks executed 71%
-        1:  456:  Test* CreateTest() override { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI38operators_tests_isNotEqual_test_1_TestE10CreateTestEv called 2 returned 100% blocks executed 71%
+        2:  456:  Test* CreateTest() override { return new TestClass; }
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 100% (fallthrough)
@@ -953,9 +953,9 @@ call    6 never executed
         -:  474:using TearDownTestSuiteFunc = void (*)();
         -:  475:
         -:  476:struct CodeLocation {
-function _ZN7testing8internal12CodeLocationC2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEi called 42 returned 100% blocks executed 100%
-       42:  477:  CodeLocation(std::string a_file, int a_line)
-       42:  478:      : file(std::move(a_file)), line(a_line) {}
+function _ZN7testing8internal12CodeLocationC2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEi called 84 returned 100% blocks executed 100%
+       84:  477:  CodeLocation(std::string a_file, int a_line)
+       84:  478:      : file(std::move(a_file)), line(a_line) {}
 call    0 returned 100%
 call    1 returned 100%
         -:  479:
@@ -969,10 +969,10 @@ call    1 returned 100%
         -:  487:// Utility functions to help SuiteApiResolver
         -:  488:using SetUpTearDownSuiteFuncType = void (*)();
         -:  489:
-function _ZN7testing8internal19GetNotDefaultOrNullEPFvvES2_ called 168 returned 100% blocks executed 80%
-      168:  490:inline SetUpTearDownSuiteFuncType GetNotDefaultOrNull(
+function _ZN7testing8internal19GetNotDefaultOrNullEPFvvES2_ called 336 returned 100% blocks executed 80%
+      336:  490:inline SetUpTearDownSuiteFuncType GetNotDefaultOrNull(
         -:  491:    SetUpTearDownSuiteFuncType a, SetUpTearDownSuiteFuncType def) {
-     168*:  492:  return a == def ? nullptr : a;
+     336*:  492:  return a == def ? nullptr : a;
 branch  0 taken 0% (fallthrough)
 branch  1 taken 100%
         -:  493:}
@@ -987,18 +987,18 @@ branch  1 taken 100%
         -:  502:  using Test =
         -:  503:      typename std::conditional<sizeof(T) != 0, ::testing::Test, void>::type;
         -:  504:
-function _ZN7testing8internal16SuiteApiResolverINS_4TestEE19GetSetUpCaseOrSuiteEPKci called 42 returned 100% blocks executed 44%
-       42:  505:  static SetUpTearDownSuiteFuncType GetSetUpCaseOrSuite(const char* filename,
+function _ZN7testing8internal16SuiteApiResolverINS_4TestEE19GetSetUpCaseOrSuiteEPKci called 84 returned 100% blocks executed 44%
+       84:  505:  static SetUpTearDownSuiteFuncType GetSetUpCaseOrSuite(const char* filename,
         -:  506:                                                        int line_num) {
         -:  507:#ifndef GTEST_REMOVE_LEGACY_TEST_CASEAPI_
         -:  508:    SetUpTearDownSuiteFuncType test_case_fp =
-       42:  509:        GetNotDefaultOrNull(&T::SetUpTestCase, &Test::SetUpTestCase);
+       84:  509:        GetNotDefaultOrNull(&T::SetUpTestCase, &Test::SetUpTestCase);
 call    0 returned 100%
         -:  510:    SetUpTearDownSuiteFuncType test_suite_fp =
-       42:  511:        GetNotDefaultOrNull(&T::SetUpTestSuite, &Test::SetUpTestSuite);
+       84:  511:        GetNotDefaultOrNull(&T::SetUpTestSuite, &Test::SetUpTestSuite);
 call    0 returned 100%
         -:  512:
-      42*:  513:    GTEST_CHECK_(!test_case_fp || !test_suite_fp)
+      84*:  513:    GTEST_CHECK_(!test_case_fp || !test_suite_fp)
 branch  0 taken 0% (fallthrough)
 branch  1 taken 100%
 branch  2 never executed (fallthrough)
@@ -1031,7 +1031,7 @@ call   12 never executed
 branch 13 never executed (fallthrough)
 branch 14 never executed (throw)
         -:  517:
-      42*:  518:    return test_case_fp != nullptr ? test_case_fp : test_suite_fp;
+      84*:  518:    return test_case_fp != nullptr ? test_case_fp : test_suite_fp;
 branch  0 taken 0% (fallthrough)
 branch  1 taken 100%
         -:  519:#else
@@ -1041,18 +1041,18 @@ branch  1 taken 100%
         -:  523:#endif
         -:  524:  }
         -:  525:
-function _ZN7testing8internal16SuiteApiResolverINS_4TestEE22GetTearDownCaseOrSuiteEPKci called 42 returned 100% blocks executed 44%
-       42:  526:  static SetUpTearDownSuiteFuncType GetTearDownCaseOrSuite(const char* filename,
+function _ZN7testing8internal16SuiteApiResolverINS_4TestEE22GetTearDownCaseOrSuiteEPKci called 84 returned 100% blocks executed 44%
+       84:  526:  static SetUpTearDownSuiteFuncType GetTearDownCaseOrSuite(const char* filename,
         -:  527:                                                           int line_num) {
         -:  528:#ifndef GTEST_REMOVE_LEGACY_TEST_CASEAPI_
         -:  529:    SetUpTearDownSuiteFuncType test_case_fp =
-       42:  530:        GetNotDefaultOrNull(&T::TearDownTestCase, &Test::TearDownTestCase);
+       84:  530:        GetNotDefaultOrNull(&T::TearDownTestCase, &Test::TearDownTestCase);
 call    0 returned 100%
         -:  531:    SetUpTearDownSuiteFuncType test_suite_fp =
-       42:  532:        GetNotDefaultOrNull(&T::TearDownTestSuite, &Test::TearDownTestSuite);
+       84:  532:        GetNotDefaultOrNull(&T::TearDownTestSuite, &Test::TearDownTestSuite);
 call    0 returned 100%
         -:  533:
-      42*:  534:    GTEST_CHECK_(!test_case_fp || !test_suite_fp)
+      84*:  534:    GTEST_CHECK_(!test_case_fp || !test_suite_fp)
 branch  0 taken 0% (fallthrough)
 branch  1 taken 100%
 branch  2 never executed (fallthrough)
@@ -1085,7 +1085,7 @@ call   12 never executed
 branch 13 never executed (fallthrough)
 branch 14 never executed (throw)
         -:  538:
-      42*:  539:    return test_case_fp != nullptr ? test_case_fp : test_suite_fp;
+      84*:  539:    return test_case_fp != nullptr ? test_case_fp : test_suite_fp;
 branch  0 taken 0% (fallthrough)
 branch  1 taken 100%
         -:  540:#else
@@ -1385,13 +1385,13 @@ branch  1 taken 100%
         -:  834:// Helper for declaring std::string within 'if' statement
         -:  835:// in pre C++17 build environment.
         -:  836:struct TrueWithString {
-function _ZN7testing8internal14TrueWithStringC2Ev called 6 returned 100% blocks executed 100%
-        6:  837:  TrueWithString() = default;
+function _ZN7testing8internal14TrueWithStringC2Ev called 12 returned 100% blocks executed 100%
+       12:  837:  TrueWithString() = default;
 call    0 returned 100%
         -:  838:  explicit TrueWithString(const char* str) : value(str) {}
         -:  839:  explicit TrueWithString(const std::string& str) : value(str) {}
-function _ZNK7testing8internal14TrueWithStringcvbEv called 6 returned 100% blocks executed 100%
-        6:  840:  explicit operator bool() const { return true; }
+function _ZNK7testing8internal14TrueWithStringcvbEv called 12 returned 100% blocks executed 100%
+       12:  840:  explicit operator bool() const { return true; }
         -:  841:  std::string value;
         -:  842:};
         -:  843:

@@ -1,8 +1,7 @@
+#pragma once
 #include "Token.hpp"
 #include "definition.hpp"
 #include "interpreter.hpp"
-#include "parser.hpp"
-#include "scanner.hpp"
 
 #include <cstddef>
 #include <iostream>
@@ -32,12 +31,34 @@ public:
   void error(int line, const std::string &message);
   void error(const Token &token, const std::string &message);
 
-private:
-  void report(int line, const std::string &where, const std::string &message);
-  std::stack<int> stack;
+  void push(int value) {
+    stack.push_back(value);
+  }
+
+  void printStack() const {
+    for (auto i : stack){
+        std::cout << i << " ";
+    }
+    std::cout << "<- Top" << std::endl;
+  }
+
+  int pop() {
+    if (stack.empty())
+      throw std::runtime_error("Stack underflow");
+    int value = stack.back();
+    stack.pop_back();
+    return value;
+  }
+
+  int peek() const {
+    if (stack.empty())
+      throw std::runtime_error("Stack is empty");
+    return stack.back();
+  }
 
 private:
-  std::vector<int> data;
+  void report(int line, const std::string &where, const std::string &message);
+  std::vector<int> stack;
   bool hadError = false;
 };
 

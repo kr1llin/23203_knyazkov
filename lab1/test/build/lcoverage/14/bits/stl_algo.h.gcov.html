@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2024-11-17 16:46:56</td>
+            <td class="headerValue">2024-11-19 09:07:52</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -4267,7 +4267,7 @@
 <span id="L4205"><span class="lineNum">    4205</span>              :            typename _UnaryOperation&gt;</span>
 <span id="L4206"><span class="lineNum">    4206</span>              :     _GLIBCXX20_CONSTEXPR</span>
 <span id="L4207"><span class="lineNum">    4207</span>              :     _OutputIterator</span>
-<span id="L4208"><span class="lineNum">    4208</span> <span class="tlaGNC tlaBgGNC">           3 :     transform(_InputIterator __first, _InputIterator __last,</span></span>
+<span id="L4208"><span class="lineNum">    4208</span> <span class="tlaGNC tlaBgGNC">           6 :     transform(_InputIterator __first, _InputIterator __last,</span></span>
 <span id="L4209"><span class="lineNum">    4209</span>              :               _OutputIterator __result, _UnaryOperation __unary_op)</span>
 <span id="L4210"><span class="lineNum">    4210</span>              :     {</span>
 <span id="L4211"><span class="lineNum">    4211</span>              :       // concept requirements</span>
@@ -4277,9 +4277,9 @@
 <span id="L4215"><span class="lineNum">    4215</span>              :             __typeof__(__unary_op(*__first))&gt;)</span>
 <span id="L4216"><span class="lineNum">    4216</span>              :       __glibcxx_requires_valid_range(__first, __last);</span>
 <span id="L4217"><span class="lineNum">    4217</span>              : </span>
-<span id="L4218"><span class="lineNum">    4218</span> <span class="tlaGNC">          33 :       for (; __first != __last; ++__first, (void)++__result)</span></span>
-<span id="L4219"><span class="lineNum">    4219</span> <span class="tlaGNC">          30 :         *__result = __unary_op(*__first);</span></span>
-<span id="L4220"><span class="lineNum">    4220</span> <span class="tlaGNC">           3 :       return __result;</span></span>
+<span id="L4218"><span class="lineNum">    4218</span> <span class="tlaGNC">          66 :       for (; __first != __last; ++__first, (void)++__result)</span></span>
+<span id="L4219"><span class="lineNum">    4219</span> <span class="tlaGNC">          60 :         *__result = __unary_op(*__first);</span></span>
+<span id="L4220"><span class="lineNum">    4220</span> <span class="tlaGNC">           6 :       return __result;</span></span>
 <span id="L4221"><span class="lineNum">    4221</span>              :     }</span>
 <span id="L4222"><span class="lineNum">    4222</span>              : </span>
 <span id="L4223"><span class="lineNum">    4223</span>              :   /**</span>

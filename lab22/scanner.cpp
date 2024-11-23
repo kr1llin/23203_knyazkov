@@ -1,6 +1,6 @@
 #include "scanner.hpp"
+#include "forth.hpp"
 #include <cctype>
-#include <string>
 
 
 /*
@@ -90,7 +90,7 @@ void Scanner::scanToken() {
     } else if (std::isalpha(c)) {
           identifier();
     }else {
-      Forth::error(line, "???");
+      //Forth::error(line, "???");
     }
     break;
   }
@@ -124,7 +124,7 @@ void Scanner::str() {
   }
 
   if (isAtEnd()) {
-    Forth::error(line, "Can't determine string");
+    //Forth::error(line, "Can't determine string");
     return;
   }
 

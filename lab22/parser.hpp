@@ -2,6 +2,7 @@
 #include "expressions.hpp"
 #include "Token.hpp"
 
+#include <memory>
 #include <stdexcept>
 #include <vector>
 
@@ -9,13 +10,14 @@
 //literals are from parser
 class Parser{
 public:
-  Parser(std::vector<Token> &tokens) : tokens(tokens) {};
-  Expr* parse();
-  Expr* expression();
+  Parser(std::vector<Token> &tokens, Forth &forth) : tokens(tokens), forth(forth) {};
+  std::unique_ptr<Expr> parse();
+  std::unique_ptr<Expr> expression();
 
 private:
   std::vector<Token> tokens;
   size_t current = 0;
+  Forth &forth;
 
   /* 
   Expr *expression();

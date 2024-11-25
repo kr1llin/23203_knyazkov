@@ -12,33 +12,15 @@
 //GMOCK 
 
 #include "forth.hpp"
+#include "Token.hpp"
 #include "parser.hpp"
 #include "scanner.hpp"
 #include <cstdio>
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
-#include <list>
 #include <tclap/CmdLine.h>
 #include <vector>
-
-// void Forth::Stack::push(int value) { data.push_back(value); }
-
-// int Forth::Stack::pop() {
-//   if (data.empty()) {
-//     throw std::runtime_error("Stack underflow");
-//   }
-//   int value = data.back();
-//   data.pop_back();
-//   return value;
-// }
-
-// int Forth::Stack::top() const {
-//   if (data.empty()) {
-//     throw std::runtime_error("Stack is empty");
-//   }
-//   return data.back();
-// }
 
 void Forth::runFile(const std::string& path) {
     std::ifstream file(path);
@@ -82,27 +64,35 @@ void Forth::runPrompt(){
 void Forth::run(const string& source){
     Scanner* scanner = new Scanner(source);
     std::vector<Token> tokens = scanner->scanTokens();
+    std::vector<Token> executedTokens;
 
-    // Create a Parser instance
-    Parser* parser = new Parser(tokens);
-    
-    // Parse the tokens to get an expression
-    Expr* expression = parser->parse();
-    if (nullptr != expression) {
-      expression->execute(*this);
-    }
-    else {
-        std::cerr << "Error: Failed to parse expression." << std::endl;
-    }
+    Parser* parser = new Parser(tokens, *this);
+
+    while(tokens.size() != 1) {
+      std::unique_ptr<Expr> expression =
+          parser->parse(); // Pass the index to parse
+      if (expression != nullptr)
+          expression->execute(*this); // Execute the parsed expression
+        executedTokens.push_back(tokens.back());
+        tokens.pop_back();
+       } //else {
+      //   std::cerr << "Error: Failed to parse expression at token index " << i
+      //             << "." << std::endl;
+      //  return; 
+      // }
+
+    // else {
+    //     std::cerr << "Error: Failed to parse expression." << std::endl;
+    // }
     //delete expression
-    // Stop if there was a syntax error
     if (hadError) return;
 
     //temporary
     //needs forth's stack, not tokens
-    for (Token token:tokens){
+    for (Token token:executedTokens){
         cout << token.toString() << endl;
     }
+    std::cout << "------------------------" << std::endl;
 }
 
 void Forth::error(int line, const string& message){

@@ -1,58 +1,69 @@
 #include "parser.hpp"
 #include "Token.hpp"
 #include "expressions.hpp"
+#include "factory.hpp"
+#include <cstddef>
+#include <memory>
 
 //*=======EXPRESSIONS========*//
 
-//get token - make expression
-Expr* Parser::parse() {
+int parseNumber(const std::string &lexeme) {
   try {
-    return expression();
+    return std::stoi(lexeme);
+  } catch (const std::invalid_argument &e) {
+    std::cerr << "Ошибка: недопустимое число '" << lexeme << "'" << std::endl;
+    throw;
+  } catch (const std::out_of_range &e) {
+    std::cerr << "Ошибка: число '" << lexeme << "' выходит за пределы диапазона"
+              << std::endl;
+    throw;
+  }
+}
+
+// get token - make expression
+std::unique_ptr<Expr> Parser::parse() {
+  try {
+    // return expression();
+    if (check(TokenType::NUMBER)) {
+      int number = parseNumber(tokens[current].getLexeme());
+       std::unique_ptr<Expr> expr =
+          Factory<std::string, Expr>::getInstance()->createCommandByName(
+              "number"); //Как-то запушить значение числа
+      // forth.push(parseNumber(tokens[current].getLexeme()));
+      return nullptr;
+    }
+    else if (!check(TokenType::NIL)) {
+      std::string commandName = peek().getLexeme();
+      std::unique_ptr<Expr> expr =
+          Factory<std::string, Expr>::getInstance()->createCommandByName(
+              commandName);
+    } else {
+      throw ParseError("Unexpected token");
+    }
+    current++;
+
   } catch (Parser::ParseError error) {
     std::cerr << "Parse error!" << std::endl;
     return nullptr;
   }
 }
 
-// Функция для преобразования лексемы в целое число
-    int parseNumber(const std::string& lexeme) {
-        try {
-            // Преобразуем строку в целое число
-            return std::stoi(lexeme);
-        } catch (const std::invalid_argument& e) {
-            std::cerr << "Ошибка: недопустимое число '" << lexeme << "'" << std::endl;
-            throw; // Пробрасываем исключение дальше
-        } catch (const std::out_of_range& e) {
-            std::cerr << "Ошибка: число '" << lexeme << "' выходит за пределы диапазона" << std::endl;
-            throw; // Пробрасываем исключение дальше
-        }
-    }
-    
-//ОН ПРИНИМАЕТ ТОЛЬКО ПО ОДНОМУ ЧИСЛУ СДЕЛАЙ ТАК ЧТОБЫ ОН ЖРАЛ ВСЕ СРАЗУ!!!
-    void parseAllNumbers();
+// std::unique_ptr<Expr> Parser::expression() {
+//     if (check(TokenType::NUMBER)) {
+//       std::clog << "ETO NUMBER!!" << std::endl;
+//       forth.push(parseNumber(tokens[current].getLexeme()));
+//     }
+//     else if (!check(TokenType::NIL)) {
+//         std::string commandName = peek().getLexeme();
+//             std::unique_ptr<Expr> expr = Factory<std::string,
+//             Expr>::getInstance()->createCommandByName(commandName); return
+//             expr; // Return the raw pointer
+//     } else {
+//       throw ParseError("Unexpected token");
+//     }
 
-Expr* Parser::expression() {
-    if (check(TokenType::NUMBER)) {
-        return new PushNumberExpr(parseNumber(tokens[current].getLexeme())); 
-    }
-    if (check(TokenType::DUP)) {
-        return new DupExpr();
-    }
-    if (check(TokenType::DROP)) {
-        return new DropExpr();
-    }
-
-    if (check(TokenType::PLUS)) {
-      return new SumExpr();
-    }
-
-    current++;
-    // Add more commands as needed
-    // Handle errors if no valid expression is found
-    throw ParseError("Unexpected token");
-}
-
-    
+//     current++;
+// }
 
 bool Parser::match(const std::initializer_list<TokenType> &types) {
   for (TokenType type : types) {
@@ -70,7 +81,7 @@ bool Parser::check(TokenType type) {
   return peek().getType() == type;
 }
 
-const Token& Parser::advance() {
+const Token &Parser::advance() {
   if (!isAtEnd()) {
     current++;
   }
@@ -80,22 +91,21 @@ const Token& Parser::advance() {
 // bool Parser::isAtEnd() const { return (peek().getType() == TokenType::END); }
 bool Parser::isAtEnd() const { return (current == tokens.size()); }
 
-
-const Token& Parser::peek() const {
+const Token &Parser::peek() const {
   if (isAtEnd()) {
     throw std::out_of_range("Attempted to peek at the end of the token list");
   }
   return tokens[current];
 }
 
-const Token& Parser::previous() const {
+const Token &Parser::previous() const {
   if (current == 0) {
     throw std::out_of_range("No previous token available.");
   }
   return tokens[current - 1];
 }
 
-//if error - run to the end of expression
+// if error - run to the end of expression
 void Parser::synchronize() {
   advance();
 

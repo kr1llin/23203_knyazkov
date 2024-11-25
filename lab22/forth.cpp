@@ -19,6 +19,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
+#include <ostream>
 #include <tclap/CmdLine.h>
 #include <vector>
 
@@ -68,18 +69,22 @@ void Forth::run(const string& source){
 
     Parser* parser = new Parser(tokens, *this);
 
-    while(tokens.size() != 1) {
-      std::unique_ptr<Expr> expression =
-          parser->parse(); // Pass the index to parse
-      if (expression != nullptr)
-          expression->execute(*this); // Execute the parsed expression
-        executedTokens.push_back(tokens.back());
-        tokens.pop_back();
-       } //else {
-      //   std::cerr << "Error: Failed to parse expression at token index " << i
-      //             << "." << std::endl;
-      //  return; 
-      // }
+    for (auto t = tokens.begin(); t != std::prev(tokens.end()); ++t) {
+      Token token = *t;
+      std::unique_ptr<Expr> expression = parser->parse();
+      std::cout << "Expression is " << expression.get() << std::endl;
+      if (expression != nullptr) {
+        expression->execute(*this); 
+        executedTokens.push_back(token); 
+        std::cout << "Processed token " << token.getLexeme() << std::endl;
+
+      }
+    } // else {
+      //    std::cerr << "Error: Failed to parse expression at token index " <<
+      //    i
+      //              << "." << std::endl;
+      //   return;
+      //  }
 
     // else {
     //     std::cerr << "Error: Failed to parse expression." << std::endl;
@@ -88,7 +93,6 @@ void Forth::run(const string& source){
     if (hadError) return;
 
     //temporary
-    //needs forth's stack, not tokens
     for (Token token:executedTokens){
         cout << token.toString() << endl;
     }

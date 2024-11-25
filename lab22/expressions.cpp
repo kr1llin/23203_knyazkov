@@ -5,8 +5,8 @@ void DupExpr::execute(Forth &forth) {
   forth.push(topValue);
 }
 
-void DropExpr::execute(Forth &forth) { forth.pop(); }
-void PushNumberExpr::execute(Forth &forth) { forth.push(value); }
+void DropExpr::execute(Forth &forth) {forth.pop(); }
+void PushNumberExpr::execute(Forth &forth) { std::cout << "Executing pushnumber!!"; forth.push(value); }
 
 
 // //+ - / * mod

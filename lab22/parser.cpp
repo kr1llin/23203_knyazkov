@@ -11,11 +11,10 @@ int parseNumber(const std::string &lexeme) {
   try {
     return std::stoi(lexeme);
   } catch (const std::invalid_argument &e) {
-    std::cerr << "Ошибка: недопустимое число '" << lexeme << "'" << std::endl;
+    std::cerr << "Error: invalid  '" << lexeme << "'" << std::endl;
     throw;
   } catch (const std::out_of_range &e) {
-    std::cerr << "Ошибка: число '" << lexeme << "' выходит за пределы диапазона"
-              << std::endl;
+    std::cerr << "Error: number '" << lexeme << "' out of range" << std::endl;
     throw;
   }
 }
@@ -23,24 +22,25 @@ int parseNumber(const std::string &lexeme) {
 // get token - make expression
 std::unique_ptr<Expr> Parser::parse() {
   try {
-    // return expression();
+    std::unique_ptr<Expr> expr = nullptr;
+
     if (check(TokenType::NUMBER)) {
       int number = parseNumber(tokens[current].getLexeme());
-       std::unique_ptr<Expr> expr =
+       expr =
           Factory<std::string, Expr>::getInstance()->createCommandByName(
-              "number"); //Как-то запушить значение числа
-      // forth.push(parseNumber(tokens[current].getLexeme()));
-      return nullptr;
+              "number", number);
     }
     else if (!check(TokenType::NIL)) {
       std::string commandName = peek().getLexeme();
-      std::unique_ptr<Expr> expr =
+      expr =
           Factory<std::string, Expr>::getInstance()->createCommandByName(
               commandName);
     } else {
       throw ParseError("Unexpected token");
     }
+
     current++;
+    return expr;
 
   } catch (Parser::ParseError error) {
     std::cerr << "Parse error!" << std::endl;
@@ -50,7 +50,6 @@ std::unique_ptr<Expr> Parser::parse() {
 
 // std::unique_ptr<Expr> Parser::expression() {
 //     if (check(TokenType::NUMBER)) {
-//       std::clog << "ETO NUMBER!!" << std::endl;
 //       forth.push(parseNumber(tokens[current].getLexeme()));
 //     }
 //     else if (!check(TokenType::NIL)) {

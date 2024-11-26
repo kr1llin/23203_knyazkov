@@ -1,12 +1,87 @@
 #include "expressions.hpp"
+#include "parser.hpp"
 
-void DupExpr::execute(Forth &forth) {
+
+int parseNumber(const std::string &lexeme);
+
+void DupExpr::execute(Forth &forth, std::vector<Token>& tokens) {
   int topValue = forth.peek();
   forth.push(topValue);
 }
 
-void DropExpr::execute(Forth &forth) {forth.pop(); }
-void PushNumberExpr::execute(Forth &forth) { std::cout << "Executing pushnumber!!"; forth.push(value); }
+void DropExpr::execute(Forth &forth, std::vector<Token>& tokens) {forth.pop(); }
+
+void PushNumberExpr::execute(Forth &forth, std::vector<Token>& tokens) { 
+  Parser& parser = Parser::getInstance(tokens, forth);
+  int value = parseNumber(tokens[tokenNumber].getLexeme());
+  forth.push(value); 
+  parser.moveCurrent();
+}
+
+void SumExpr::execute(Forth& forth, std::vector<Token>& tokens) {
+  Parser& parser = Parser::getInstance(tokens, forth);
+  int right = forth.pop();
+  int left = forth.pop();
+  int result;
+  result = right + left;
+  parser.moveCurrent();
+  forth.push(result);
+}
+
+void MultExpr::execute(Forth &forth, std::vector<Token>& tokens) {
+  int right = forth.pop();
+  int left = forth.pop();
+  int result;
+  result = left * right;
+
+  forth.push(result);
+}
+
+void SubsExpr::execute(Forth &forth, std::vector<Token>& tokens) {
+  int right = forth.pop();
+  int left = forth.pop();
+  int result;
+  result = left - right;
+
+  forth.push(result);
+}
+
+void ModExpr::execute(Forth &forth, std::vector<Token>& tokens) {
+  int right = forth.pop();
+  int left = forth.pop();
+  if (right == 0) {
+    throw std::runtime_error("Div by zero!");
+  }
+
+  int result = left % right;
+  forth.push(result);
+}
+
+void SlashExpr::execute(Forth &forth, std::vector<Token>& tokens) {
+  int right = forth.pop();
+  int left = forth.pop();
+  if (right == 0) {
+    throw std::runtime_error("Div by zero!");
+  }
+  int result = left / right;
+  forth.push(result);
+}
+
+
+
+int parseNumber(const std::string &lexeme) {
+  try {
+    return std::stoi(lexeme);
+  } catch (const std::invalid_argument &e) {
+    std::cerr << "Error: invalid  '" << lexeme << "'" << std::endl;
+    throw;
+  } catch (const std::out_of_range &e) {
+    std::cerr << "Error: number '" << lexeme << "' out of range" << std::endl;
+    throw;
+  }
+}
+
+//DUMPSTER
 
 
 // //+ - / * mod
@@ -40,51 +115,3 @@ void PushNumberExpr::execute(Forth &forth) { std::cout << "Executing pushnumber!
 //   default:
 //     throw std::runtime_error("Unknown operator");
 //   }
-
-void SumExpr::execute(Forth &forth) {
-  int right = forth.pop();
-  int left = forth.pop();
-  int result;
-  result = right + left;
-
-  forth.push(result);
-}
-
-void MultExpr::execute(Forth &forth) {
-  int right = forth.pop();
-  int left = forth.pop();
-  int result;
-  result = left * right;
-
-  forth.push(result);
-}
-
-void SubsExpr::execute(Forth &forth) {
-  int right = forth.pop();
-  int left = forth.pop();
-  int result;
-  result = left - right;
-
-  forth.push(result);
-}
-
-void ModExpr::execute(Forth &forth) {
-  int right = forth.pop();
-  int left = forth.pop();
-  if (right == 0) {
-    throw std::runtime_error("Div by zero!");
-  }
-
-  int result = left % right;
-  forth.push(result);
-}
-
-void SlashExpr::execute(Forth &forth) {
-  int right = forth.pop();
-  int left = forth.pop();
-  if (right == 0) {
-    throw std::runtime_error("Div by zero!");
-  }
-  int result = left / right;
-  forth.push(result);
-}

@@ -19,6 +19,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
+#include <memory>
 #include <ostream>
 #include <tclap/CmdLine.h>
 #include <vector>
@@ -65,35 +66,20 @@ void Forth::runPrompt(){
 void Forth::run(const string& source){
     Scanner* scanner = new Scanner(source);
     std::vector<Token> tokens = scanner->scanTokens();
-    std::vector<Token> executedTokens;
+    
+    Parser& parser = Parser::getInstance(tokens, *this);
+    parser.resetTokens(tokens);
+    // std::vector<std::unique_ptr<Expr>> expressions = parser.parse();
+    parser.parse();
 
-    Parser* parser = new Parser(tokens, *this);
-
-    for (auto t = tokens.begin(); t != std::prev(tokens.end()); ++t) {
-      Token token = *t;
-      std::unique_ptr<Expr> expression = parser->parse();
-      std::cout << "Expression is " << expression.get() << std::endl;
-      if (expression != nullptr) {
-        expression->execute(*this); 
-        executedTokens.push_back(token); 
-        std::cout << "Processed token " << token.getLexeme() << std::endl;
-
-      }
-    } // else {
-      //    std::cerr << "Error: Failed to parse expression at token index " <<
-      //    i
-      //              << "." << std::endl;
-      //   return;
-      //  }
-
-    // else {
-    //     std::cerr << "Error: Failed to parse expression." << std::endl;
+    // for (auto e = expressions.begin(); e != expressions.end(); ++e){
+    //   e->get()->execute(*this, parser.getTokens());
     // }
-    //delete expression
+ 
     if (hadError) return;
 
     //temporary
-    for (Token token:executedTokens){
+    for (Token token:tokens){
         cout << token.toString() << endl;
     }
     std::cout << "------------------------" << std::endl;
@@ -129,6 +115,30 @@ int main(int argc, const char **argv) {
     return -1;
   }
 }
+
+//for run
+    // for (auto t = tokens.begin(); t != std::prev(tokens.end()); ++t) {
+    //   Token token = *t;
+    //   std::unique_ptr<Expr> expression = parser->parse();
+    //   std::cout << "Expression is " << expression.get() << std::endl;
+    //   if (expression != nullptr) {
+    //     expression->execute(*this); 
+    //     executedTokens.push_back(token); 
+    //     std::cout << "Processed token " << token.getLexeme() << std::endl;
+
+    //   }
+    // } // else {
+      //    std::cerr << "Error: Failed to parse expression at token index " <<
+      //    i
+      //              << "." << std::endl;
+      //   return;
+      //  }
+
+    // else {
+    //     std::cerr << "Error: Failed to parse expression." << std::endl;
+    // }
+    //delete expression
+
 
 // read word from input
 // look up word in dictionary

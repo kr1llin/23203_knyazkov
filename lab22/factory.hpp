@@ -1,57 +1,55 @@
 
 #pragma once
 
+#include "Token.hpp"
 #include "expressions.hpp"
 
+#include <cctype>
 #include <functional>
-#include <optional>
-#include <string>
 #include <map>
 #include <memory>
+#include <optional>
+#include <string>
 
-template <class Key, class Product>
-class Factory {
+
+template <class Key, class Product> class Factory {
 public:
-    static Factory* getInstance() {
-        static Factory instance;
-        return &instance;
-    }
+  //singleton 
+  static Factory *getInstance() {
+    static Factory instance;
+    return &instance;
+  }
 
-    std::unique_ptr<Product> createCommandByName(const Key& name, std::optional<int> arg = std::nullopt) {
-        auto command = commands_.find(name);
-        if (command == commands_.end()) {
-            throw std::runtime_error("Command not found: " + name);
-        }
-        return command->second(arg); // calling creator for function
+  std::unique_ptr<Product> createCommandByName(const TokenType &type, int tokenNumber) {
+    if (type == TokenType::NIL || type == TokenType::END){
+      throw std::runtime_error("Ouch");
     }
+    auto command = commands_.find(type);
+    if (command == commands_.end()) {
+      throw std::runtime_error("Command not found");
+    }
+    return command->second(tokenNumber); // calling creator for function
+  }
 
-    bool registerCreator(const Key& name, std::function<std::unique_ptr<Product>(std::optional<int>)> creator) {
-        commands_[name] = creator;
-        return true;
-    }
+  bool registerCreator(const TokenType& type,
+                       std::function<std::unique_ptr<Product>(int)> creator) {
+    commands_[type] = creator;
+    return true;
+  }
 
 private:
-    std::map<Key, std::function<std::unique_ptr<Product>(std::optional<int>)>> commands_;
+  std::map<TokenType, std::function<std::unique_ptr<Product>(int)>> commands_;
 };
 
+//MAKE THIS TEMPLATED somehomw...
+//move to super class expression (default constructor)
 namespace {
 static bool regMult =
-        Factory<std::string, Expr>::getInstance()->registerCreator(
-            "mul", [](std::optional<int> arg) { 
-                return std::make_unique<MultExpr>(); 
-            });
-static bool regSum =
-    Factory<std::string, Expr>::getInstance()->registerCreator(
-        "+", [](std::optional<int> arg) { 
-            return std::make_unique<SumExpr>(); 
-        });
-
+    Factory<TokenType, Expr>::getInstance()->registerCreator(
+        TokenType::STAR, [](int) { return std::make_unique<MultExpr>(); });
+static bool regSum = Factory<TokenType, Expr>::getInstance()->registerCreator(
+    TokenType::PLUS, [](int) { return std::make_unique<SumExpr>(); });
 static bool regNumber =
-    Factory<std::string, Expr>::getInstance()->registerCreator(
-        "number", [](std::optional<int> arg) { 
-            if (!arg.has_value()) {
-                throw std::runtime_error("No argument for 'number' command!");
-            }
-            return std::make_unique<PushNumberExpr>(arg.value()); 
-        });
+    Factory<TokenType, Expr>::getInstance()->registerCreator(
+        TokenType::NUMBER, [](int tokenNumber) { return std::make_unique<PushNumberExpr>(tokenNumber); });
 }

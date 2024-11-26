@@ -27,8 +27,6 @@ Token.hpp"
 //     {"cr",     TokenType::CR},
 //     {"do",     TokenType::DO},
 //     {"loop",     TokenType::LOOP},
-
-
 // };
 
 std::vector<Token> Scanner::scanTokens() {
@@ -124,7 +122,7 @@ void Scanner::str() {
   }
 
   if (isAtEnd()) {
-    //Forth::error(line, "Can't determine string");
+    //Forth::error(line, "Can't determine string"); < shut
     return;
   }
 

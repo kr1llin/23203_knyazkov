@@ -10,8 +10,25 @@
 //literals are from parser
 class Parser{
 public:
-  Parser(std::vector<Token> &tokens, Forth &forth) : tokens(tokens), forth(forth) {};
-  std::unique_ptr<Expr> parse();
+  static Parser &getInstance(std::vector<Token> &tokens, Forth &forth) {
+    static Parser instance(tokens, forth);
+    return instance;
+  }
+
+ std::unique_ptr<Expr> getExpression();
+
+  void resetTokens(std::vector<Token> &newTokens) {
+    tokens = newTokens;
+    current = 0;
+  }
+
+  // std::vector<std::unique_ptr<Expr>> parse();
+  void parse();
+  std::vector<Token>& getTokens();
+  size_t getCurrent() const;
+  void moveCurrent(){
+    current++;
+  }
   std::unique_ptr<Expr> expression();
 
 private:
@@ -19,21 +36,8 @@ private:
   size_t current = 0;
   Forth &forth;
 
-  /* 
-  Expr *expression();
-  Expr *equality();
-  Expr *comparison();
-  Expr *term();
-  Expr *factor();
-  Expr *unary();
-  Expr *primary();
-  Expr *swap();
-  Expr *over();
-  Expr *emit();
-  Expr *drop();
-  Expr *dup();
-  Expr *dot();
-  */
+  Parser(std::vector<Token> &tokens, Forth &forth)
+      : tokens(tokens), forth(forth) {};
 
   bool match(const std::initializer_list<TokenType> &types);
 

@@ -37,7 +37,7 @@ class Scanner{
     int line = 1; //source line (that current is currently scanning)
 
     const string source;
-    std::vector<Token> tokens; //new array list
+    std::vector<Token> tokens;
 
     static const std::unordered_map<std::string, TokenType> keywords;
 };

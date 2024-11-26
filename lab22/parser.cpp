@@ -2,67 +2,46 @@
 #include "Token.hpp"
 #include "expressions.hpp"
 #include "factory.hpp"
-#include <cstddef>
 #include <memory>
+#include <ostream>
+#include <vector>
 
 //*=======EXPRESSIONS========*//
 
-int parseNumber(const std::string &lexeme) {
-  try {
-    return std::stoi(lexeme);
-  } catch (const std::invalid_argument &e) {
-    std::cerr << "Error: invalid  '" << lexeme << "'" << std::endl;
-    throw;
-  } catch (const std::out_of_range &e) {
-    std::cerr << "Error: number '" << lexeme << "' out of range" << std::endl;
-    throw;
+std::vector<Token>& Parser::getTokens(){
+  return tokens;
+}
+size_t Parser::getCurrent() const{
+  return current; 
+}
+
+// get token - make expression - excecute
+//VECTOR OF UNIQUE POINTERS -- STUPIDO!!!!!
+void Parser::parse() {
+  while (!check(TokenType::END)) {
+    std::cout << "Parsing!" << std::endl;
+     std::unique_ptr<Expr> expression = getExpression();
+     expression->execute(forth, tokens);
   }
 }
 
-// get token - make expression
-std::unique_ptr<Expr> Parser::parse() {
-  try {
-    std::unique_ptr<Expr> expr = nullptr;
-
-    if (check(TokenType::NUMBER)) {
-      int number = parseNumber(tokens[current].getLexeme());
-       expr =
-          Factory<std::string, Expr>::getInstance()->createCommandByName(
-              "number", number);
-    }
-    else if (!check(TokenType::NIL)) {
-      std::string commandName = peek().getLexeme();
-      expr =
-          Factory<std::string, Expr>::getInstance()->createCommandByName(
-              commandName);
-    } else {
-      throw ParseError("Unexpected token");
-    }
-
-    current++;
-    return expr;
-
-  } catch (Parser::ParseError error) {
-    std::cerr << "Parse error!" << std::endl;
-    return nullptr;
-  }
-}
-
-// std::unique_ptr<Expr> Parser::expression() {
-//     if (check(TokenType::NUMBER)) {
-//       forth.push(parseNumber(tokens[current].getLexeme()));
-//     }
-//     else if (!check(TokenType::NIL)) {
-//         std::string commandName = peek().getLexeme();
-//             std::unique_ptr<Expr> expr = Factory<std::string,
-//             Expr>::getInstance()->createCommandByName(commandName); return
-//             expr; // Return the raw pointer
-//     } else {
-//       throw ParseError("Unexpected token");
-//     }
-
-//     current++;
-// }
+ std::unique_ptr<Expr> Parser::getExpression(){
+   std::unique_ptr<Expr> expression;
+   try {
+       if (!check(TokenType::NIL)) {
+         TokenType type = peek().getType();
+         expression = Factory<TokenType, Expr>::getInstance()->createCommandByName(type, current);
+         std::cout << "Cur token in parser is " << tokens[current].getLexeme()
+                   << std::endl;
+       } else {
+         throw ParseError("Unexpected token");
+       }
+   } catch (Parser::ParseError error) {
+     std::cerr << "Parse error!" << std::endl;
+     return std::unique_ptr<Expr>(); // empty vector
+   }
+   return expression; // empty vector
+ }
 
 bool Parser::match(const std::initializer_list<TokenType> &types) {
   for (TokenType type : types) {
@@ -124,3 +103,40 @@ void Parser::synchronize() {
     advance();
   }
 }
+
+//DUMPSTER
+
+//for parse
+
+    // if (check(TokenType::NUMBER)) {
+    //   int number = parseNumber(tokens[current].getLexeme());
+    //    expr =
+    //       Factory<std::string, Expr>::getInstance()->createCommandByName(
+    //           "number", number);
+    // }
+    // else if (!check(TokenType::NIL)) {
+    //   std::string commandName = peek().getLexeme();
+    //   expr =
+    //       Factory<std::string, Expr>::getInstance()->createCommandByName(
+    //           commandName);
+    // } else {
+    //   throw ParseError("Unexpected token");
+    // }
+    // current++;
+    // return expr;
+
+// std::unique_ptr<Expr> Parser::expression() {
+//     if (check(TokenType::NUMBER)) {
+//       forth.push(parseNumber(tokens[current].getLexeme()));
+//     }
+//     else if (!check(TokenType::NIL)) {
+//         std::string commandName = peek().getLexeme();
+//             std::unique_ptr<Expr> expr = Factory<std::string,
+//             Expr>::getInstance()->createCommandByName(commandName); return
+//             expr; // Return the raw pointer
+//     } else {
+//       throw ParseError("Unexpected token");
+//     }
+
+//     current++;
+// }

@@ -3,3 +3,5 @@ build/
 *.o
 .vscode/
 .cache/clangd/index
+wxWidgets2/
+wxWidgets-3.2.6/

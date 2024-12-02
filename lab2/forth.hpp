@@ -21,7 +21,6 @@ using std::string;
 
 class Forth {
 public:
-  // instance of Forth
   Forth() {}
 
   void printStack() const {
@@ -51,6 +50,10 @@ public:
     if (stack.empty())
       throw std::runtime_error("Stack is empty");
     return stack.back();
+  }
+
+  std::vector<int> getStack() const {
+    return stack;
   }
 
 private:

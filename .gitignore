@@ -5,3 +5,4 @@ build/
 .cache/clangd/index
 wxWidgets2/
 wxWidgets-3.2.6/
+sem/

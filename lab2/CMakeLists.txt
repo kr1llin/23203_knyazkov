@@ -4,6 +4,11 @@ project(ForthProject)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+enable_testing()
+
+# add_subdirectory(googletest)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -26,4 +31,6 @@ set(HEADERS
     UserInterface.hpp
 )
 
+add_library(${This} STATIC ${SOURCES} ${HEADERS})
+# add_subdirectory(tests)
 add_executable(forth ${SOURCES} ${HEADERS})

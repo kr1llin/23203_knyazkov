@@ -6,3 +6,5 @@ build/
 wxWidgets2/
 wxWidgets-3.2.6/
 sem/
+googletest/
+

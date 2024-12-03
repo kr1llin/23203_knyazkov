@@ -1,7 +1,7 @@
         -:    0:Source:/usr/include/c++/14/bits/stl_algo.h
         -:    0:Graph:/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/TestCoverage.dir/src/all_tests.gcno
         -:    0:Data:/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/TestCoverage.dir/src/all_tests.gcda
-        -:    0:Runs:2
+        -:    0:Runs:1
         -:    1:// Algorithm implementation -*- C++ -*-
         -:    2:
         -:    3:// Copyright (C) 2001-2024 Free Software Foundation, Inc.
@@ -4209,7 +4209,7 @@
         -: 4205:	   typename _UnaryOperation>
         -: 4206:    _GLIBCXX20_CONSTEXPR
         -: 4207:    _OutputIterator
-        6: 4208:    transform(_InputIterator __first, _InputIterator __last,
+        3: 4208:    transform(_InputIterator __first, _InputIterator __last,
         -: 4209:	      _OutputIterator __result, _UnaryOperation __unary_op)
         -: 4210:    {
         -: 4211:      // concept requirements
@@ -4219,9 +4219,9 @@
         -: 4215:	    __typeof__(__unary_op(*__first))>)
         -: 4216:      __glibcxx_requires_valid_range(__first, __last);
         -: 4217:
-       66: 4218:      for (; __first != __last; ++__first, (void)++__result)
-       60: 4219:	*__result = __unary_op(*__first);
-        6: 4220:      return __result;
+       33: 4218:      for (; __first != __last; ++__first, (void)++__result)
+       30: 4219:	*__result = __unary_op(*__first);
+        3: 4220:      return __result;
         -: 4221:    }
         -: 4222:
         -: 4223:  /**

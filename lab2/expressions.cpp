@@ -1,6 +1,8 @@
 #include "expressions.hpp"
+#include "UserInterface.hpp"
 #include "Token.hpp"
 #include "parser.hpp"
+
 #include <string>
 
 
@@ -30,7 +32,8 @@ void PrintStrExpr::execute(Forth &forth, std::vector<Token>& tokens) {
   }
   else {
     //better to use user interface (forth.print)
-    std::cout << "< " << curToken.getLiteral() << std::endl;
+    UserInterface::getInstance().displayOutput(curToken.getLiteral());
+    // std::cout << "< " << curToken.getLiteral() << std::endl;
   }
   parser.moveCurrent();
 }

@@ -1,10 +1,10 @@
-Start testing: Nov 19 09:07 +07
+Start testing: Dec 02 22:00 +07
 ----------------------------------------------------------
 1/1 Testing: output_test
 1/1 Test: output_test
 Command: "/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/TestCoverage"
 Directory: /home/krillin/code/nsu/23203_knyazkov/lab1/test/build
-"output_test" start time: Nov 19 09:07 +07
+"output_test" start time: Dec 02 22:00 +07
 Output:
 ----------------------------------------------------------
 [==========] Running 42 tests from 3 test suites.
@@ -256,7 +256,7 @@ size = 100
 > deleting 98
 > deleting 99
 > deleting 100
-[       OK ] operators_tests.isEqual_test_5 (0 ms)
+[       OK ] operators_tests.isEqual_test_5 (1 ms)
 [ RUN      ] operators_tests.isNotEqual_test_1
 [       OK ] operators_tests.isNotEqual_test_1 (0 ms)
 [ RUN      ] operators_tests.isNotEqual_test_2
@@ -408,17 +408,17 @@ size = 100
 [       OK ] methods_tests.at_test_3 (0 ms)
 [ RUN      ] methods_tests.swap_test_1
 [       OK ] methods_tests.swap_test_1 (0 ms)
-[----------] 20 tests from methods_tests (0 ms total)
+[----------] 20 tests from methods_tests (1 ms total)
 
 [----------] Global test environment tear-down
-[==========] 42 tests from 3 test suites ran. (2 ms total)
+[==========] 42 tests from 3 test suites ran. (3 ms total)
 [  PASSED  ] 42 tests.
 <end of output>
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"output_test" end time: Nov 19 09:07 +07
+"output_test" end time: Dec 02 22:00 +07
 "output_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Nov 19 09:07 +07
+End testing: Dec 02 22:00 +07

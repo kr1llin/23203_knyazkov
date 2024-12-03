@@ -20,9 +20,14 @@ public:
         std::cout << message << std::endl;
     }
 
-    void putG() {
-        std::cout << "> ";
+    void displayOutput(const std::string& message) {
+        putL();
+        std::cout << message << std::endl;
     }
+
+    inline void putG() { std::cout << "> "; }
+    inline void putL() { std::cout << "< "; }
+
 
     std::string getUserInput() {
         std::string input;

@@ -1,7 +1,7 @@
         -:    0:Source:/usr/include/c++/14/bits/stl_algobase.h
         -:    0:Graph:/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/TestCoverage.dir/src/all_tests.gcno
         -:    0:Data:/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/TestCoverage.dir/src/all_tests.gcda
-        -:    0:Runs:2
+        -:    0:Runs:1
         -:    1:// Core algorithmic facilities -*- C++ -*-
         -:    2:
         -:    3:// Copyright (C) 2001-2024 Free Software Foundation, Inc.
@@ -937,15 +937,15 @@
         -:  933:    _GLIBCXX20_CONSTEXPR
         -:  934:    inline typename
         -:  935:    __gnu_cxx::__enable_if<!__is_scalar<_Tp>::__value, void>::__type
-function _ZSt9__fill_a1IPPN9HashTable8HashNodeEDnEN9__gnu_cxx11__enable_ifIXntsrSt11__is_scalarIT0_E7__valueEvE6__typeET_SB_RKS7_ called 176 returned 100% blocks executed 100%
-      176:  936:    __fill_a1(_ForwardIterator __first, _ForwardIterator __last,
+function _ZSt9__fill_a1IPPN9HashTable8HashNodeEDnEN9__gnu_cxx11__enable_ifIXntsrSt11__is_scalarIT0_E7__valueEvE6__typeET_SB_RKS7_ called 88 returned 100% blocks executed 100%
+       88:  936:    __fill_a1(_ForwardIterator __first, _ForwardIterator __last,
         -:  937:	      const _Tp& __value)
         -:  938:    {
-     5852:  939:      for (; __first != __last; ++__first)
+     2926:  939:      for (; __first != __last; ++__first)
 branch  0 taken 97%
 branch  1 taken 3% (fallthrough)
-     5676:  940:	*__first = __value;
-      176:  941:    }
+     2838:  940:	*__first = __value;
+       88:  941:    }
         -:  942:
         -:  943:  template<typename _ForwardIterator, typename _Tp>
         -:  944:    _GLIBCXX20_CONSTEXPR
@@ -1001,9 +1001,9 @@ branch  1 taken 3% (fallthrough)
         -:  994:  template<typename _FIte, typename _Tp>
         -:  995:    _GLIBCXX20_CONSTEXPR
         -:  996:    inline void
-function _ZSt8__fill_aIPPN9HashTable8HashNodeEDnEvT_S4_RKT0_ called 176 returned 100% blocks executed 100%
-      176:  997:    __fill_a(_FIte __first, _FIte __last, const _Tp& __value)
-      176:  998:    { std::__fill_a1(__first, __last, __value); }
+function _ZSt8__fill_aIPPN9HashTable8HashNodeEDnEvT_S4_RKT0_ called 88 returned 100% blocks executed 100%
+       88:  997:    __fill_a(_FIte __first, _FIte __last, const _Tp& __value)
+       88:  998:    { std::__fill_a1(__first, __last, __value); }
 call    0 returned 100%
         -:  999:
         -: 1000:  template<typename _Ite, typename _Seq, typename _Cat, typename _Tp>
@@ -1028,17 +1028,17 @@ call    0 returned 100%
         -: 1019:  template<typename _ForwardIterator, typename _Tp>
         -: 1020:    _GLIBCXX20_CONSTEXPR
         -: 1021:    inline void
-function _ZSt4fillIPPN9HashTable8HashNodeEDnEvT_S4_RKT0_ called 176 returned 100% blocks executed 100%
-      176: 1022:    fill(_ForwardIterator __first, _ForwardIterator __last, const _Tp& __value)
+function _ZSt4fillIPPN9HashTable8HashNodeEDnEvT_S4_RKT0_ called 88 returned 100% blocks executed 100%
+       88: 1022:    fill(_ForwardIterator __first, _ForwardIterator __last, const _Tp& __value)
         -: 1023:    {
         -: 1024:      // concept requirements
         -: 1025:      __glibcxx_function_requires(_Mutable_ForwardIteratorConcept<
         -: 1026:				  _ForwardIterator>)
         -: 1027:      __glibcxx_requires_valid_range(__first, __last);
         -: 1028:
-      176: 1029:      std::__fill_a(__first, __last, __value);
+       88: 1029:      std::__fill_a(__first, __last, __value);
 call    0 returned 100%
-      176: 1030:    }
+       88: 1030:    }
         -: 1031:
         -: 1032:  // Used by fill_n, generate_n, etc. to convert _Size to an integral type:
         -: 1033:  inline _GLIBCXX_CONSTEXPR int

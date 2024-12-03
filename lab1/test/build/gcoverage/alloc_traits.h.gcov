@@ -1,7 +1,7 @@
         -:    0:Source:/usr/include/c++/14/ext/alloc_traits.h
         -:    0:Graph:/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/TestCoverage.dir/src/all_tests.gcno
         -:    0:Data:/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/TestCoverage.dir/src/all_tests.gcda
-        -:    0:Runs:2
+        -:    0:Runs:1
         -:    1:// Allocator traits -*- C++ -*-
         -:    2:
         -:    3:// Copyright (C) 2011-2024 Free Software Foundation, Inc.
@@ -99,7 +99,7 @@
         -:   95:
         -:   96:    [[__gnu__::__always_inline__]]
         -:   97:    static constexpr _Alloc _S_select_on_copy(const _Alloc& __a)
-       88:   98:    { return _Base_type::select_on_container_copy_construction(__a); }
+       44:   98:    { return _Base_type::select_on_container_copy_construction(__a); }
         -:   99:
         -:  100:    [[__gnu__::__always_inline__]]
         -:  101:    static _GLIBCXX14_CONSTEXPR void _S_on_swap(_Alloc& __a, _Alloc& __b)

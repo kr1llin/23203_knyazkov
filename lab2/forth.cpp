@@ -56,13 +56,14 @@ void Forth::runPrompt(){
     string line;
 
     while (true){
-        // cout << "> ";
         UserInterface::getInstance().putG();
         std::string line = UserInterface::getInstance().getUserInput();
-        // std::getline(cin, line);
         if (line.empty()) break;
         run(line);
+        std::cout << "------------------------" << std::endl;
         UserInterface::getInstance().printStack(*this);
+        std::cout << "------------------------" << std::endl;
+
         hadError = false;
     }
 }
@@ -81,7 +82,6 @@ void Forth::run(const string& source){
     for (Token token:tokens){
         cout << token.toString() << endl;
     }
-    std::cout << "------------------------" << std::endl;
 }
 
 void Forth::error(int line, const string& message){
@@ -99,7 +99,7 @@ int main(int argc, const char **argv) {
     size_t commandLineArgCount = static_cast<size_t>(argc);
     auto commandLineArgVector = argv;
     if (argc > 1) {
-      std::clog << "Lot of arguments!\n quit" << std::endl;
+      std::cerr << "Lot of arguments!\n quit" << std::endl;
       return -1;
     }
     if (argc == 2) {

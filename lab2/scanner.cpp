@@ -1,4 +1,5 @@
 #include "scanner.hpp"
+#include "UserInterface.hpp"
 #include "forth.hpp"
 #include <cctype>
 
@@ -73,8 +74,9 @@ void Scanner::scanToken() {
   case '.':
     addToken(match('"') ? TokenType::DQUOTS : TokenType::DOT);
     break;
-  case '"':
-    str();
+  case '\"':
+    // str();
+    addToken(TokenType::STRING, "\"");
     break;
   case ' ':
   case '\r':
@@ -106,14 +108,33 @@ bool Scanner::isAlphaNumeric(char c) {
   return std::isalpha(c) || std::isdigit(c);
 }
 
-// it can be command or variable or something else
+//it can be command or variable or something else
 void Scanner::identifier() {
   while (isAlphaNumeric(peek())) {
     advance();
   }
+  if (peek() == '\"') {
+    advance();
+    string text = source.substr(start, current - start - 1);
+    addToken(TokenType::STRING, text);
+  }
+  else {
   string text = source.substr(start, current);
   addToken(TokenType::IDENTIFIER);
+  }
 }
+
+// void Scanner::forthString(){
+//    while (peek() != '\"' && !isAtEnd()) {
+//     advance();
+//   }
+//   string text = source.substr(start, current - start);
+
+//   if (peek() == '\"') {
+//     advance();
+//     addToken(TokenType::STRING, text);
+// }
+// }
 
 void Scanner::str() {
   int sizeStr = 0;

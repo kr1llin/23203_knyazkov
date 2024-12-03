@@ -13,6 +13,10 @@ void DupExpr::execute(Forth &forth, std::vector<Token>& tokens) {
   forth.push(topValue);
 }
 
+void CrExpr::execute(Forth &forth, std::vector<Token>& tokens) {
+  UserInterface::getInstance().displayMessage("\n");
+}
+
 void DropExpr::execute(Forth &forth, std::vector<Token>& tokens) {forth.pop(); }
 
 //Numbersss
@@ -27,15 +31,27 @@ void PrintStrExpr::execute(Forth &forth, std::vector<Token>& tokens) {
   Parser& parser = Parser::getInstance(tokens, forth);
   Token curToken = tokens[parser.getCurrent()];
 
+  if (curToken.getLexeme() == "\""){
+    UserInterface::getInstance().displayMessage("");
+    parser.moveCurrent();
+    return;
+  }
+
+  while (curToken.getType() != TokenType::END){
   if (curToken.getType() != TokenType::STRING){
     throw std::runtime_error("NO STRING AFTER .\"!!!");
   }
+  if (curToken.getLexeme() == "\""){
+    parser.moveCurrent();
+    return;
+  }
   else {
-    //better to use user interface (forth.print)
-    UserInterface::getInstance().displayOutput(curToken.getLiteral());
+    UserInterface::getInstance().displayMessage(curToken.getLiteral());
     // std::cout << "< " << curToken.getLiteral() << std::endl;
   }
   parser.moveCurrent();
+  curToken = tokens[parser.getCurrent()];
+  }
 }
 
 void SumExpr::execute(Forth& forth, std::vector<Token>& tokens) {
@@ -88,7 +104,9 @@ void SlashExpr::execute(Forth &forth, std::vector<Token>& tokens) {
 
 void EmitExpr::execute(Forth &forth, std::vector<Token>& tokens) {
   int popped = forth.pop();
-  std::cout << static_cast<char>(popped);
+   std::string message(1, static_cast<char>(popped)); 
+  UserInterface::getInstance().displayMessage(message);
+  // std::cout << static_cast<char>(popped);
 }
 
 int parseNumber(const std::string &lexeme) {

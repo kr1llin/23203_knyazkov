@@ -15,6 +15,7 @@ public:
 
 private:
   bool isAtEnd();
+  void forthString();
   void str();
   void number();
   void identifier();

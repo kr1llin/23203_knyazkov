@@ -17,13 +17,14 @@ public:
     UserInterface& operator=(const UserInterface&) = delete;
 
     void displayMessage(const std::string& message) {
-        std::cout << message << std::endl;
-    }
-
-    void displayOutput(const std::string& message) {
         putL();
         std::cout << message << std::endl;
     }
+
+    // void displayOutput(const std::string& message) {
+    //     putL();
+    //     std::cout << message << std::endl;
+    // }
 
     inline void putG() { std::cout << "> "; }
     inline void putL() { std::cout << "< "; }

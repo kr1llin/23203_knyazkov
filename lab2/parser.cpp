@@ -15,7 +15,8 @@ size_t Parser::getCurrent() const { return current; }
 void Parser::parse() {
   while (!check(TokenType::END)) {
     std::unique_ptr<Expr> expression = getExpression();
-    expression->execute(forth, tokens);
+    if (expression != std::unique_ptr<Expr>())
+      expression->execute(forth, tokens);
   }
 }
 

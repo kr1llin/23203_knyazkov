@@ -10,13 +10,28 @@
 
 std::vector<Token> &Parser::getTokens() { return tokens; }
 size_t Parser::getCurrent() const { return current; }
+Token Parser::getPreviousToken() const { return previous(); }
+Token Parser::getCurrentToken() const { return tokens[current]; }
+void Parser::placeCurrent(size_t index) { current = index; }
+
+void Parser::dropToken(size_t index) { 
+  std::cout << "Deleting " << tokens[index].getLexeme() << std::endl;
+  tokens.erase(tokens.begin() + index); 
+}
+
+void Parser::executeExpr() {
+  std::unique_ptr<Expr> expression = getExpression();
+  if (expression != std::unique_ptr<Expr>())
+    expression->execute(forth, tokens);
+}
 
 // get token - make expression - excecute
 void Parser::parse() {
   while (!check(TokenType::END)) {
-    std::unique_ptr<Expr> expression = getExpression();
-    if (expression != std::unique_ptr<Expr>())
-      expression->execute(forth, tokens);
+    executeExpr();
+    // std::unique_ptr<Expr> expression = getExpression();
+    // if (expression != std::unique_ptr<Expr>())
+    //   expression->execute(forth, tokens);
   }
 }
 

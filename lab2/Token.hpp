@@ -12,6 +12,7 @@ enum class TokenType {
   LEFT_BRACE,
   RIGHT_BRACE,
   DQUOTS,
+  QUOTS,
   COMMA,
   DOT,
   MINUS,
@@ -43,6 +44,7 @@ enum class TokenType {
   GREATER_EQUAL,
   LESS,
   LESS_EQUAL,
+  LOGIC,
 
   // Literals.
   IDENTIFIER,

@@ -3,6 +3,7 @@
 #include "Token.hpp"
 #include "parser.hpp"
 
+#include <stdexcept>
 #include <string>
 
 
@@ -27,31 +28,53 @@ void PushNumberExpr::execute(Forth &forth, std::vector<Token>& tokens) {
 }
 
 //."
-void PrintStrExpr::execute(Forth &forth, std::vector<Token>& tokens) { 
-  Parser& parser = Parser::getInstance(tokens, forth);
+void PrintStrExpr::execute(Forth &forth, std::vector<Token> &tokens) {
+  Parser &parser = Parser::getInstance(tokens, forth);
   Token curToken = tokens[parser.getCurrent()];
 
-  if (curToken.getLexeme() == "\""){
+  if (curToken.getLexeme() == "\"") {
     UserInterface::getInstance().displayMessage("");
     parser.moveCurrent();
     return;
   }
 
-  while (curToken.getType() != TokenType::END){
-  if (curToken.getType() != TokenType::STRING){
+  string str{};
+
+  while (curToken.getType() != TokenType::END &&
+         curToken.getType() != TokenType::QUOTS) {
+    str += (curToken.getType() == TokenType::STRING) ? curToken.getLiteral()
+                                                     : curToken.getLexeme();
+    str += " ";
+    parser.moveCurrent();
+    curToken = tokens[parser.getCurrent()];
+  }
+
+  if (curToken.getType() == TokenType::END) {
     throw std::runtime_error("NO STRING AFTER .\"!!!");
   }
-  if (curToken.getLexeme() == "\""){
+  UserInterface::getInstance().displayMessage(str);
+
+  if (curToken.getType() == TokenType::QUOTS) {
     parser.moveCurrent();
     return;
   }
-  else {
-    UserInterface::getInstance().displayMessage(curToken.getLiteral());
-    // std::cout << "< " << curToken.getLiteral() << std::endl;
-  }
-  parser.moveCurrent();
-  curToken = tokens[parser.getCurrent()];
-  }
+}
+
+// rot - циклически сдвинуть три верхние числа. 
+// например, стек до: 4 1 2 3, стек после: 4 3 1 2
+// over - скопировать второе число и положить копию над верхним.
+// например, стек до: 3 2 1, стек после: 3 2 1 2
+
+void RotExpr::execute(Forth& forth, std::vector<Token>& tokens){
+
+}
+
+void OverExpr::execute(Forth& forth, std::vector<Token>& tokens){
+  
+}
+
+void CycleExpr::execute(Forth& forth, std::vector<Token>& tokens){
+
 }
 
 void SumExpr::execute(Forth& forth, std::vector<Token>& tokens) {
@@ -106,8 +129,133 @@ void EmitExpr::execute(Forth &forth, std::vector<Token>& tokens) {
   int popped = forth.pop();
    std::string message(1, static_cast<char>(popped)); 
   UserInterface::getInstance().displayMessage(message);
-  // std::cout << static_cast<char>(popped);
 }
+
+
+void ConditionalExpr::execute(Forth &forth, std::vector<Token> &tokens) {
+    Parser &parser = Parser::getInstance(tokens, forth);
+    size_t savedPosition = parser.getCurrent();
+    
+    if (forth.pop()) {
+    std::cout << "Doing if!" << std::endl;
+    while (parser.getCurrentToken().getLexeme() != "else" && parser.getCurrentToken().getLexeme() != "then" &&
+           parser.getCurrentToken().getType() != TokenType::END) {
+            parser.executeExpr();
+    }
+    //drop the semicolon
+    if (parser.getCurrentToken().getType() == TokenType::SEMICOLON){
+      parser.dropToken(parser.getCurrent());
+    }
+
+    //skip 
+    while (parser.getCurrentToken().getType() != TokenType::SEMICOLON &&
+           parser.getCurrentToken().getType() != TokenType::END) {
+      parser.dropToken(parser.getCurrent());
+    }
+    } else {
+      std::cout << "Doing else or then!" << std::endl;
+      // find else or then
+      while (parser.getCurrentToken().getLexeme() != "then" &&
+             parser.getCurrentToken().getLexeme() != "else" &&
+             parser.getCurrentToken().getType() != TokenType::END) {
+        parser.dropToken(parser.getCurrent()); //we don't need that
+      }
+      // remove then or else
+      if (parser.getCurrentToken().getLexeme() == "then") {
+        while (parser.getCurrentToken().getType() != TokenType::SEMICOLON) {
+          if (parser.getCurrentToken().getType() == TokenType::END) {
+            throw std::runtime_error("No semicolon after if!");
+          }
+          parser.dropToken(parser.getCurrent());
+        }
+        return;
+      }
+      //remove else
+      parser.dropToken(parser.getCurrent());
+      savedPosition = parser.getCurrent();
+      while (parser.getCurrentToken().getType() != TokenType::SEMICOLON &&
+             parser.getCurrentToken().getLexeme() != "then" &&
+             parser.getCurrentToken().getType() != TokenType::END) {
+        parser.parse();
+      }
+      
+       if (parser.getCurrentToken().getLexeme() == "then") {
+        while (parser.getCurrentToken().getType() != TokenType::SEMICOLON) {
+          if (parser.getCurrentToken().getType() == TokenType::END) {
+            throw std::runtime_error("No semicolon after if!");
+          }
+          parser.dropToken(parser.getCurrent());
+        }
+        return;
+      }
+    }
+
+  parser.dropToken(parser.getCurrent());
+  // parser.placeCurrent(savedPosition);
+  std::cout << "Current is " << tokens[parser.getCurrent()].getLexeme() << std::endl;
+}
+
+
+// void ConditionalExpr::execute(Forth &forth, std::vector<Token> &tokens) {
+//   Parser &parser = Parser::getInstance(tokens, forth);
+//   size_t savedPosition = parser.getCurrent();
+
+//   if (forth.pop()) {
+//     std::cout << "Doing if!" << std::endl;
+//     while (parser.getCurrentToken().getLexeme() != "else" && parser.getCurrentToken().getLexeme() != "then" &&
+//            parser.getCurrentToken().getType() != TokenType::END) {
+//       parser.moveCurrent();
+//     }
+//     parser.dropToken(parser.getCurrent());
+//     while (parser.getCurrentToken().getType() != TokenType::SEMICOLON &&
+//            parser.getCurrentToken().getType() != TokenType::END) {
+//       parser.dropToken(parser.getCurrent());
+//     }
+//   } else {
+//     std::cout << "Doing else!" << std::endl;
+//     while (parser.getCurrentToken().getLexeme() != "then" &&
+//            parser.getCurrentToken().getType() != TokenType::END) {
+//             std::cout << "Current is " << parser.getCurrentToken().getLexeme() << std::endl;
+//             parser.dropToken(parser.getCurrent());  
+//     }
+//     parser.dropToken(parser.getCurrent());
+//     savedPosition = parser.getCurrent();
+//     while (parser.getCurrentToken().getType() != TokenType::SEMICOLON &&
+//            parser.getCurrentToken().getType() != TokenType::END) {
+//       parser.moveCurrent();
+//     }
+//   }
+//   parser.dropToken(parser.getCurrent());
+//   parser.placeCurrent(savedPosition);
+//   std::cout << "Current is " << tokens[parser.getCurrent()].getLexeme() << std::endl;
+// }
+
+void EqualExpr::execute(Forth &forth, std::vector<Token>& tokens){
+  int val1 = forth.pop();
+  int val2 = forth.pop();
+
+  forth.push(val1 == val2);
+}
+
+void LessExpr::execute(Forth &forth, std::vector<Token>& tokens){
+  int val1 = forth.pop();
+  int val2 = forth.pop();
+
+  forth.push(val1 < val2);
+}
+
+void GreaterExpr::execute(Forth &forth, std::vector<Token>& tokens){
+  int val1 = forth.pop();
+  int val2 = forth.pop();
+
+  forth.push(val1 > val2);
+}
+
+// void LogicExpr::execute(Forth &forth, std::vector<Token> &tokens) {
+//   Parser &parser = Parser::getInstance(tokens, forth);
+//   Token curToken = parser.getPrevious();
+  
+// }
 
 int parseNumber(const std::string &lexeme) {
   try {

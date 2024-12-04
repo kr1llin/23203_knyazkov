@@ -1,7 +1,6 @@
 
 #pragma once
 
-#include "Token.hpp"
 #include "expressions.hpp"
 #include "UserInterface.hpp"
 
@@ -65,22 +64,38 @@ static bool regStringOutput =
         ".\"", [](int tokenNumber) {
           return std::make_unique<PrintStrExpr>(tokenNumber);
         });
+
 static bool regSlash =
     Factory<std::string, Expr>::getInstance()->registerCreator(
         "/", [](int tokenNumber) {
           return std::make_unique<SlashExpr>();
         });
+
 static bool regDrop =
     Factory<std::string, Expr>::getInstance()->registerCreator(
         "drop", [](int tokenNumber) { return std::make_unique<DropExpr>(); });
 
 static bool regSubs =
     Factory<std::string, Expr>::getInstance()->registerCreator(
-        "-", [](int tokenNumber) { return std::make_unique<SubsExpr>(); });
+        "-", [](int) { return std::make_unique<SubsExpr>(); });
 
 static bool regEmit =
     Factory<std::string, Expr>::getInstance()->registerCreator(
-        "emit", [](int tokenNumber) { return std::make_unique<EmitExpr>(); });
+        "emit", [](int) { return std::make_unique<EmitExpr>(); });
 
+static bool regLess =
+    Factory<std::string, Expr>::getInstance()->registerCreator(
+        "<", [](int) { return std::make_unique<LessExpr>(); });
 
+static bool regGreater =
+    Factory<std::string, Expr>::getInstance()->registerCreator(
+        ">", [](int) { return std::make_unique<GreaterExpr>(); });
+
+static bool regEqual =
+    Factory<std::string, Expr>::getInstance()->registerCreator(
+        "=", [](int) { return std::make_unique<EqualExpr>(); });
+
+static bool regConditional =
+    Factory<std::string, Expr>::getInstance()->registerCreator(
+        "if", [](int) { return std::make_unique<ConditionalExpr>(); });
 } 

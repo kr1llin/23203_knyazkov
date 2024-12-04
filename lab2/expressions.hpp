@@ -109,6 +109,12 @@ class RotExpr : public Expr {
   private:
 };
 
+class LogicExpr : public Expr{
+  public:
+    void execute(Forth& forth, std::vector<Token>& tokens) override;
+};
+
+
 class LessExpr : public Expr {
   public:
     void execute(Forth& forth, std::vector<Token>& tokens) override;

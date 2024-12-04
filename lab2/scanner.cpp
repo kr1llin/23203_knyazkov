@@ -1,4 +1,5 @@
 #include "scanner.hpp"
+#include "Token.hpp"
 #include "UserInterface.hpp"
 #include "forth.hpp"
 #include <cctype>
@@ -71,12 +72,17 @@ void Scanner::scanToken() {
   case '/':
     addToken(TokenType::SLASH);
     break;
+  case '>':
+  case '<':
+  case '=':
+    addToken(TokenType::LOGIC);
+    break;
   case '.':
     addToken(match('"') ? TokenType::DQUOTS : TokenType::DOT);
     break;
   case '\"':
     // str();
-    addToken(TokenType::STRING, "\"");
+    addToken(TokenType::QUOTS, "\"");
     break;
   case ' ':
   case '\r':
@@ -117,10 +123,12 @@ void Scanner::identifier() {
     advance();
     string text = source.substr(start, current - start - 1);
     addToken(TokenType::STRING, text);
+    addToken(TokenType::QUOTS, "\"");
+
   }
   else {
   string text = source.substr(start, current);
-  addToken(TokenType::IDENTIFIER);
+  addToken(TokenType::IDENTIFIER, text);
   }
 }
 

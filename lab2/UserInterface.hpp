@@ -1,3 +1,4 @@
+#pragma once
 #include "forth.hpp"
 
 #include <string>

@@ -73,6 +73,7 @@ void Forth::run(const string& source){
     std::vector<Token> tokens = scanner->scanTokens();
     
     Parser& parser = Parser::getInstance(tokens, *this);
+    // tokens = parser.getTokens(); //for debugging
     parser.resetTokens(tokens);
     parser.parse();
  

@@ -22,13 +22,15 @@ public:
     current = 0;
   }
 
-  // std::vector<std::unique_ptr<Expr>> parse();
   void parse();
+  void executeExpr();
   std::vector<Token>& getTokens();
+  void dropToken(size_t index);
+  void placeCurrent(size_t index);
+  Token getPreviousToken() const;
+  Token getCurrentToken() const;
   size_t getCurrent() const;
-  void moveCurrent(){
-    current++;
-  }
+  void moveCurrent() { current++; }
   std::unique_ptr<Expr> expression();
 
 private:

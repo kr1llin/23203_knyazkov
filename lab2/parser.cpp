@@ -15,7 +15,7 @@ Token Parser::getCurrentToken() const { return tokens[current]; }
 void Parser::placeCurrent(size_t index) { current = index; }
 
 void Parser::dropToken(size_t index) { 
-  std::cout << "Deleting " << tokens[index].getLexeme() << std::endl;
+  // std::cout << "Deleting " << tokens[index].getLexeme() << std::endl;
   tokens.erase(tokens.begin() + index); 
 }
 
@@ -40,7 +40,8 @@ std::unique_ptr<Expr> Parser::getExpression() {
   try {
     if (!check(TokenType::NIL)) {
       std::string identifier = peek().getLexeme();
-      if (check(TokenType::WHITESPACE)){
+      if (check(TokenType::WHITESPACE) || check(TokenType::SEMICOLON)){
+        expression = std::unique_ptr<Expr>();
       }
       else if (check(TokenType::NUMBER)) {
         expression =

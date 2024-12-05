@@ -23,13 +23,6 @@ class Forth {
 public:
   Forth() {}
 
-  void printStack() const {
-    for (auto i : stack) {
-      std::cout << i << " ";
-    }
-    std::cout << "<- Top" << std::endl;
-  }
-
   void runFile(const std::string &path);
   void runPrompt();
   void run(const std::string &source);
@@ -55,6 +48,8 @@ public:
   std::vector<int> getStack() const {
     return stack;
   }
+
+  int loop_i{};
 
 private:
   void report(int line, const std::string &where, const std::string &message);

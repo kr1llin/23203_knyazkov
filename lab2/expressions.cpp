@@ -23,6 +23,10 @@ void CrExpr::execute(Forth &forth, std::vector<Token>& tokens) {
   UserInterface::getInstance().displayMessage("\n");
 }
 
+void IExpr::execute(Forth &forth, std::vector<Token>& tokens) {
+  UserInterface::getInstance().displayMessage(std::to_string(forth.loop_i));
+}
+
 void DropExpr::execute(Forth &forth, std::vector<Token>& tokens) {forth.pop(); }
 
 //Numbersss
@@ -77,31 +81,28 @@ void OverExpr::execute(Forth& forth, std::vector<Token>& tokens){
   
 }
 
-//TEXT IS BAD REALLY BAD
+//BAD....
 void CycleExpr::execute(Forth& forth, std::vector<Token>& tokens){
   Parser& parser = Parser::getInstance(tokens, forth);
   int begin = forth.pop();
   int end = forth.pop();
   int step = (begin > end)? -1 : 1;
 
-  std::cout << "Current is " << parser.getCurrentToken().getLexeme() << std::endl;
   size_t start_index = parser.getCurrent();
 
   std::vector<std::unique_ptr<Expr>> loop_body{};
 
-   while (parser.getCurrentToken().getLexeme() != "loop" &&
+
+
+  int& i = forth.loop_i;
+  for (i = begin; i != end; i += step){
+    // std::cout << "i = " << i << std::endl;
+    while (parser.getCurrentToken().getLexeme() != "loop" &&
            parser.getCurrentToken().getType() != TokenType::END &&
            parser.getCurrentToken().getType() != TokenType::SEMICOLON) {
-            loop_body.push_back(parser.getExpression());
+          parser.executeExpr();
     }
-
-  for (int i = begin; i != end; i += step){
-  std::cout << "i = " << i << std::endl;
-    for (int k = 0; k < loop_body.size(); k++){
-      if (loop_body[k] != nullptr) {
-      loop_body[k]->execute(forth, tokens);
-      }
-    }
+    parser.placeCurrent(start_index);
   }
   parser.placeCurrent(start_index + loop_body.size());
   parser.dropToken(parser.getCurrent());

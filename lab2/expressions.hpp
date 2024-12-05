@@ -133,6 +133,12 @@ class EqualExpr : public Expr {
   private:
 };
 
+class IExpr : public Expr {
+  public:
+    void execute(Forth& forth, std::vector<Token>& tokens) override;
+  private:
+};
+
 class PrintStrExpr : public Expr {
   public:
     PrintStrExpr(int tNumber) : tokenNumber(tNumber){};
@@ -152,12 +158,12 @@ public:
   private:
 };
 
-        class CycleExpr : public Expr {
-        public:
-          void execute(Forth &forth, std::vector<Token> &tokens) override;
+class CycleExpr : public Expr {
+public:
+  void execute(Forth &forth, std::vector<Token> &tokens) override;
 
-        private:
-        };
+private:
+};
 
         //=============DUMPSTERRR!!!==================//
 

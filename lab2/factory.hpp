@@ -102,4 +102,8 @@ static bool regConditional =
 static bool regCycle =
     Factory<std::string, Expr>::getInstance()->registerCreator(
         "do", [](int) { return std::make_unique<CycleExpr>(); });
+
+static bool regI =
+    Factory<std::string, Expr>::getInstance()->registerCreator(
+        "i", [](int) { return std::make_unique<IExpr>(); });
 } 

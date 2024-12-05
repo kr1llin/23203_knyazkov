@@ -13,6 +13,7 @@ enum class TokenType {
   RIGHT_BRACE,
   DQUOTS,
   QUOTS,
+  WHITESPACE,
   COMMA,
   DOT,
   MINUS,

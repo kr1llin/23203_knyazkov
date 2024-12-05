@@ -39,6 +39,14 @@ std::vector<Token> Scanner::scanTokens() {
   return tokens;
 }
 
+void Scanner::addWhiteSpaces(){
+  while (peek() == ' ') {
+    advance();
+  }
+  string spaces = source.substr(start, current - start);
+  addToken(TokenType::WHITESPACE, spaces);
+}
+
 void Scanner::scanToken() {
   char c = advance();
   switch (c) {
@@ -85,6 +93,7 @@ void Scanner::scanToken() {
     addToken(TokenType::QUOTS, "\"");
     break;
   case ' ':
+    addWhiteSpaces();
   case '\r':
   case '\t':
     break;

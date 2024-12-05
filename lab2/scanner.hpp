@@ -22,10 +22,11 @@ private:
   bool isAlphaNumeric(char c);
   char advance();
   char peek();
+  void addWhiteSpaces();
   char peekNext();
   bool match(char expected);
 
-  int start;    // start of lexeme being scanned
+  int start; // start of lexeme being scanned
   int current;
   int line = 1; // source line (that current is currently scanning)
 
@@ -33,4 +34,4 @@ private:
   std::vector<Token> tokens;
 
   static const std::unordered_map<std::string, TokenType> keywords;
-};
+  };

@@ -49,7 +49,6 @@ void PrintStrExpr::execute(Forth &forth, std::vector<Token> &tokens) {
          curToken.getType() != TokenType::QUOTS) {
     str += (curToken.getType() == TokenType::STRING) ? curToken.getLiteral()
                                                      : curToken.getLexeme();
-    str += " ";
     parser.moveCurrent();
     curToken = tokens[parser.getCurrent()];
   }
@@ -78,32 +77,33 @@ void OverExpr::execute(Forth& forth, std::vector<Token>& tokens){
   
 }
 
-//INFINITE LOOP
+//TEXT IS BAD REALLY BAD
 void CycleExpr::execute(Forth& forth, std::vector<Token>& tokens){
   Parser& parser = Parser::getInstance(tokens, forth);
   int begin = forth.pop();
   int end = forth.pop();
   int step = (begin > end)? -1 : 1;
 
+  std::cout << "Current is " << parser.getCurrentToken().getLexeme() << std::endl;
   size_t start_index = parser.getCurrent();
 
-  std::vector<Token> loop_body{};
+  std::vector<std::unique_ptr<Expr>> loop_body{};
 
-  while (parser.getCurrentToken().getLexeme() != "loop" &&
-         parser.getCurrentToken().getType() != TokenType::END &&
-         parser.getCurrentToken().getType() != TokenType::SEMICOLON) {
-  }
-
-  for (int i = begin; i != end; i += step){
-    while (parser.getCurrentToken().getLexeme() != "loop" &&
+   while (parser.getCurrentToken().getLexeme() != "loop" &&
            parser.getCurrentToken().getType() != TokenType::END &&
            parser.getCurrentToken().getType() != TokenType::SEMICOLON) {
-            parser.executeExpr();
+            loop_body.push_back(parser.getExpression());
     }
-    parser.placeCurrent(start_index);
-  }
 
-  parser.placeCurrent(start_index + std::abs(end - begin));
+  for (int i = begin; i != end; i += step){
+  std::cout << "i = " << i << std::endl;
+    for (int k = 0; k < loop_body.size(); k++){
+      if (loop_body[k] != nullptr) {
+      loop_body[k]->execute(forth, tokens);
+      }
+    }
+  }
+  parser.placeCurrent(start_index + loop_body.size());
   parser.dropToken(parser.getCurrent());
   handleThen(parser);
 }

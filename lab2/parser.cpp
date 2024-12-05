@@ -40,7 +40,9 @@ std::unique_ptr<Expr> Parser::getExpression() {
   try {
     if (!check(TokenType::NIL)) {
       std::string identifier = peek().getLexeme();
-      if (check(TokenType::NUMBER)) {
+      if (check(TokenType::WHITESPACE)){
+      }
+      else if (check(TokenType::NUMBER)) {
         expression =
             Factory<TokenType, Expr>::getInstance()->createCommandByName(
                 TokenType::NUMBER, current);

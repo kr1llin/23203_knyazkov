@@ -3,13 +3,14 @@
 #include "Token.hpp"
 #include "parser.hpp"
 
+#include <cstdlib>
 #include <stdexcept>
 #include <string>
 #include <vector>
 
 void handleIf (Parser& parser, size_t& savedPosition);
 void handleElse (Parser& parser, size_t& savedPosition);
-void handleThen (Parser& parser, size_t& savedPosition);
+void handleThen (Parser& parser);
 
 int parseNumber(const std::string &lexeme);
 
@@ -77,23 +78,34 @@ void OverExpr::execute(Forth& forth, std::vector<Token>& tokens){
   
 }
 
+//INFINITE LOOP
 void CycleExpr::execute(Forth& forth, std::vector<Token>& tokens){
   Parser& parser = Parser::getInstance(tokens, forth);
   int begin = forth.pop();
   int end = forth.pop();
   int step = (begin > end)? -1 : 1;
 
+  size_t start_index = parser.getCurrent();
+
   std::vector<Token> loop_body{};
+
   while (parser.getCurrentToken().getLexeme() != "loop" &&
          parser.getCurrentToken().getType() != TokenType::END &&
          parser.getCurrentToken().getType() != TokenType::SEMICOLON) {
-          loop_body.push_back(parser.getCurrentToken());
   }
 
   for (int i = begin; i != end; i += step){
-    
+    while (parser.getCurrentToken().getLexeme() != "loop" &&
+           parser.getCurrentToken().getType() != TokenType::END &&
+           parser.getCurrentToken().getType() != TokenType::SEMICOLON) {
+            parser.executeExpr();
+    }
+    parser.placeCurrent(start_index);
   }
 
+  parser.placeCurrent(start_index + std::abs(end - begin));
+  parser.dropToken(parser.getCurrent());
+  handleThen(parser);
 }
 
 void SumExpr::execute(Forth& forth, std::vector<Token>& tokens) {
@@ -167,10 +179,10 @@ void EmitExpr::execute(Forth &forth, std::vector<Token>& tokens) {
 }
 
 //just ignore all the tokens that after then
-void handleThen(Parser& parser, size_t& savedPosition){
+void handleThen(Parser& parser){
   while (parser.getCurrentToken().getType() != TokenType::SEMICOLON) {
     if (parser.getCurrentToken().getType() == TokenType::END) {
-      throw std::runtime_error("No semicolon after if!");
+      throw std::runtime_error("No semicolon!");
     }
     parser.dropToken(parser.getCurrent());
   }
@@ -208,7 +220,7 @@ void handleElse (Parser& parser, size_t& savedPosition){
 
   //ends execution (it will ignore else after then)
   if (parser.getCurrentToken().getLexeme() == "then") {
-        handleThen(parser, savedPosition);
+        handleThen(parser);
   }
 
   // remove else
@@ -223,7 +235,7 @@ void handleElse (Parser& parser, size_t& savedPosition){
   savedPosition = parser.getCurrent();
 
   if (parser.getCurrentToken().getLexeme() == "then") {
-    handleThen(parser, savedPosition);
+    handleThen(parser);
   }
 }
 

@@ -42,23 +42,15 @@ private:
       : tokens(tokens), forth(forth) {};
 
   bool match(const std::initializer_list<TokenType> &types);
-
   bool check(TokenType type);
-
   const Token& advance();
-
   bool isAtEnd() const;
-
   const Token& peek() const;
-
-  // Get the previous token
   const Token& previous() const;
-
   void synchronize();
 
   class ParseError : std::runtime_error {
   public:
-    // Constructor that takes a message
     explicit ParseError(const std::string &message)
         : std::runtime_error(message) {}
   };

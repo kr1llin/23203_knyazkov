@@ -26,22 +26,22 @@
 #include <tclap/CmdLine.h>
 #include <vector>
 
-void Forth::runFile(const std::string& path) {
-    std::ifstream file(path);
-    if (!file) {
-        throw std::runtime_error("Could not open file: " + path);
-    }
-    string str, filecontent;
+void Forth::runFile(const std::string &path) {
+  std::ifstream file(path);
+  if (!file) {
+    throw std::runtime_error("Could not open file: " + path);
+  }
+  string str, filecontent;
 
-    while (getline(file, str)){
-        filecontent += str;
-        filecontent.push_back('\n');
-    }
+  while (getline(file, str)) {
+    filecontent += str;
+    filecontent.push_back('\n');
+  }
 
-    run(filecontent);
-    if (hadError){
-        exit(65); //collapse!
-    }
+  run(filecontent);
+  if (hadError) {
+    exit(1);
+  }
 }
 
 void Forth::error(const Token &token, const std::string &message) {
@@ -56,14 +56,12 @@ void Forth::runPrompt(){
     string line;
 
     while (true){
-        UserInterface::getInstance().putG();
         std::string line = UserInterface::getInstance().getUserInput();
         if (line.empty()) break;
         run(line);
         std::cout << "------------------------" << std::endl;
         UserInterface::getInstance().printStack(*this);
         std::cout << "------------------------" << std::endl;
-
         hadError = false;
     }
 }
@@ -73,16 +71,10 @@ void Forth::run(const string& source){
     std::vector<Token> tokens = scanner->scanTokens();
     
     Parser& parser = Parser::getInstance(tokens, *this);
-    // tokens = parser.getTokens(); //for debugging
     parser.resetTokens(tokens);
     parser.parse();
  
     if (hadError) return;
-
-    //temporary
-    for (Token token:tokens){
-        cout << token.toString() << endl;
-    }
 }
 
 void Forth::error(int line, const string& message){
@@ -116,6 +108,24 @@ int main(int argc, const char **argv) {
   }
 }
 
+int Forth::pop() {
+  if (stack.empty())
+    throw std::runtime_error("Stack underflow");
+  int value = stack.back();
+  stack.pop_back();
+  return value;
+}
+
+int Forth::peek() const {
+  if (stack.empty())
+    throw std::runtime_error("Stack is empty");
+  return stack.back();
+}
+
+  // //temporary
+  //   for (Token token:tokens){
+  //       cout << token.toString() << endl;
+  //   }
 
 // read word from input
 // look up word in dictionary

@@ -15,7 +15,6 @@ Token Parser::getCurrentToken() const { return tokens[current]; }
 void Parser::placeCurrent(size_t index) { current = index; }
 
 void Parser::dropToken(size_t index) { 
-  // std::cout << "Deleting " << tokens[index].getLexeme() << std::endl;
   tokens.erase(tokens.begin() + index); 
 }
 
@@ -29,9 +28,6 @@ void Parser::executeExpr() {
 void Parser::parse() {
   while (!check(TokenType::END)) {
     executeExpr();
-    // std::unique_ptr<Expr> expression = getExpression();
-    // if (expression != std::unique_ptr<Expr>())
-    //   expression->execute(forth, tokens);
   }
 }
 
@@ -53,7 +49,6 @@ std::unique_ptr<Expr> Parser::getExpression() {
                 identifier, current);
       }
       moveCurrent();
-
     } else {
       throw ParseError("Unexpected token");
     }

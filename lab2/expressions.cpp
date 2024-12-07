@@ -37,6 +37,7 @@ void PushNumberExpr::execute(Forth &forth, std::vector<Token>& tokens) {
 }
 
 //."
+// make it handle ." ."
 void PrintStrExpr::execute(Forth &forth, std::vector<Token> &tokens) {
   Parser &parser = Parser::getInstance(tokens, forth);
   Token curToken = tokens[parser.getCurrent()];
@@ -51,8 +52,13 @@ void PrintStrExpr::execute(Forth &forth, std::vector<Token> &tokens) {
 
   while (curToken.getType() != TokenType::END &&
          curToken.getType() != TokenType::QUOTS) {
+    if (curToken.getType() == TokenType::DQUOTS) {
+      str += ".";
+      break;
+    }
     str += (curToken.getType() == TokenType::STRING) ? curToken.getLiteral()
                                                      : curToken.getLexeme();
+
     parser.moveCurrent();
     curToken = tokens[parser.getCurrent()];
   }
@@ -62,45 +68,49 @@ void PrintStrExpr::execute(Forth &forth, std::vector<Token> &tokens) {
   }
   UserInterface::getInstance().displayMessage(str);
 
-  if (curToken.getType() == TokenType::QUOTS) {
+  if (curToken.getType() == TokenType::QUOTS ||
+      curToken.getType() == TokenType::DQUOTS) {
     parser.moveCurrent();
     return;
   }
 }
 
-// rot - циклически сдвинуть три верхние числа. 
-// например, стек до: 4 1 2 3, стек после: 4 3 1 2
-// over - скопировать второе число и положить копию над верхним.
-// например, стек до: 3 2 1, стек после: 3 2 1 2
-
 void RotExpr::execute(Forth& forth, std::vector<Token>& tokens){
+  int a = forth.pop();
+  int b = forth.pop();
+  int c = forth.pop();
 
+  forth.push(a);
+  forth.push(c);
+  forth.push(b);
 }
 
 void OverExpr::execute(Forth& forth, std::vector<Token>& tokens){
-  
+  int top = forth.pop();
+  int second = forth.pop();
+
+  forth.push(second);
+  forth.push(top);
+  forth.push(second);
 }
 
-//BAD....
-void CycleExpr::execute(Forth& forth, std::vector<Token>& tokens){
-  Parser& parser = Parser::getInstance(tokens, forth);
+void CycleExpr::execute(Forth &forth, std::vector<Token> &tokens) {
+  Parser &parser = Parser::getInstance(tokens, forth);
   int begin = forth.pop();
   int end = forth.pop();
-  int step = (begin > end)? -1 : 1;
+  int inc = begin > end ? -1 : 1;
 
   size_t start_index = parser.getCurrent();
 
   std::vector<std::unique_ptr<Expr>> loop_body{};
+  int &i = forth.loop_i;
 
+  for (i = begin; i != end; i += inc) {
 
-
-  int& i = forth.loop_i;
-  for (i = begin; i != end; i += step){
-    // std::cout << "i = " << i << std::endl;
     while (parser.getCurrentToken().getLexeme() != "loop" &&
            parser.getCurrentToken().getType() != TokenType::END &&
            parser.getCurrentToken().getType() != TokenType::SEMICOLON) {
-          parser.executeExpr();
+      parser.executeExpr();
     }
     parser.placeCurrent(start_index);
   }
@@ -127,7 +137,7 @@ void MultExpr::execute(Forth &forth, std::vector<Token>& tokens) {
   forth.push(result);
 }
 
-void SubsExpr::execute(Forth &forth, std::vector<Token>& tokens) {
+void SubsExpr::execute(Forth &forth, std::vector<Token> &tokens) {
   int right = forth.pop();
   int left = forth.pop();
   int result;
@@ -136,18 +146,17 @@ void SubsExpr::execute(Forth &forth, std::vector<Token>& tokens) {
   forth.push(result);
 }
 
-void ModExpr::execute(Forth &forth, std::vector<Token>& tokens) {
+void ModExpr::execute(Forth &forth, std::vector<Token> &tokens) {
   int right = forth.pop();
   int left = forth.pop();
   if (right == 0) {
     throw std::runtime_error("Div by zero!");
   }
-
   int result = left % right;
   forth.push(result);
 }
 
-void SlashExpr::execute(Forth &forth, std::vector<Token>& tokens) {
+void SlashExpr::execute(Forth &forth, std::vector<Token> &tokens) {
   int right = forth.pop();
   int left = forth.pop();
   if (right == 0) {
@@ -158,19 +167,16 @@ void SlashExpr::execute(Forth &forth, std::vector<Token>& tokens) {
 }
 
 void ConditionalExpr::execute(Forth &forth, std::vector<Token> &tokens) {
-    Parser &parser = Parser::getInstance(tokens, forth);
-    size_t savedPosition = parser.getCurrent();
-    
-    if (forth.pop()) {
-    std::cout << "Doing if!" << std::endl;
-    handleIf(parser,savedPosition);
-    } else {
-      handleElse(parser, savedPosition);
-    }
+  Parser &parser = Parser::getInstance(tokens, forth);
+  size_t savedPosition = parser.getCurrent();
 
+  if (forth.pop()) {
+    handleIf(parser, savedPosition);
+  } else {
+    handleElse(parser, savedPosition);
+  }
   parser.dropToken(parser.getCurrent());
   parser.placeCurrent(savedPosition);
-  std::cout << "Current is " << tokens[parser.getCurrent()].getLexeme() << std::endl;
 }
 
 void EmitExpr::execute(Forth &forth, std::vector<Token>& tokens) {
@@ -211,7 +217,6 @@ void handleIf (Parser& parser, size_t& savedPosition){
 
 //execute only those commands that come after else
 void handleElse (Parser& parser, size_t& savedPosition){
-  std::cout << "Doing else or then!" << std::endl;
   // find else or then
   while (parser.getCurrentToken().getLexeme() != "then" &&
          parser.getCurrentToken().getLexeme() != "else" &&

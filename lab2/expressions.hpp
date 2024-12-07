@@ -150,11 +150,6 @@ class PrintStrExpr : public Expr {
 class ConditionalExpr : public Expr {
 public:
   void execute(Forth &forth, std::vector<Token> &tokens) override;
-  // void executeBranch(Forth &forth, std::vector<Token> &tokens);
-
-  // void handleThen(std::vector<Token> &tokens, Forth &forth);
-  // void executeElseBranch(std::vector<Token> &tokens, Forth &forth);
-
   private:
 };
 
@@ -165,16 +160,16 @@ public:
 private:
 };
 
-        //=============DUMPSTERRR!!!==================//
+//=============DUMPSTERRR!!!==================//
 
-        // //+ - / * mod
-        // class Arithmetical : public Expr {
-        // public:
-        //   Arithmetical(Expr *left, Expr *right, TokenType operatorToken)
-        //       : operatorToken(operatorToken) {}
+// //+ - / * mod
+// class Arithmetical : public Expr {
+// public:
+//   Arithmetical(Expr *left, Expr *right, TokenType operatorToken)
+//       : operatorToken(operatorToken) {}
 
-        //   void execute(Forth& forth) override ;
+//   void execute(Forth& forth) override ;
 
-        // private:
-        //   TokenType operatorToken;
-        // };
+// private:
+//   TokenType operatorToken;
+// };

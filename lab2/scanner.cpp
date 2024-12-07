@@ -3,32 +3,8 @@
 #include "UserInterface.hpp"
 #include "forth.hpp"
 #include <cctype>
-
-/*
-
-NO KEYWORDS, COMMANDS MAKES THEMSELFES
-
-SCANNER READ TOKEN - RUN FABRIC TO GENERATE AN EXPRESSION
-Token.hpp"
-#include "forth.hpp"
-#include <unordered_map>
-*/
-
-// const std::unordered_map<std::string, TokenType> Scanner::keywords = {
-//     {"swap",    TokenType::SWAP},
-//     {"dup",  TokenType::DUP},
-//     {"drop",   TokenType::DROP},
-//     {"false",  TokenType::FALSE},
-//     {"for",    TokenType::FOR},
-//     {"if",     TokenType::IF},
-//     {"nil",    TokenType::NIL},
-//     {"or",     TokenType::OR},
-//     {"over",     TokenType::OVER},
-//     {"emit",     TokenType::EMIT},
-//     {"cr",     TokenType::CR},
-//     {"do",     TokenType::DO},
-//     {"loop",     TokenType::LOOP},
-// };
+#include <stdexcept>
+#include <string>
 
 std::vector<Token> Scanner::scanTokens() {
   while (!isAtEnd()) {
@@ -164,7 +140,7 @@ void Scanner::str() {
   }
 
   if (isAtEnd()) {
-    // Forth::error(line, "Can't determine string"); < shut
+    throw std::runtime_error("Can't determine string at line " + std::to_string(line)); 
     return;
   }
 

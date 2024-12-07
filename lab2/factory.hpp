@@ -1,15 +1,14 @@
 
 #pragma once
 
-#include "expressions.hpp"
 #include "UserInterface.hpp"
+#include "expressions.hpp"
 
 #include <cctype>
 #include <functional>
 #include <map>
 #include <memory>
 #include <string>
-
 
 template <class Key, class Product> class Factory {
 public:
@@ -18,26 +17,28 @@ public:
     return &instance;
   }
 
-  std::unique_ptr<Product> createCommandByName(const Key &key, int tokenNumber) {
+  std::unique_ptr<Product> createCommandByName(const Key &key,
+                                               int tokenNumber) {
     auto command = commands_.find(key);
     if (command == commands_.end()) {
       UserInterface::getInstance().displayMessage("?");
-      return nullptr;
+      return std::unique_ptr<Product>();
       // throw std::runtime_error("Command not found");
     }
     return command->second(tokenNumber); // return creator for function
   }
 
-  bool registerCreator(const Key& key,
-                       std::function<std::unique_ptr<Product>(int tokenNum)> creator) {
+  bool registerCreator(
+      const Key &key,
+      std::function<std::unique_ptr<Product>(int tokenNum)> creator) {
     commands_[key] = creator;
     return true;
   }
 
 private:
-  std::map<Key, std::function<std::unique_ptr<Product>(int tokenNum)>> commands_;
+  std::map<Key, std::function<std::unique_ptr<Product>(int tokenNum)>>
+      commands_;
 };
-
 
 namespace {
 static bool regMult =
@@ -67,9 +68,7 @@ static bool regStringOutput =
 
 static bool regSlash =
     Factory<std::string, Expr>::getInstance()->registerCreator(
-        "/", [](int tokenNumber) {
-          return std::make_unique<SlashExpr>();
-        });
+        "/", [](int tokenNumber) { return std::make_unique<SlashExpr>(); });
 
 static bool regDrop =
     Factory<std::string, Expr>::getInstance()->registerCreator(
@@ -103,7 +102,13 @@ static bool regCycle =
     Factory<std::string, Expr>::getInstance()->registerCreator(
         "do", [](int) { return std::make_unique<CycleExpr>(); });
 
-static bool regI =
+static bool regI = Factory<std::string, Expr>::getInstance()->registerCreator(
+    "i", [](int) { return std::make_unique<IExpr>(); });
+
+static bool regRot = Factory<std::string, Expr>::getInstance()->registerCreator(
+    "rot", [](int) { return std::make_unique<RotExpr>(); });
+
+static bool regOver =
     Factory<std::string, Expr>::getInstance()->registerCreator(
-        "i", [](int) { return std::make_unique<IExpr>(); });
-} 
+        "over", [](int) { return std::make_unique<OverExpr>(); });
+} // namespace

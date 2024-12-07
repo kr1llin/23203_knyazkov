@@ -30,24 +30,9 @@ public:
   void error(const Token &token, const std::string &message);
 
   void push(int value) { stack.push_back(value); }
-
-  int pop() {
-    if (stack.empty())
-      throw std::runtime_error("Stack underflow");
-    int value = stack.back();
-    stack.pop_back();
-    return value;
-  }
-
-  int peek() const {
-    if (stack.empty())
-      throw std::runtime_error("Stack is empty");
-    return stack.back();
-  }
-
-  std::vector<int> getStack() const {
-    return stack;
-  }
+  int pop();
+  int peek() const;
+  std::vector<int> getStack() const { return stack; }
 
   int loop_i{};
 

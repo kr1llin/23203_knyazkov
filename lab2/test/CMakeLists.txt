@@ -4,41 +4,33 @@ project(TestCoverage)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# add definitions
 add_definitions(-fprofile-arcs -ftest-coverage)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fprofile-arcs -ftest-coverage")
 
-# Include diretories
 include_directories(/usr/include)
 link_directories(/usr/lib)
 
-# Set the compiler options
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -g -O0 -Wall -fprofile-arcs -ftest-coverage")
 set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE ON)
 
-# Create OBJECT_DIR variable
 set(OBJECT_DIR ${CMAKE_BINARY_DIR}/CMakeFiles/TestCoverage.dir/src)
 message("-- Object files will be output to: ${OBJECT_DIR}")
 
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
-# Set the sources
 set(Sources
     src/all_tests.cc
 )
 
-# Set Include directories
 include_directories(
                 src/
                 ../
                 )
 
-# Create the executable
 add_executable(TestCoverage ${Sources})
 
-# Create the gcov target. Run coverage tests with 'make gcov'
 add_custom_target(gcov
     COMMAND mkdir -p gcoverage
     COMMAND ${CMAKE_MAKE_PROGRAM} test
@@ -53,7 +45,6 @@ add_custom_command(TARGET gcov
     )
 add_dependencies(gcov TestCoverage)
 
-# Create the lcov target. Run result tests with 'make lcov'
 add_custom_target(lcov
     COMMAND mkdir -p lcoverage
     )
@@ -65,11 +56,8 @@ add_custom_command(TARGET lcov
     COMMAND genhtml lcoverage/main_coverage.info --output-directory lcoverage --ignore-errors mismatch
     )
 
-# Make sure to clean up the coverage folder
 set_property(DIRECTORY APPEND PROPERTY ADDITIONAL_MAKE_CLEAN_FILES gcoverage)
 
-# Create the gcov-clean target. This cleans the build as well as generated 
-# .gcda and .gcno files.
 add_custom_target(init
     COMMAND ${CMAKE_MAKE_PROGRAM} clean
     COMMAND rm -f ${OBJECT_DIR}/*.gcno
@@ -82,7 +70,6 @@ enable_testing()
 
 add_test(output_test ${CMAKE_CURRENT_BINARY_DIR}/TestCoverage)
 
-# link Boost libraries to the new target
 target_link_libraries(TestCoverage gtest)
 target_link_libraries(TestCoverage gmock)
 target_link_libraries(TestCoverage pthread)

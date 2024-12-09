@@ -7,10 +7,6 @@ using string = std::string;
 // dictionary
 enum class TokenType {
   // Single-character tokens.
-  LEFT_PAREN,
-  RIGHT_PAREN,
-  LEFT_BRACE,
-  RIGHT_BRACE,
   DQUOTS,
   QUOTS,
   WHITESPACE,
@@ -60,11 +56,6 @@ enum class TokenType {
   IF,
   END,
   NIL,
-  OR,
-  PRINT,
-  THIS,
-  TRUE,
-  VAR,
   WHILE,
   DUMMY,
 };

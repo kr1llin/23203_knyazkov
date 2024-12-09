@@ -2,6 +2,7 @@
 #include "Token.hpp"
 #include "expressions.hpp"
 #include "factory.hpp"
+#include <iostream>
 #include <memory>
 #include <ostream>
 #include <vector>

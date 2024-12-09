@@ -41,9 +41,6 @@ private:
 };
 
 namespace {
-static bool regMult =
-    Factory<std::string, Expr>::getInstance()->registerCreator(
-        "*", [](int) { return std::make_unique<MultExpr>(); });
 
 static bool regSum = Factory<std::string, Expr>::getInstance()->registerCreator(
     "+", [](int) { return std::make_unique<SumExpr>(); });
@@ -107,6 +104,9 @@ static bool regI = Factory<std::string, Expr>::getInstance()->registerCreator(
 
 static bool regRot = Factory<std::string, Expr>::getInstance()->registerCreator(
     "rot", [](int) { return std::make_unique<RotExpr>(); });
+
+static bool regDot = Factory<std::string, Expr>::getInstance()->registerCreator(
+    ".", [](int) { return std::make_unique<DotExpr>(); });
 
 static bool regOver =
     Factory<std::string, Expr>::getInstance()->registerCreator(

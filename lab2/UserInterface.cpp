@@ -1,5 +1,7 @@
 #include "UserInterface.hpp"
 
+#include <iostream>
+
 void UserInterface::printStack(const Forth &forth) const {
   const std::vector<int> &stack = forth.getStack();
   for (auto i : stack) {

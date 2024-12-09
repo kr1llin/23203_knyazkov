@@ -1,7 +1,5 @@
 #include "scanner.hpp"
 #include "Token.hpp"
-#include "UserInterface.hpp"
-#include "forth.hpp"
 #include <cctype>
 #include <stdexcept>
 #include <string>
@@ -26,21 +24,6 @@ void Scanner::addWhiteSpaces(){
 void Scanner::scanToken() {
   char c = advance();
   switch (c) {
-  case '(':
-    addToken(TokenType::LEFT_PAREN);
-    break;
-  case ')':
-    addToken(TokenType::RIGHT_PAREN);
-    break;
-  case '{':
-    addToken(TokenType::LEFT_BRACE);
-    break;
-  case '}':
-    addToken(TokenType::RIGHT_BRACE);
-    break;
-  case ',':
-    addToken(TokenType::COMMA);
-    break;
   case '-':
     addToken(TokenType::MINUS);
     break;

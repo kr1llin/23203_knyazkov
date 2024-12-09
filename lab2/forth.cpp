@@ -59,6 +59,8 @@ void Forth::runPrompt(){
         std::string line = UserInterface::getInstance().getUserInput();
         if (line.empty()) break;
         run(line);
+        UserInterface::getInstance().displayMessage(buffer);
+        clearBuffer();
         std::cout << "------------------------" << std::endl;
         UserInterface::getInstance().printStack(*this);
         std::cout << "------------------------" << std::endl;
@@ -73,8 +75,10 @@ void Forth::run(const string& source){
     Parser& parser = Parser::getInstance(tokens, *this);
     parser.resetTokens(tokens);
     parser.parse();
- 
+
     if (hadError) return;
+
+    buffer += (buffer.empty())? "ok" : " ok";
 }
 
 void Forth::error(int line, const string& message){
@@ -103,7 +107,7 @@ int main(int argc, const char **argv) {
 
     return 0;
   } catch (const std::exception &ex) {
-    cerr << "forth: " << ex.what() << endl;
+    std::cerr << "forth: " << ex.what() << std::endl;
     return -1;
   }
 }
@@ -121,6 +125,15 @@ int Forth::peek() const {
     throw std::runtime_error("Stack is empty");
   return stack.back();
 }
+
+void Forth::addToBuffer(const std::string& str){
+  buffer += str;
+}
+
+void Forth::clearBuffer(){
+  buffer.clear();
+}
+
 
   // //temporary
   //   for (Token token:tokens){

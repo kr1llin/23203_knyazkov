@@ -1,1 +1,0 @@
-genhtml lcoverage/main_coverage.info --output-directory lcoverage --ignore-errors mismatch

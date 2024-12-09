@@ -1,1 +1,0 @@
-/usr/bin/c++  -fprofile-arcs -ftest-coverage -std=c++17 -g -O0 -Wall -fprofile-arcs -ftest-coverage CMakeFiles/TestCoverage.dir/src/all_tests.o -o TestCoverage  -lgtest -lgmock -lpthread -fprofile-arcs 

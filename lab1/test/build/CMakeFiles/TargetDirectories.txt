@@ -1,7 +1,0 @@
-/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/TestCoverage.dir
-/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/gcov.dir
-/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/lcov.dir
-/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/init.dir
-/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/test.dir
-/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/edit_cache.dir
-/home/krillin/code/nsu/23203_knyazkov/lab1/test/build/CMakeFiles/rebuild_cache.dir

@@ -123,7 +123,8 @@ void Scanner::str() {
   }
 
   if (isAtEnd()) {
-    throw std::runtime_error("Can't determine string at line " + std::to_string(line)); 
+    throw std::runtime_error("Can't determine string at line " +
+                             std::to_string(line));
     return;
   }
 
@@ -161,7 +162,6 @@ char Scanner::peekNext() {
 
 bool Scanner::isAtEnd() { return (current >= source.length()); }
 
-// for input
 char Scanner::advance() { return source[current++]; }
 
 void Scanner::addToken(TokenType type) { addToken(type, {}); }

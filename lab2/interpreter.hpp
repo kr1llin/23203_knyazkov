@@ -1,69 +1,60 @@
-// #include "Token.hpp"
-// #include "expressions.hpp"
+#pragma once
+#include "expressions.hpp"
+#include "Token.hpp"
 
+#include <memory>
+#include <stdexcept>
+#include <vector>
 
-// //values are from interpreter
-// class Interpreter : public Expr::Visitor {
-// public:
+//parse tokens into expressions 
+//literals are from parser
+class Interpreter{
+public:
+  static Interpreter &getInstance(std::vector<Token> &tokens, Forth &forth) {
+    static Interpreter instance(tokens, forth);
+    return instance;
+  }
 
-//     std::shared_ptr<Object> visitNumberExpr(Number* expr) override {
-//         return std::make_shared<Number>(expr->value);
-//     }
-    
-//     std::shared_ptr<Object> visitLiteralExpr(Literal* expr) override {
-//         return expr->value; // Return the value of the literal expression
-//     }
+ std::unique_ptr<Expr> getExpression();
 
-//     // Implement other visit methods for different expression types
-//     void interpret(Expr *expression) {
-//       try {
-//         std::shared_ptr<Object> value = evaluate(expression);
-//         std::cout << stringify(value) << std::endl;
-//       } catch (const RuntimeError &error) {
-//         std::cerr << "Runtime Error: " << error.what() << std::endl;
-//       }
-//     }
+  void resetTokens(std::vector<Token> &newTokens) {
+    tokens = newTokens;
+    current = 0;
+  }
 
-//     std::string stringify(std::shared_ptr<Object> object) {
-//         if (!object) return "nil"; // Check for nullptr
+  void parse();
+  void executeExpr();
+  std::vector<Token>& getTokens();
+  void dropToken(size_t index);
+  void placeCurrent(size_t index);
+  Token getPreviousToken() const;
+  Token getCurrentToken() const;
+  size_t getCurrent() const;
+  void moveCurrent() { current++; }
+  std::unique_ptr<Expr> expression();
 
-//         if (auto number = dynamic_cast<Number*>(object.get())) {
-//             // Convert the number to a string
-//             std::ostringstream oss;
-//             oss << number->value;
-//             return oss.str();
-//         }
+private:
+  std::vector<Token> tokens;
+  size_t current = 0;
+  Forth &forth;
 
-//         return object.toString; // Placeholder for other object types
-//     }
-//     // A method to evaluate an expression
-//     std::shared_ptr<Object> evaluate(Expr* expr) {
-//         return expr->accept(this);
-//     }
-//     std::shared_ptr<Object> visitBinaryExpr(Binary *expr) override {
-//       auto left = evaluate(expr->left);
-//       auto right = evaluate(expr->right);
+  Interpreter(std::vector<Token> &tokens, Forth &forth)
+      : tokens(tokens), forth(forth) {};
 
-//       // Assuming left and right are of type Number
-//       double leftValue = dynamic_cast<Number *>(left.get())->value;
-//       double rightValue = dynamic_cast<Number *>(right.get())->value;
+  bool match(const std::initializer_list<TokenType> &types);
+  bool check(TokenType type);
+  const Token& advance();
+  bool isAtEnd() const;
+  const Token& peek() const;
+  const Token& previous() const;
+  void synchronize();
 
-//       if (expr->getOperatorToken().getLiteral() == "-") {
-//         return std::make_shared<Number>(leftValue - rightValue);
-//       } else if (expr->operatorType == "/") {
-//         if (rightValue == 0) {
-//           throw std::runtime_error("Division by zero");
-//         }
-//         return std::make_shared<Number>(leftValue / rightValue);
-//       } else if (expr->operatorType == "*") {
-//         return std::make_shared<Number>(leftValue * rightValue);
-//       }
+  class ParseError : std::runtime_error {
+  public:
+    explicit ParseError(const std::string &message)
+        : std::runtime_error(message) {}
+  };
 
-//       // Unreachable.
-//       return nullptr;
-//     }
+  ParseError *error(Token &token, const string &message);
 
-//       std::shared_ptr<Object> evaluate(Expr *expr) {
-//         return expr->accept(this);
-//       }
-// };
+};

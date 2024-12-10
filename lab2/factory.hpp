@@ -22,7 +22,7 @@ public:
     auto command = commands_.find(key);
     if (command == commands_.end()) {
       UserInterface::getInstance().displayMessage("?");
-      return std::unique_ptr<Product>();
+      return {};
       // throw std::runtime_error("Command not found");
     }
     return command->second(tokenNumber); // return creator for function

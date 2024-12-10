@@ -1,4 +1,8 @@
- #include <wx/wx.h>
+#include <wx/wx.h>
+
+/*
+
+*/
 
 
 //base class for wxWidgets applications
@@ -43,6 +47,7 @@ MyFrame::MyFrame(const wxString& title)
 //draw sprites and etc.
 void MyFrame::OnPaint(wxPaintEvent& event) {
     wxPaintDC dc(this);
+    SetBackgroundColour({0,0,0});
 }
 
 void MyFrame::OnTimer(wxTimerEvent& event) {

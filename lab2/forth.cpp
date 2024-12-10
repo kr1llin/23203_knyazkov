@@ -14,7 +14,7 @@
 #include "forth.hpp"
 #include "Token.hpp"
 #include "UserInterface.hpp"
-#include "parser.hpp"
+#include "interpreter.hpp"
 #include "scanner.hpp"
 
 
@@ -22,6 +22,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
+#include <memory>
 #include <ostream>
 #include <tclap/CmdLine.h>
 #include <vector>
@@ -59,6 +60,7 @@ void Forth::runPrompt(){
         std::string line = UserInterface::getInstance().getUserInput();
         if (line.empty()) break;
         run(line);
+        buffer += (buffer.empty()) ? "ok" : " ok";
         UserInterface::getInstance().displayMessage(buffer);
         clearBuffer();
         std::cout << "------------------------" << std::endl;
@@ -72,13 +74,16 @@ void Forth::run(const string& source){
     Scanner* scanner = new Scanner(source);
     std::vector<Token> tokens = scanner->scanTokens();
     
-    Parser& parser = Parser::getInstance(tokens, *this);
-    parser.resetTokens(tokens);
-    parser.parse();
+    Interpreter& interpreter = Interpreter::getInstance(tokens, *this);
+    interpreter.resetTokens(tokens);
+    interpreter.parse();
 
     if (hadError) return;
 
-    buffer += (buffer.empty())? "ok" : " ok";
+    // // temporary
+    // for (Token token : tokens) {
+    //   std::cout << token.toString() << std::endl;
+    // }
 }
 
 void Forth::error(int line, const string& message){
@@ -91,11 +96,11 @@ void Forth::report(int line, const std::string &where, const std::string &messag
 }
 
 int main(int argc, const char **argv) {
-  Forth *forth = new Forth();
+  auto forth = std::make_unique<Forth>();
   try {
     size_t commandLineArgCount = static_cast<size_t>(argc);
     auto commandLineArgVector = argv;
-    if (argc > 1) {
+    if (argc > 2) {
       std::cerr << "Lot of arguments!\n quit" << std::endl;
       return -1;
     }
@@ -133,6 +138,11 @@ void Forth::addToBuffer(const std::string& str){
 void Forth::clearBuffer(){
   buffer.clear();
 }
+
+int& Forth::getIterator(){
+  return loop_i;
+}
+
 
 
   // //temporary

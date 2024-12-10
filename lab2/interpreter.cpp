@@ -1,4 +1,4 @@
-#include "parser.hpp"
+#include "interpreter.hpp"
 #include "Token.hpp"
 #include "expressions.hpp"
 #include "factory.hpp"
@@ -9,30 +9,30 @@
 
 //*=======EXPRESSIONS========*//
 
-std::vector<Token> &Parser::getTokens() { return tokens; }
-size_t Parser::getCurrent() const { return current; }
-Token Parser::getPreviousToken() const { return previous(); }
-Token Parser::getCurrentToken() const { return tokens[current]; }
-void Parser::placeCurrent(size_t index) { current = index; }
+std::vector<Token> &Interpreter::getTokens() { return tokens; }
+size_t Interpreter::getCurrent() const { return current; }
+Token Interpreter::getPreviousToken() const { return previous(); }
+Token Interpreter::getCurrentToken() const { return tokens[current]; }
+void Interpreter::placeCurrent(size_t index) { current = index; }
 
-void Parser::dropToken(size_t index) { 
+void Interpreter::dropToken(size_t index) { 
   tokens.erase(tokens.begin() + index); 
 }
 
-void Parser::executeExpr() {
+void Interpreter::executeExpr() {
   std::unique_ptr<Expr> expression = getExpression();
   if (expression != std::unique_ptr<Expr>())
     expression->execute(forth, tokens);
 }
 
 // get token - make expression - excecute
-void Parser::parse() {
+void Interpreter::parse() {
   while (!check(TokenType::END)) {
     executeExpr();
   }
 }
 
-std::unique_ptr<Expr> Parser::getExpression() {
+std::unique_ptr<Expr> Interpreter::getExpression() {
   std::unique_ptr<Expr> expression;
   try {
     if (!check(TokenType::NIL)) {
@@ -53,14 +53,14 @@ std::unique_ptr<Expr> Parser::getExpression() {
     } else {
       throw ParseError("Unexpected token");
     }
-  } catch (Parser::ParseError error) {
+  } catch (Interpreter::ParseError error) {
     std::cerr << "Parse error!" << std::endl;
     return std::unique_ptr<Expr>(); // empty vector
   }
   return expression; // empty vector
 }
 
-bool Parser::match(const std::initializer_list<TokenType> &types) {
+bool Interpreter::match(const std::initializer_list<TokenType> &types) {
   for (TokenType type : types) {
     if (check(type)) {
       advance();
@@ -70,29 +70,29 @@ bool Parser::match(const std::initializer_list<TokenType> &types) {
   return false;
 }
 
-bool Parser::check(TokenType type) {
+bool Interpreter::check(TokenType type) {
   if (isAtEnd())
     return false;
   return peek().getType() == type;
 }
 
-const Token &Parser::advance() {
+const Token &Interpreter::advance() {
   if (!isAtEnd()) {
     current++;
   }
   return previous();
 }
 
-bool Parser::isAtEnd() const { return (current == tokens.size()); }
+bool Interpreter::isAtEnd() const { return (current == tokens.size()); }
 
-const Token &Parser::peek() const {
+const Token &Interpreter::peek() const {
   if (isAtEnd()) {
     throw std::out_of_range("Attempted to peek at the end of the token list");
   }
   return tokens[current];
 }
 
-const Token &Parser::previous() const {
+const Token &Interpreter::previous() const {
   if (current == 0) {
     throw std::out_of_range("No previous token available.");
   }
@@ -100,7 +100,7 @@ const Token &Parser::previous() const {
 }
 
 // if error - run to the end of expression
-void Parser::synchronize() {
+void Interpreter::synchronize() {
   advance();
 
   while (!isAtEnd()) {
@@ -141,7 +141,7 @@ void Parser::synchronize() {
 // current++;
 // return expr;
 
-// std::unique_ptr<Expr> Parser::expression() {
+// std::unique_ptr<Expr> Interpreter::expression() {
 //     if (check(TokenType::NUMBER)) {
 //       forth.push(parseNumber(tokens[current].getLexeme()));
 //     }

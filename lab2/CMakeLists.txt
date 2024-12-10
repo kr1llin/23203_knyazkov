@@ -15,7 +15,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 set(SOURCES
     forth.cpp
     scanner.cpp
-    parser.cpp
+    interpreter.cpp
     expressions.cpp
     factory.cpp
     UserInterface.cpp
@@ -25,12 +25,12 @@ set(HEADERS
     forth.hpp
     scanner.hpp
     Token.hpp
-    parser.hpp
+    interpreter.hpp
     expressions.hpp
     factory.hpp
     UserInterface.hpp
 )
 
-add_library(${This} STATIC ${SOURCES} ${HEADERS})
+# add_library(${This} STATIC ${SOURCES} ${HEADERS})
 # add_subdirectory(tests)
 add_executable(forth ${SOURCES} ${HEADERS})

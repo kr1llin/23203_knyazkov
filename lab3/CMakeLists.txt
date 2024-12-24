@@ -1,16 +1,27 @@
 cmake_minimum_required(VERSION 3.10)  
-project(MyWxApp)                      
+project(SpaceInvaders)                      
 
-set(wxWidgets_ROOT_DIR /usr/local/include/wx-3.2) 
+set(SANITIZER_FLAGS "-fsanitize=address")
+find_package(SFML COMPONENTS graphics window system REQUIRED)
 
-find_package(wxWidgets REQUIRED COMPONENTS core base) 
+set(Sources main.cpp Draw.cpp Engine.cpp Input.cpp Player.cpp Update.cpp Alien.cpp Invaders.cpp Level.cpp StateManager.cpp)
+set(Header Draw.hpp Engine.hpp Input.hpp Player.hpp Update.hpp Alien.hpp Invaders.hpp Level.hpp State.hpp StateManager.hpp)
 
-include(${wxWidgets_USE_FILE})
+add_executable(SpaceInvaders ${Sources})
 
-set(SOURCES
-    main.cpp  
-)
+target_link_libraries(SpaceInvaders sfml-graphics sfml-window sfml-system)
 
-add_executable(MyWxApp ${SOURCES})
 
-target_link_libraries(MyWxApp ${wxWidgets_LIBRARIES})
+# set(wxWidgets_ROOT_DIR /usr/local/include/wx-3.2) 
+
+# find_package(wxWidgets REQUIRED COMPONENTS core base) 
+
+# include(${wxWidgets_USE_FILE})
+
+# set(SOURCES
+#     main.cpp  
+# )
+
+# add_executable(MyWxApp ${SOURCES})
+
+# target_link_libraries(MyWxApp ${wxWidgets_LIBRARIES})

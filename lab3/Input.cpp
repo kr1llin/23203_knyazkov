@@ -8,7 +8,7 @@ void Engine::input(){
         m_Window.close();
     }
 
-    sf::Event event;
+    sf::Event event{};
 
     m_inputState.clear();
 

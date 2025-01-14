@@ -5,68 +5,55 @@
 #include <SFML/Window/VideoMode.hpp>
 #include <iostream>
 
-Alien::Alien(float x, float y){
-  m_Speed = INIT_ALIEN_SPEED;
+BasicAlien::BasicAlien() : m_speed(INIT_ALIEN_SPEED) {
 
-//   if (!m_Texture.loadFromFile(ALIEN_TEXTURE_FILE)) {
-//     std::cerr << "Error loading texture from " << ALIEN_TEXTURE_FILE
-//               << std::endl;
-//   }
+  if (!m_texture.loadFromFile(ALIEN_TEXTURE_FILE)) {
+    std::cerr << "Error loading texture from " << ALIEN_TEXTURE_FILE
+              << std::endl;
+  }
 
-//   m_Sprite.setTexture(m_Texture);
-
-  m_Position.x = x; 
-  m_Position.y = y;
-
-  m_Rectangle.setSize(rectSize);
-  m_Rectangle.setFillColor(sf::Color(200,255,200));
-  m_Rectangle.setPosition(m_Position);
-
-    // m_Sprite.setPosition(m_Position);
-    // m_Sprite.setScale(0.3f, 0.3f);
+  m_sprite.setTexture(m_texture);
 }
 
-const sf::Sprite Alien::getSprite() const{
-    return m_Sprite;
+void BasicAlien::setPosition(float x, float y) {
+  m_position.x = x;
+  m_position.y = y;
+
+  m_sprite.setPosition(m_position);
 }
 
-sf::FloatRect Alien::getBounds() const { 
-    return m_Rectangle.getGlobalBounds();
-    // return m_Sprite.getGlobalBounds();
+BasicAlien::BasicAlien(float x, float y) : m_speed(INIT_ALIEN_SPEED) {
+
+  if (!m_texture.loadFromFile(ALIEN_TEXTURE_FILE)) {
+    std::cerr << "Error loading texture from " << ALIEN_TEXTURE_FILE
+              << std::endl;
+  }
+
+  m_sprite.setTexture(m_texture);
+  setPosition(x, y);
 }
 
-void Alien::move(float dx, float dy) { 
-    m_Position.x += dx * m_Speed;
-    m_Position.y += dy * m_Speed;
-    
-    m_Rectangle.setPosition(m_Position);
+sf::Sprite BasicAlien::getSprite() const { return m_sprite; }
 
-    std::cout << "Setted Alien position is " << m_Position.x << " " << m_Position.y << std::endl;
+sf::FloatRect BasicAlien::getBounds() const {
+  return m_sprite.getGlobalBounds();
 }
 
-void Alien::update(float elapsedTime){
-    // if (m_rightPressed){
-    //     m_Position.x += m_Speed * elapsedTime;
-    // }
+void BasicAlien::move(float dx, float dy) {
+  m_position.x += dx * m_speed;
+  m_position.y += dy * m_speed;
 
-    // if (m_leftPressed){
-    //     m_Position.x -= m_Speed*elapsedTime;
-    // }
-
-    // m_Sprite.setPosition(m_Position);
-    m_Rectangle.setPosition(m_Position);
+  m_sprite.setPosition(m_position);
 }
 
-const sf::RectangleShape Alien::getRectangle() const{
-    return m_Rectangle;
+void BasicAlien::update() {
+  m_sprite.setPosition(m_position);
 }
 
-void Alien::draw(sf::RenderWindow &window) { 
-    // window.draw(m_Sprite); 
-    window.draw(m_Rectangle);
+void BasicAlien::draw(sf::RenderWindow &window) {
+  window.draw(m_sprite);
 }
 
-float Alien::getX() const {
-  return m_Position.x;
-}
+float BasicAlien::getX() const { return m_position.x; }
 
+float BasicAlien::getY() const { return m_position.y; }

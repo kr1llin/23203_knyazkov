@@ -1,8 +1,12 @@
+#pragma once 
+
 #include "Alien.hpp"
 #include "Bullet.hpp"
+// #include "CollisionInterface.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window/VideoMode.hpp>
+#include <memory>
 
 constexpr float INIT_INVADERS_SPEED = INIT_ALIEN_SPEED;
 constexpr int INIT_INVADERS_ROWS =  4;
@@ -11,30 +15,33 @@ const float INIT_INVADERS_Y = 0;
 
 class Invaders{
 public:
-  Invaders() : m_rowsCount(INIT_INVADERS_ROWS), m_direction(0){
+  Invaders() : m_rowsCount(INIT_INVADERS_ROWS), m_timeSinceLastBullet(0){
     initAliens();
   }
 
   void initAliens();
-  std::vector<Alien> getAliens() const;
+  const std::vector<std::unique_ptr<BasicAlien>>& getAliens() const;
   bool hasChangedDirection();
-  void moveAliensDown(float dtAsSeconds);
+  void moveAliensDown();
+  std::vector<AlienBullet> &getBullets() { return m_bullets; }
 
+  bool checkCollision(float x, float y);
   void update(float dtAsSeconds);
-
   void draw(sf::RenderWindow &window);
 
 private:
   int m_rowsCount;
-  bool m_direction; // 0 for right, 1 for left
-  float m_y;
+  bool m_direction{}; // 0 for right, 1 for left
+  float m_y{};
 
-  std::vector<Alien> m_aliens;
-  std::vector<Bullet> m_Bullets;
-  sf::Vector2f m_Position;
+  std::vector<std::unique_ptr<BasicAlien>> m_aliens;
+  std::vector<AlienBullet> m_bullets;
+  sf::Vector2f m_position;
 
-  sf::Sprite m_Sprite;
-  sf::Texture m_Texture;
+  float m_speed{}; // pixels per seconds
+  int m_timeSinceLastBullet;
 
-  float m_Speed; // pixels per seconds
+  std::vector<std::unique_ptr<BasicAlien>> getBottomAliens();
+  void makeABottomAlienShoot(const std::vector<std::unique_ptr<BasicAlien>> &bottomAliens);
+  void updateBullets(float deltaTime);
 };

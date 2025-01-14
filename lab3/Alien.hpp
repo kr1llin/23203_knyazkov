@@ -2,33 +2,44 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Window/VideoMode.hpp>
 
-const sf::Vector2 rectSize = sf::Vector2f(70.0f, 70.0f);
-
-constexpr float INIT_ALIEN_SPEED = 5;
+constexpr float INIT_ALIEN_SPEED = 100;
 const float INIT_ALIEN_POSITION_X = 30;
 const float INIT_ALIEN_POSITION_Y = 30;
 
-const std::string ALIEN_TEXTURE_FILE = "/home/krillin/code/nsu/23203_knyazkov/lab3/Assets/alien2.png";
+const std::string ALIEN_TEXTURE_FILE =
+    "/home/krillin/code/nsu/23203_knyazkov/lab3/Assets/alien2.png";
 
-
-class Alien{
+class Alien {
 public:
-  Alien(float x, float y);
-  sf::RectangleShape getRectangle();
-  void update(float elapsed_time);
-  const sf::Sprite getSprite() const;
-  const sf::RectangleShape getRectangle() const;
-  sf::FloatRect getBounds() const;
-  void move(float dx, float dy);
-  float getX() const;
-  void draw(sf::RenderWindow& window);
+  virtual ~Alien() = default;
+  virtual void update() = 0;
+  virtual void draw(sf::RenderWindow &window) = 0;
+  virtual sf::FloatRect getBounds() const = 0;
+  virtual sf::Sprite getSprite() const = 0;
+  virtual void move(float dx, float dy) = 0;
+  virtual void setPosition(float x, float y) = 0;
+  virtual float getX() const = 0;
+  virtual float getY() const = 0;
+};
 
-  private:
-    sf::Vector2f m_Position;
-    sf::RectangleShape m_Rectangle; // placeholder
+class BasicAlien : Alien {
+public:
+  BasicAlien();
+  BasicAlien(float x, float y);
+  void update() override;
+  sf::FloatRect getBounds() const override;
+  sf::Sprite getSprite() const override;
+  void draw(sf::RenderWindow &window) override;
+  void move(float dx, float dy) override;
+  void setPosition(float x, float y) override;
+  float getX() const override;
+  float getY() const override;
 
-    sf::Sprite m_Sprite;
-    sf::Texture m_Texture;
+private:
+  sf::Vector2f m_position;
 
-    float m_Speed; // pixels per seconds
-  };
+  sf::Sprite m_sprite;
+  sf::Texture m_texture;
+
+  float m_speed; // pixels per seconds
+};

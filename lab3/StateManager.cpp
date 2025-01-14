@@ -3,6 +3,7 @@
 #include <stack>
 
 void StateManager::pushState(std::unique_ptr<State> state) {
+  state->addListener(this);
   m_States.push(std::move(state));
 }
 
@@ -16,7 +17,7 @@ void StateManager::changeState(std::unique_ptr<State> state) {
   if (!m_States.empty()) {
     m_States.pop();
   }
-  m_States.push(std::move(state));
+  pushState(std::move(state));
 }
 
 void StateManager::update(

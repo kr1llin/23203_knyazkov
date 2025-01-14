@@ -5,13 +5,12 @@
 #include <SFML/Window/WindowStyle.hpp>
 
 Engine::Engine(){
-    sf::Vector2f resolution;
-    resolution.x = sf::VideoMode::getDesktopMode().width;
-    resolution.y = sf::VideoMode::getDesktopMode().height;
+  sf::Vector2f resolution;
+  resolution.x = sf::VideoMode::getDesktopMode().width;
+  resolution.y = sf::VideoMode::getDesktopMode().height;
 
-    m_Window.create(sf::VideoMode(), "Space Invaders",
-                    sf::Style::Fullscreen);
-    m_StateManager.pushState(std::make_unique<Level>());
+  m_Window.create(sf::VideoMode(), "Space Invaders", sf::Style::Fullscreen);
+  m_StateManager.pushState(std::make_unique<Level>());
 }
 
 void Engine::start(){
@@ -24,7 +23,7 @@ void Engine::start(){
     float dtAsSeconds = dt.asSeconds();
 
     input();
-    update(1.0f/60.0f);
+    update(dtAsSeconds);
     draw();
   }
 }

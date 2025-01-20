@@ -2,6 +2,8 @@
 
 #include "Alien.hpp"
 #include "Bullet.hpp"
+#include "GameEventListener.hpp"
+#include "Object.hpp"
 // #include "CollisionInterface.hpp"
 
 #include <SFML/Graphics.hpp>
@@ -10,38 +12,39 @@
 
 constexpr float INIT_INVADERS_SPEED = INIT_ALIEN_SPEED;
 constexpr int INIT_INVADERS_ROWS =  4;
-const float INIT_INVADERS_X = 0;
-const float INIT_INVADERS_Y = 0;
+constexpr float INIT_INVADERS_X = 0;
+constexpr float INIT_INVADERS_Y = 0;
+constexpr int SHOOT_PERIOD = 1000;
 
-class Invaders{
+class Invaders : public Object, public Subject {
 public:
-  Invaders() : m_rowsCount(INIT_INVADERS_ROWS), m_timeSinceLastBullet(0){
+  Invaders() : m_rowsCount(INIT_INVADERS_ROWS){
+    m_id = objID::INVADERS_ID;
     initAliens();
   }
 
   void initAliens();
-  const std::vector<std::unique_ptr<BasicAlien>>& getAliens() const;
-  bool hasChangedDirection();
   void moveAliensDown();
-  std::vector<AlienBullet> &getBullets() { return m_bullets; }
+  std::vector<std::shared_ptr<Alien>>& getAliens();
+  // const Magazine &getBullets() { return m_bullets; }
+  const std::vector<std::shared_ptr<AlienBullet>> &getBullets() { return m_bullets; }
 
-  bool checkCollision(float x, float y);
-  void update(float dtAsSeconds);
-  void draw(sf::RenderWindow &window);
+  void update(float dtAsSeconds) override;
 
 private:
   int m_rowsCount;
   bool m_direction{}; // 0 for right, 1 for left
   float m_y{};
 
-  std::vector<std::unique_ptr<BasicAlien>> m_aliens;
-  std::vector<AlienBullet> m_bullets;
-  sf::Vector2f m_position;
+  std::vector<std::shared_ptr<Alien>> m_aliens;
+  // Magazine m_bullets;
+  std::vector<std::shared_ptr<AlienBullet>> m_bullets; 
 
-  float m_speed{}; // pixels per seconds
-  int m_timeSinceLastBullet;
+  int m_timeSinceLastBullet{};
 
-  std::vector<std::unique_ptr<BasicAlien>> getBottomAliens();
-  void makeABottomAlienShoot(const std::vector<std::unique_ptr<BasicAlien>> &bottomAliens);
+  bool hasChangedDirection();
+  std::vector<std::shared_ptr<Alien>> getBottomAliens();
+  void makeABottomAlienShoot(const std::vector<std::shared_ptr<Alien>> &bottomAliens);
   void updateBullets(float deltaTime);
+  void RemoveDeadAliens();
 };

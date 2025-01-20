@@ -6,19 +6,20 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <unordered_map>
 
-//handles main game's loop and state
+
+//handles main game's loop and its state
 class Engine {
 public:
   Engine();
   void start();
 
 private:
-  sf::RenderWindow m_Window;
-  std::unordered_map<sf::Keyboard::Key, bool> m_inputState;
-
+  RenderModule m_RenderModule;
   StateManager m_StateManager;  // menu, options, level, etc.
 
-  void input();
+  std::unordered_map<sf::Keyboard::Key, bool> m_inputState;
+
+  void input(); // to be remade as InputManager
   void update(float dtAsSeconds);
-  void draw();
+  void draw(); // -//- RenderModule
 };

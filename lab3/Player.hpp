@@ -1,58 +1,72 @@
 #include "Bullet.hpp"
+#include "Collidable.hpp"
+#include "GameEventListener.hpp"
+#include "Object.hpp"
 // #include "CollisionInterface.hpp"
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/System/Vector2.hpp>
 #include <SFML/Window/VideoMode.hpp>
 #include <vector>
 
+//
+constexpr int PLAYER_SHOOT_PERIOD = 100;
 constexpr float INIT_PLAYER_SPEED = 700;
+const sf::Vector2f INIT_PLAYER_SIZE{80, 58};
+
 const float INIT_PLAYER_POSITION_X = sf::VideoMode::getDesktopMode().width / 2;
-const float INIT_PLAYER_POSITION_Y = sf::VideoMode::getDesktopMode().height - sf::VideoMode::getDesktopMode().height / 8;
+const float INIT_PLAYER_POSITION_Y = sf::VideoMode::getDesktopMode().height -
+                                     sf::VideoMode::getDesktopMode().height / 8;
+//
 
+// class Player : public Object, public ICollidable {
+class Player : public Object, public ICollidable, public Subject {
 
-const std::string PLAYER_TEXTURE_FILE = "/home/krillin/code/nsu/23203_knyazkov/lab3/Assets/player.png";
-
-class Player{
 public:
-    Player();
-    sf::Sprite getSprite();
-    sf::RectangleShape getRectangle();
+  // Player();
+  Player() {
+    m_id = objID::PLAYER_ID;
+    m_size = INIT_PLAYER_SIZE;
+    m_position.x = INIT_PLAYER_POSITION_X;
+    m_position.y = INIT_PLAYER_POSITION_Y;
+  };
+  ~Player() = default;
 
-    void moveLeft();
-    void moveRight();
-    void stopLeft();
-    void stopRight(); 
-    void startShooting();
-    void stopShooting();
-    
-    bool hasHitAlien(const PlayerBullet& bullet);
-    // void checkCollisions(CollisionInterface& collisionObject) override;
-    bool checkCollision(float x, float y);
-    bool isDead() const {return m_isDead;}
-    void kill() {m_isDead = true;}
-    std::vector<PlayerBullet> &getBullets() { return m_bullets; }
-    void hitAlien() const{}
+  void update(float deltaTime) override;
 
-    //to be called from update() of the Engine
-    void update(float elapsed_time);
-    void draw(sf::RenderWindow &window);
+  // ICollidable interface
+  sf::Vector2f GetPosition() override { return m_position; }
+  sf::Vector2f GetSize() override { return m_size; }
+
+  void ProcessCollision(ICollidable *other) override;
+
+  bool isDead() const { return m_isDead; }
+  bool isShooting() const { return m_isShooting; }
+
+  void kill() { m_isDead = true; }
+  // const Magazine& GetMagazine() {return m_bullets;}
+  std::vector<std::shared_ptr<PlayerBullet>> &getBullets() { return m_bullets; }
+
+  void moveLeft();
+  void moveRight();
+  void stopLeft();
+  void stopRight();
+  void startShooting();
+  void stopShooting();
+
 private:
-    sf::Vector2f m_Position;
+  bool m_isShooting = false;
+  bool m_leftPressed = false;
+  bool m_rightPressed = false;
+  bool m_zPressed = false;
+  int m_timeSinceLastBullet{};
 
-    sf::Sprite m_Sprite;
-    sf::Texture m_Texture;
+  float m_Speed = INIT_PLAYER_SPEED; // pixels per seconds
 
-    bool m_isDead = false;
-    bool m_leftPressed = false;
-    bool m_rightPressed = false;
-    bool m_zPressed = false;
-    int m_timeSinceLastBullet;
+  std::vector<std::shared_ptr<PlayerBullet>> m_bullets;
+  // Magazine m_bullets;
 
-    float m_Speed; //pixels per seconds
-
-    std::vector<PlayerBullet> m_bullets;
-
-    void shoot();
-    void updateBullets(float deltaTime);    
-    void drawBullets(sf::RenderWindow &window);
+  void shoot();
 };

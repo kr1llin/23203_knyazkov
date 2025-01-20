@@ -28,15 +28,24 @@ void StateManager::update(
   }
 }
 
-void StateManager::draw(sf::RenderWindow& window) {
-  if (!m_States.empty()) {
-    m_States.top()->draw(window);
-  }
-}
 
+//to be moved
 void StateManager::handleInput(
     const std::unordered_map<sf::Keyboard::Key, bool> &inputState) {
   if (!m_States.empty()) {
     m_States.top()->handleInput(inputState);
+  }
+}
+
+void StateManager::onNotify(Event event){
+  switch (event) {
+  case Event::GAME_OVER:
+    changeState(std::make_unique<GameOver>());
+    break;
+  case Event::START_GAME:
+    changeState(std::make_unique<Level>());
+    break;
+  default:
+    break;
   }
 }

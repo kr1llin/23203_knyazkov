@@ -1,24 +1,23 @@
+#pragma once
+#include "Events.hpp"
+#include <vector>
+
+// ObserverInterface
 class GameEventListener {
 public:
-    virtual ~GameEventListener() = default;
-    // virtual void onChangeStateCondition() = 0;
-    virtual void onGameOver() = 0;
-    virtual void onStartGame() = 0;
-
+  virtual ~GameEventListener() = default;
+  virtual void onNotify(Event event) = 0;
 };
 
+// Subject (observable interface)
+class Subject {
+public:
+  virtual ~Subject() {}
 
-// class Subject {
-// public:
-//     virtual ~Subject() {}
-//     virtual void attach(Observer* observer) = 0;
-//     virtual void detach(Observer* observer) = 0;
-//     virtual void notify() = 0;
-// };
+  void addListener(GameEventListener *listener);
+  void removeListener(GameEventListener *listener);
+  void notify(Event event);
 
-// // Observer class
-// class Observer {
-// public:
-//     virtual ~Observer() {}
-//     virtual void update() = 0;
-// };
+private:
+  std::vector<GameEventListener *> m_listeners;
+};

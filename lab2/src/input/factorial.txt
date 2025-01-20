@@ -1,0 +1,7 @@
+    1
+    10
+." factorial of " dup . ." is " 
+    0 do        
+        i 1 + * loop;
+
+. cr

@@ -1,0 +1,7 @@
+ 1 100 do
+    i 2 mod 0  = if
+    i . ." "
+    else
+    then;
+  loop
+;

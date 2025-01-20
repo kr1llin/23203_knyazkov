@@ -1,0 +1,7 @@
+." Is provided number + or - ???" cr
+ 7
+ dup 0 > if
+        ." positive" cr
+    else
+        ." negative" cr
+    then;

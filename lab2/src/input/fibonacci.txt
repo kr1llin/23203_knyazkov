@@ -1,0 +1,6 @@
+  0 1
+  1 22 do
+    dup . cr
+    over +
+  loop;
+;

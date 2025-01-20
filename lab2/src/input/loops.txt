@@ -1,0 +1,10 @@
+  0 10 do
+  cr
+    0 10 do
+    cr
+    i 10 do
+        42 emit
+      loop;
+    loop;
+  loop;
+cr

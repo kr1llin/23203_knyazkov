@@ -1,0 +1,8 @@
+: test-even
+  dup 2 mod 0 = if
+    ." even"
+  else
+    ." Not even"
+  then ;
+10 test-even
+7 test-even

@@ -1,0 +1,20 @@
+: FIZZBUZZ
+  1 100 1 do
+    dup 15 mod 0 = if
+      ." FizzBuzz" cr
+    else
+      dup 3 mod 0 = if
+        ." Fizz" cr
+      else
+        dup 5 mod 0 = if
+          ." Buzz" cr
+        else
+          dup . cr
+        then
+      then
+    then
+    1 +
+  loop
+  drop
+;
+FIZZBUZZ

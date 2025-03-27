@@ -1,0 +1,23 @@
+: fib
+  dup 0 > if
+    dup 1 = if
+      0 .
+    else
+      dup 2 = if
+        0 . 1 .
+      else
+        0 . 1 .
+        0 1
+        rot 2 - 0
+        do
+          over +
+          dup .
+          swap rot
+        loop
+        drop drop
+      then
+    then
+  then
+  drop ;
+
+ 100 fib

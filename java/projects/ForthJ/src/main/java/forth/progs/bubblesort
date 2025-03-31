@@ -1,0 +1,27 @@
+: SWAP
+  rot
+;
+
+: BUBBLE-SORT
+  0 do
+    0 do
+      i j + dup 1 +
+      > if
+        swap SWAP
+      then
+    loop
+  loop
+;
+
+: PRINT-ARRAY
+  0 do
+    .
+  loop
+;
+
+: SORT-AND-PRINT
+  BUBBLE-SORT
+  PRINT-ARRAY
+;
+
+10 1 3 2 5 4 7 6 9 8 SORT-AND-PRINT

@@ -41,15 +41,16 @@ void Level::update(
 }
 
 void Level::updateObjects(float dtAsSeconds) {
-  for (auto it = m_objects.begin(); it != m_objects.end();) {
-    if (!(*it)->isDead()) {
-      (*it)->update(dtAsSeconds);
-      ++it;
-    } else {
-      removeObjectFromCollisionList(*it);
-      it = m_objects.erase(it);
-    }
-  }
+  m_objects.erase(std::remove_if(m_objects.begin(), m_objects.end(),
+                                 [&](const auto &obj) {
+                                   if (obj->isDead()) {
+                                     removeObjectFromCollisionList(obj);
+                                     return true; // to be removed!
+                                   }
+                                   obj->update(dtAsSeconds);
+                                   return false; // not to be removed!
+                                 }),
+                  m_objects.end());
 
 //
   for (const auto &bullet : m_player->getBullets()) {

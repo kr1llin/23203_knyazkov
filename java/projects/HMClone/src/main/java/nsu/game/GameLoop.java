@@ -1,4 +1,4 @@
-package nsu;
+package nsu.game;
 
 public class GameLoop implements Runnable{
 
@@ -6,9 +6,6 @@ public class GameLoop implements Runnable{
 
     private boolean running;
     private final double updateRate = 1.0d / 60.0d; // slice
-
-    private long nextStatTime;
-    private int fps, ups; //updates per second
 
     public GameLoop(Game game){
         this.game = game;
@@ -19,7 +16,6 @@ public class GameLoop implements Runnable{
         running = true;
         double accumulator = 0; // keeps a track of a time that takes to update
         long currentTime, lastUpdate = System.currentTimeMillis();
-        nextStatTime = System.currentTimeMillis() + 1000;
 
         while(running) {
             currentTime = System.currentTimeMillis();
@@ -37,24 +33,13 @@ public class GameLoop implements Runnable{
                 }
             render();
             }
-            printStats();
-        }
-    }
-
-    private void printStats(){
-        if (System.currentTimeMillis() > nextStatTime){
-            System.out.println(String.format("FPS: %d, UPS: %d", fps, ups));
-            fps = 0; ups = 0;
-            nextStatTime = System.currentTimeMillis() + 1000;
         }
     }
 
     private void update() {
         game.update();
-        ups++;
     }
     private void render(){
         game.render();
-        fps++;
     }
 }

@@ -3,7 +3,7 @@
 //import javafx.geometry.Point2D;
 //import javafx.scene.paint.Color;
 //import javafx.scene.shape.Rectangle;
-//import nsu.GameObject;
+//import nsu.entity.GameObject;
 //
 //class Enemy extends GameObject {
 //    private double speed = 3.0;

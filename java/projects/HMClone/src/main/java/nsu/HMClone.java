@@ -1,44 +1,7 @@
 package nsu;
 
-import javax.swing.*;
-
-import com.almasb.fxgl.core.collection.grid.Grid;
-import javafx.animation.AnimationTimer;
-import javafx.application.Application;
-import javafx.geometry.Point2D;
-import javafx.scene.Group;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
-
-import static com.almasb.fxgl.dsl.FXGL.*;
-import javafx.stage.Stage;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import com.almasb.fxgl.app.GameApplication;
-import com.almasb.fxgl.app.GameSettings;
-import com.almasb.fxgl.dsl.FXGL;
-import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.input.Input;
-import com.almasb.fxgl.input.UserAction;
-import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
-
-import java.util.Map;
+import nsu.game.Game;
+import nsu.game.GameLoop;
 
 
 /*
@@ -57,6 +20,14 @@ public class HMClone {
         new Thread(new GameLoop(new Game(1000, 1000))).start();
     }
 }
+
+
+
+
+
+
+
+
 
 //
 //

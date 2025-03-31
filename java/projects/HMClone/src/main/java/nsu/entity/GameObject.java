@@ -1,9 +1,31 @@
-package nsu;
+package nsu.entity;
 
+
+import nsu.obj_core.Position;
+import nsu.obj_core.Size;
+
+import java.awt.*;
+import java.io.IOException;
 
 public abstract class GameObject {
-    private Position position;
-    private Size size;
+    protected Position position;
+    protected Size size;
+
+    public GameObject(){
+        position = new Position(50, 50);
+        size = new Size(100, 100);
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public abstract void update();
+    public abstract Image getSprite() throws IOException; // CHANGE: separate graphics loader based on gameObject
 }
 
 //import javafx.scene.Node;

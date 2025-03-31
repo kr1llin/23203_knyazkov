@@ -1,19 +1,27 @@
 package nsu;
 
+import javax.swing.*;
+
+import com.almasb.fxgl.core.collection.grid.Grid;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+
+import static com.almasb.fxgl.dsl.FXGL.*;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -29,18 +37,126 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+
 import java.util.Map;
 
 
+/*
+TODO:
+    Rotation to mouse
+    Camera (and add big level)
+    Level + Collision (add health bars to it)
+    Enemies
+    Weapons types
+    Simple AI (aggression area)
+    Dialogs
+ */
 
+public class HMClone {
+    public static void main(String[] args){
+        new Thread(new GameLoop(new Game(1000, 1000))).start();
+    }
+}
 
-
-// Change level = change scene
 //
+//
+//public class HMClone extends GameApplication {
+//    private final int WORLD_WIDTH = 2000;
+//    private final int WORLD_HEIGHT = 2000;
+//        private static final Color GRID_COLOR = Color.rgb(200, 200, 200, 0.3);
+//    private static final double GRID_MAJOR_LINE_WIDTH = 0.7;
+//    private static final double GRID_MINOR_LINE_WIDTH = 0.3;
+//
+//    private Group createGrid() {
+//        Group gridGroup = new Group();
+//
+//        for (double x = 0; x <= WORLD_WIDTH; x += 50) {
+//            Line line = new Line(x, 0, x, WORLD_HEIGHT);
+//            line.setStroke(GRID_COLOR);
+//            line.setStrokeWidth(GRID_MINOR_LINE_WIDTH);
+//            gridGroup.getChildren().add(line);
+//        }
+//
+//        for (double y = 0; y <= WORLD_HEIGHT; y += 50) {
+//            Line line = new Line(0, y, WORLD_WIDTH, y);
+//            line.setStroke(GRID_COLOR);
+//            line.setStrokeWidth(GRID_MINOR_LINE_WIDTH);
+//            gridGroup.getChildren().add(line);
+//        }
+//
+//        for (double x = 0; x <= WORLD_WIDTH; x += 100) {
+//            Line line = new Line(x, 0, x, WORLD_HEIGHT);
+//            line.setStroke(GRID_COLOR);
+//            line.setStrokeWidth(GRID_MAJOR_LINE_WIDTH);
+//            gridGroup.getChildren().add(line);
+//        }
+//
+//        for (double y = 0; y <= WORLD_HEIGHT; y += 100) {
+//            Line line = new Line(0, y, WORLD_WIDTH, y);
+//            line.setStroke(GRID_COLOR);
+//            line.setStrokeWidth(GRID_MAJOR_LINE_WIDTH);
+//            gridGroup.getChildren().add(line);
+//        }
+//
+//        return gridGroup;
+//    }
+//
+//    @Override
+//    protected void initSettings(GameSettings settings) {
+//        settings.setWidth(WORLD_WIDTH);
+//        settings.setHeight(WORLD_HEIGHT);
+//        settings.setTitle("Hotline Miami Clone");
+//    }
+//
+//    @Override
+//    protected void initInput() {
+//        // while a key is being pressed
+//        FXGL.onKey(KeyCode.D, () -> {
+//           player.translateX(5);
+//            FXGL.inc("pixelMoved", +5);
+//        });
+//        FXGL.onKey(KeyCode.A, () -> {
+//            player.translateX(-5);
+//            FXGL.inc("pixelMoved", -5);
+//        });
+//    }
+//
+//    @Override
+//    protected void initUI() {
+//        Text textPixels = new Text();
+//        textPixels.setTranslateX(50);
+//        textPixels.setTranslateY(100);
+//        textPixels.textProperty().bind(FXGL.getWorldProperties().
+//                intProperty("pixelMoved").asString());
+//        FXGL.getGameScene().addUINode(textPixels);
+//    }
+//
+//    @Override
+//    protected void initGameVars(Map<String, Object> vars){
+//        vars.put("pixelMoved", 0);
+//    }
+//
+//    private Entity player;
+//    @Override
+//    protected void initGame() {
+//        Group grid = createGrid();
+//        getGameScene().addUINode(grid);
+//        player = FXGL.entityBuilder()
+//                .at(300, 300)
+//                .view(new Rectangle(25, 25, Color.AQUA))
+//                .buildAndAttach();
+//    }
+//
+//    public static void main(String[] args) {
+//        launch(args);
+//    }
+//}
+
+
+ //Change level = change scene
+// BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD
 //public class HMClone extends Application {
-//    private double cameraX = 0;
-//    private double cameraY = 0;
-//    private final double CAMERA_LERP = 0.1; // Smoothing factor
+//
 //    private final double WORLD_WIDTH = 2000;
 //    private final double WORLD_HEIGHT = 2000;
 //
@@ -49,15 +165,58 @@ import java.util.Map;
 //    private static final double GRID_MINOR_LINE_WIDTH = 0.3;
 //
 //    private Pane root;
-//    private List<Bullet> bullets = new ArrayList<>();
-//    private List<GameObject> enemies = new ArrayList<>();
-//    private Player player = new Player(WORLD_WIDTH, WORLD_HEIGHT);
+//    private Level currentLevel;
+//    private Camera camera;
 //
+//    @Override
+//    public void start(Stage primaryStage) {
+//        initializeRoot();
+//        initializeSystems();
+//        loadInitialLevel();
 //
+//        Scene scene = new Scene(root);
+//        setupInput(scene);
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
 //
-//    public void init() {
-//        // init resources
+//        startGameLoop();
 //    }
+//
+//    private void initializeRoot(){
+//        root = new Pane();
+//        root.setPrefSize(1000, 1000);
+//        root.getChildren().add(createGrid());
+//    }
+//
+//    private void initializeSystems() {
+//        camera = new Camera(WORLD_WIDTH, WORLD_HEIGHT);
+//    }
+//
+//    private void loadInitialLevel() {
+//        currentLevel = new Level(root, WORLD_WIDTH, WORLD_HEIGHT);
+//        currentLevel.loadFromFile("/home/krillin/code/nsu/23203_knyazkov/java/projects/HMClone/src/main/resources/levels/level1.txt");
+//        currentLevel.getInputHandler().setPlayer(currentLevel.getPlayer());
+////        camera.setTarget(currentLevel::getPlayer);
+//    }
+//
+//    private void startGameLoop() {
+//        new AnimationTimer() {
+//            @Override
+//            public void handle(long now) {
+//                currentLevel.update();
+////                camera.update(root.getWidth(), root.getHeight());
+////                camera.apply(root);
+//            }
+//        }.start();
+//    }
+//
+//    private void setupInput(Scene scene) {
+//        scene.setOnKeyPressed(currentLevel.getInputHandler()::handleKeyPress);
+//        scene.setOnKeyReleased(currentLevel.getInputHandler()::handleKeyRelease);
+//        scene.setOnMouseMoved(currentLevel.getInputHandler()::handleMouseMove);
+//        scene.setOnMouseClicked(currentLevel.getInputHandler()::handleMouseClick);
+//    }
+//
 //
 //    private Group createGrid() {
 //        Group gridGroup = new Group();
@@ -165,7 +324,7 @@ import java.util.Map;
 //        bullets.forEach(GameObject::update);
 //        enemies.forEach(GameObject::update);
 //
-////        bullets.removeIf(bullet -> bullet.isOutOfBound(WORLD_WIDTH, WORLD_HEIGHT));
+//        bullets.removeIf(bullet -> bullet.isOutOfBound(WORLD_WIDTH, WORLD_HEIGHT));
 //    }
 //
 //    @Override
@@ -227,25 +386,25 @@ import java.util.Map;
 //
 //        primaryStage.show();
 //    }
-//
-////    private static class Player extends GameObject {
-////        Player(){
-////            super(new Rectangle(40, 20, Color.AQUA));
-////        }
-////    }
-//
-////    private static class Enemy extends GameObject {
-////        Enemy(){
-////            super(new Rectangle(40, 20, Color.RED));
-////        }
-////    }
-//
-////    private static class Bullet extends GameObject {
-////        Bullet(){
-////            super(new Circle(10, 10, 10, Color.BLACK));
-////        }
-////    }
-//
+
+//    private static class Player extends GameObject {
+//        Player(){
+//            super(new Rectangle(40, 20, Color.AQUA));
+//        }
+//    }
+
+//    private static class Enemy extends GameObject {
+//        Enemy(){
+//            super(new Rectangle(40, 20, Color.RED));
+//        }
+//    }
+
+//    private static class Bullet extends GameObject {
+//        Bullet(){
+//            super(new Circle(10, 10, 10, Color.BLACK));
+//        }
+//    }
+
 //    @Override
 //    public void stop(){
 //        // release resources

@@ -1,22 +1,21 @@
 //package nsu;
 //
-//
 //import javafx.geometry.Point2D;
 //import javafx.scene.paint.Color;
 //import javafx.scene.shape.Rectangle;
+//import nsu.GameObject;
 //
-//class Player extends GameObject {
+//class Enemy extends GameObject {
 //    private double speed = 3.0;
 //    private boolean movingRight = false;
 //    private boolean movingLeft = false;
 //    private boolean movingUp = false;
 //    private boolean movingDown = false;
-//    private boolean isShooting = false;
 //    private double mouseX;
 //    private double mouseY;
 //
-//    public Player(double world_width, double world_height) {
-//        super(new Rectangle(40, 20, Color.AQUA));
+//    public Enemy(Point2D position) {
+//        super(new Rectangle(position.getX(), position.getY(), Color.RED));
 //    }
 //
 //    @Override
@@ -51,42 +50,5 @@
 //        double dy = mouseY - view.getTranslateY();
 //        double angle = Math.toDegrees(Math.atan2(dy, dx));
 //        view.setRotate(angle);
-//    }
-//
-//    public void rotateTo(Point2D position) {
-//        this.mouseX = position.getX();
-//        this.mouseY = position.getY();
-//    }
-//
-//    public void moveRight() {
-//        movingRight = true;
-//    }
-//
-//    public void moveLeft() {
-//        movingLeft = true;
-//    }
-//
-//    public void moveUp() {
-//        movingUp = true;
-//    }
-//
-//    public void moveDown() {
-//        movingDown = true;
-//    }
-//
-//    public void stopRight() {
-//        movingRight = false;
-//    }
-//
-//    public void stopLeft() {
-//        movingLeft = false;
-//    }
-//
-//    public void stopUp() {
-//        movingUp = false;
-//    }
-//
-//    public void stopDown() {
-//        movingDown = false;
 //    }
 //}

@@ -1,23 +1,12 @@
-: fib
-  dup 0 > if
-    dup 1 = if
-      0 .
-    else
-      dup 2 = if
-        0 . 1 .
-      else
-        0 . 1 .
-        0 1
-        rot 2 - 0
-        do
-          over +
-          dup .
-          swap rot
-        loop
-        drop drop
-      then
-    then
-  then
-  drop ;
-
- 100 fib
+: fibonacci ( n -- )
+  dup 0= if drop else
+  dup 1 = if drop 0 . else
+  dup 2 = if drop 0 . 1 . else
+  0 . 1 .
+  0 1
+  rot 2 - 0 ?do
+    over over +
+    dup .
+    swap rot drop
+  loop
+  2drop then then then ;

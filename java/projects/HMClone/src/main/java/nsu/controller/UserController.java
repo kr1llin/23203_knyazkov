@@ -33,7 +33,12 @@ public class UserController implements Controller {
         return input.isPressed(KeyEvent.VK_RIGHT);
     }
 
+    @Override
+    public boolean cursorMoved() {
+        return input.isMouseMoved();
+    }
 
+    @Override
     public Position getMousePosition() {
         return input.getMousePosition();
     }

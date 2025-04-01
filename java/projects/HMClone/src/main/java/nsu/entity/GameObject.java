@@ -3,6 +3,7 @@ package nsu.entity;
 
 import nsu.obj_core.Position;
 import nsu.obj_core.Size;
+import nsu.obj_core.Rotation;
 
 import java.awt.*;
 import java.io.IOException;
@@ -10,10 +11,12 @@ import java.io.IOException;
 public abstract class GameObject {
     protected Position position;
     protected Size size;
+    protected Rotation rotation;
 
     public GameObject(){
         position = new Position(50, 50);
         size = new Size(100, 100);
+        rotation = new Rotation();
     }
 
     public Position getPosition() {
@@ -22,6 +25,10 @@ public abstract class GameObject {
 
     public Size getSize() {
         return size;
+    }
+
+    public Rotation getRotation(){
+        return rotation;
     }
 
     public abstract void update();

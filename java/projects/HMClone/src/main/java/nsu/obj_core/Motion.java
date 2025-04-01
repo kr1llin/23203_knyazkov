@@ -5,6 +5,7 @@ import nsu.controller.Controller;
 public class Motion {
     private Vector2D vector;
     private double velocity;
+    private Position mousePos;
 
     public Motion(double velocity) {
         this.vector = new Vector2D(0, 0);
@@ -26,6 +27,10 @@ public class Motion {
         }
         if (controller.isRequestingRight()) {
             dx++;
+        }
+
+        if (controller.cursorMoved()){
+            mousePos = controller.getMousePosition();
         }
 
         vector = new Vector2D(dx, dy);

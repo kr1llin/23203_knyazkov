@@ -5,22 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f25af39-00e8-4f01-971f-150b33e09de5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/forth/progs/bubblesort" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/Display.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/Enemy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/GameLoop.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/InputHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/Level.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/LevelLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/Wall.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HMClone/src/main/resources/levels/level1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/forth/progs/fibo" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/forth/progs/fibo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/Bullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/HMClone.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/HMClone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/display/Camera.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/obj_core/Rotation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/display/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/display/Display.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/display/RenderModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/display/RenderModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/entity/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/entity/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/entity/MovingEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/entity/MovingEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/game/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/game/state/LevelState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/game/state/LevelState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/game/state/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/game/state/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/input/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/input/Input.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/level/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/level/Level.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/obj_core/Motion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/obj_core/Motion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/obj_core/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/obj_core/Position.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,5 +1,6 @@
 package nsu.level;
 
+import nsu.game.Game;
 import nsu.graphics.SpriteLibrary;
 import nsu.obj_core.*;
 
@@ -21,5 +22,13 @@ public class Level {
 
     public Tile[][] getTiles() {
         return tiles;
+    }
+
+    public double getHeight() {
+        return tiles[0].length * Game.SPRITE_SIZE;
+    }
+
+    public double getWidth(){
+        return tiles.length * Game.SPRITE_SIZE;
     }
 }

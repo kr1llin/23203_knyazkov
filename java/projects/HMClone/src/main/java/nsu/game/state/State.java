@@ -1,6 +1,7 @@
 package nsu.game.state;
 
 import nsu.controller.UserController;
+import nsu.display.Camera;
 import nsu.entity.GameObject;
 import nsu.entity.Player;
 import nsu.graphics.SpriteLibrary;
@@ -17,15 +18,25 @@ public abstract class State {
     protected final List<GameObject> gameObjects;
     protected Input input;
     protected SpriteLibrary spriteLibrary;
+    protected Camera camera;
 
-    public State(Input input) {
+    public State(Size windowSize, Input input) {
         this.input = input;
         gameObjects = new ArrayList<>();
         spriteLibrary = new SpriteLibrary();
+        camera = new Camera(windowSize);
     }
 
     public void update(){
         gameObjects.forEach(GameObject::update);
+        handleMouseInput();
+        camera.update(this);
+    }
+
+    private void handleMouseInput() {
+        if (input.isMouseClicked()){
+        }
+        input.clearMouseClick();
     }
 
     public List<GameObject> getGameObjects() {
@@ -34,5 +45,9 @@ public abstract class State {
 
     public Level getLevel(){
         return stateLevel;
+    }
+
+    public Camera getCamera() {
+        return camera;
     }
 }

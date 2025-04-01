@@ -7,6 +7,7 @@ import nsu.display.Display;
 import nsu.entity.GameObject;
 import nsu.game.state.*;
 import nsu.entity.Player;
+import nsu.obj_core.Size;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +22,7 @@ public class Game {
     public Game(int width, int height){
         input = new Input();
         display = new Display(width, height, input);
-        state = new LevelState(input);
-
+        state = new LevelState(new Size(width, height), input);
     }
 
     public void update(){

@@ -17,14 +17,15 @@ public class RenderModule {
         Graphics2D g2d = (Graphics2D) graphics;
         AffineTransform originalTransform = g2d.getTransform();
 
+        renderLevel(state, graphics);
         // ADD TRANSFORMATION METHOD TO OBJECTS (every object has it's own transformations)
         state.getGameObjects().forEach(gameObject -> {
             try {
-                renderLevel(state, graphics);
-                AffineTransform transform = getAffineTransform(state, gameObject);
-                g2d.setTransform(transform);
-                g2d.drawImage(gameObject.getSprite(), 0, 0, null);
-                g2d.setTransform(originalTransform);
+                if (gameObject.isAlive()) {
+                    AffineTransform transform = gameObject.getAffineTransform(state, gameObject);
+                    g2d.setTransform(transform);
+                    g2d.drawImage(gameObject.getSprite(), 0, 0, null);
+                    g2d.setTransform(originalTransform);
 
 //                graphics.drawImage(
 //                        gameObject.getSprite(),
@@ -32,27 +33,11 @@ public class RenderModule {
 //                        gameObject.getPosition().intY() - camera.getPosition().intY() -  gameObject.getSize().getHeight() / 2,
 //                        null
 //                );
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
-    }
-
-    @NotNull
-    private static AffineTransform getAffineTransform(State state, GameObject gameObject) {
-        Camera camera = state.getCamera();
-
-        double screenX = gameObject.getPosition().getX() - camera.getPosition().getX();
-        double screenY = gameObject.getPosition().getY() - camera.getPosition().getY();
-
-        int height = gameObject.getSize().getHeight();
-        int width = gameObject.getSize().getWidth();
-
-        AffineTransform transform = new AffineTransform();
-        transform.translate(screenX, screenY);
-        transform.rotate(Math.toRadians(gameObject.getRotation().getRotationAngle()) + Math.PI / 2); // sprite looks up (we assume that all sprites are faced up)
-        transform.translate(-width / 2.0, -height / 2.0);
-        return transform;
     }
 
     private void renderLevel(State state, Graphics graphics) {

@@ -38,6 +38,13 @@ public class Camera {
         return windowSize;
     }
 
+    public Position screenToWorld(Position screenPosition) {
+        return new Position(
+                screenPosition.getX() + this.getPosition().getX(),
+                screenPosition.getY() + this.getPosition().getY()
+        );
+    }
+
     private void clampWithinBounds(State state) {
         if (position.getX() < 0) {
             position.setX(0);

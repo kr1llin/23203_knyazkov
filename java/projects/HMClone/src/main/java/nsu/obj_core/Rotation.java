@@ -11,11 +11,11 @@ public class Rotation {
     public void apply(Position mousePosition, Position entityPosition, Camera camera){
         if (mousePosition != null) {
 
-            double mouseWorldPositionX = mousePosition.getX() + camera.getPosition().intX();
-            double mouseWorldPositionY = mousePosition.getY() + camera.getPosition().intY();
+            double mouseWorldPositionX = mousePosition.getX() + (double) camera.getPosition().intX();
+            double mouseWorldPositionY = mousePosition.getY() + (double) camera.getPosition().intY();
 
             double dx = mouseWorldPositionX - entityPosition.getX();
-            double dy =mouseWorldPositionY - entityPosition.getY();
+            double dy = mouseWorldPositionY - entityPosition.getY();
 
 //            double dx = mousePosition.getX() - entityPosition.getX();
 //            double dy = mousePosition.getY() - entityPosition.getY();
@@ -25,7 +25,6 @@ public class Rotation {
                     dx
             ));
 
-            System.out.println("New rotation: " + rotationAngle);
         }
     }
     public void setRotationAngle(double angle){

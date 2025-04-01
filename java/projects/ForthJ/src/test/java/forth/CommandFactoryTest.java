@@ -42,7 +42,7 @@ class CommandFactoryTest {
 
 
     @Test
-    void getCommand() throws IOException {
+    void getWrongCommand() throws IOException {
         assertNull(factory.getCommand("WRONG"));
     }
 

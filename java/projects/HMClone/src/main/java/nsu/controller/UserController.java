@@ -43,4 +43,9 @@ public class UserController implements Controller {
         return input.getMousePosition();
     }
 
+    @Override
+    public boolean isShooting(){
+        return input.isMouseClicked();
+    }
+
 }

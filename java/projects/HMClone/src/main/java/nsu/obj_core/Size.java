@@ -9,6 +9,11 @@ public class Size {
         this.height = height;
     }
 
+    public Size(Size size){
+        this.width = size.getWidth();
+        this.height = size.getHeight();
+    }
+
     public int getWidth() {
         return width;
     }

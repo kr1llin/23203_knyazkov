@@ -17,6 +17,8 @@ java {
 }
 
 
+
+
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.12.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
@@ -36,4 +38,10 @@ tasks.test {
 
 application{
     mainClass.set("forth.Main")
+}
+
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "forth.Main"
+    }
 }

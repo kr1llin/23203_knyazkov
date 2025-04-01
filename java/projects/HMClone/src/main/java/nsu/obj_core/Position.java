@@ -9,6 +9,11 @@ public class Position {
         this.y = y;
     }
 
+    public Position(Position position){
+        this.x = position.getX();
+        this.y = position.getY();
+    }
+
     public int intX() {
         return (int)Math.round(x);
     }
@@ -33,10 +38,13 @@ public class Position {
         return y;
     }
 
+    public Position translateByOffset(double dx, double dy){
+        return new Position(x + dx, y + dy);
+    }
+
     public void apply (Motion movement){
         Vector2D vector = movement.getVector();
         x += vector.getX();
         y += vector.getY();
-
     }
 }

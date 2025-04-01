@@ -1,15 +1,16 @@
 package forth.commands;
 
+import forth.CommandExecutionException;
 import forth.ExecutionContext;
 import forth.Interpreter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StackTest {
     ExecutionContext ctx;
@@ -19,6 +20,21 @@ public class StackTest {
     void init() throws IOException {
         ctx = new ExecutionContext();
         interpreter = new Interpreter(ctx);
+    }
+
+    @Test
+    void bigNumber() {
+        assertDoesNotThrow(() -> interpreter.executeLine("2147483647"));
+        assertDoesNotThrow(() -> interpreter.executeLine("-2147483648"));
+
+        assertThrows(CommandExecutionException.class,
+                () -> interpreter.executeLine("2147483648"));
+
+        assertThrows(CommandExecutionException.class,
+                () -> interpreter.executeLine("-2147483649"));
+
+        assertThrows(NumberFormatException.class,
+                () -> interpreter.executeLine("12ab"));
     }
 
     @Test

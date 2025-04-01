@@ -10,7 +10,7 @@ public class DotCommand implements Command {
         if (context.getStack().isEmpty()) {
             throw new CommandExecutionException(".", "Stack is empty");
         }
-        int value = context.getStack().pop();
+        int value = context.getStack().peek();
         context.addToMessageBuffer(value + " ");
     }
 }

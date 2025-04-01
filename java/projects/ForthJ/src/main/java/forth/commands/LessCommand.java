@@ -10,6 +10,6 @@ public class LessCommand implements Command {
     public void execute(ExecutionContext context) throws IOException {
         Integer v1 = context.getStack().pop();
         Integer v2 = context.getStack().pop();
-        context.getStack().push((v1 < v2)? 1 : 0);
+        context.getStack().push((v2 < v1)? 1 : 0);
     }
 }

@@ -28,16 +28,15 @@ public abstract class State {
     }
 
     public void update(){
-        gameObjects.forEach(GameObject::update);
-        handleMouseInput();
+        gameObjects.forEach(gameObject -> {
+            if (gameObject.isAlive()) {
+                gameObject.update();
+            }
+        });
         camera.update(this);
-    }
-
-    private void handleMouseInput() {
-        if (input.isMouseClicked()){
-        }
         input.clearMouseClick();
     }
+
 
     public List<GameObject> getGameObjects() {
         return gameObjects;

@@ -5,23 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f25af39-00e8-4f01-971f-150b33e09de5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/display/Camera.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/obj_core/Rotation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/forth/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/forth/Interpreter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/forth/commands/DotCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/forth/commands/DotCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/forth/commands/LessCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/forth/commands/LessCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/forth/progs/fibo" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/forth/progs/fibo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/forth/CommandFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/forth/CommandFactoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/forth/InterpreterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/forth/InterpreterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/forth/commands/StackTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/forth/commands/StackTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/controller/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/display/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/display/Display.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/display/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/display/Camera.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/display/RenderModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/display/RenderModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/entity/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/entity/Bullet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/entity/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/entity/GameObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/entity/MovingEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/entity/MovingEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/game/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/game/state/LevelState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/game/state/LevelState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/game/state/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/game/state/State.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/input/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/input/Input.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/level/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/level/Level.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/obj_core/Motion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/obj_core/Motion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/obj_core/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/obj_core/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/obj_core/Rotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/obj_core/Rotation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/obj_core/Size.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HMClone/src/main/java/nsu/obj_core/Size.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,41 +92,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Coverage&quot;,
-    &quot;Gradle.Build ForthJ.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.CommandFactoryTest.IgnoreList.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.CommandFactoryTest.ValidClass.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.CommandFactoryTest.getCommand.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.CommandFactoryTest.loadWringClass.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.CommandFactoryTest.loadWrongClass.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.CommandFactoryTest.testConfigFileNotFound.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.CommandFactoryTest.testLoadValidClass.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ForthJ [:forth.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ForthJ [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ForthJ [run].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.LoopCommandTest.loopThrowsExceptionWhenNoControlContext.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.LoopCommandTest.nestedLoops.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ProgramsTest.EvenOrNot.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ProgramsTest.Fibo.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ProgramsTest.FizzBuzz.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StackTest.checkFullStack.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Tests in 'ForthJ.test'.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Main.executor": "Coverage",
+    "Gradle.Build ForthJ.executor": "Run",
+    "Gradle.CommandFactoryTest.IgnoreList.executor": "Run",
+    "Gradle.CommandFactoryTest.ValidClass.executor": "Run",
+    "Gradle.CommandFactoryTest.getCommand.executor": "Run",
+    "Gradle.CommandFactoryTest.getWrongCommand.executor": "Run",
+    "Gradle.CommandFactoryTest.loadWringClass.executor": "Run",
+    "Gradle.CommandFactoryTest.loadWrongClass.executor": "Run",
+    "Gradle.CommandFactoryTest.testConfigFileNotFound.executor": "Run",
+    "Gradle.CommandFactoryTest.testLoadValidClass.executor": "Run",
+    "Gradle.ForthJ [:forth.Main.main()].executor": "Run",
+    "Gradle.ForthJ [build].executor": "Run",
+    "Gradle.ForthJ [run].executor": "Run",
+    "Gradle.LoopCommandTest.loopThrowsExceptionWhenNoControlContext.executor": "Run",
+    "Gradle.LoopCommandTest.nestedLoops.executor": "Run",
+    "Gradle.ProgramsTest.EvenOrNot.executor": "Run",
+    "Gradle.ProgramsTest.Fibo.executor": "Run",
+    "Gradle.ProgramsTest.FizzBuzz.executor": "Run",
+    "Gradle.StackTest.bigNumber.executor": "Run",
+    "Gradle.StackTest.checkFullStack.executor": "Run",
+    "Gradle.Tests in 'ForthJ.test'.executor": "Run",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true"
   }
-}</component>
+}]]></component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="gradle build" />
       <command value="gradle run" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.ProgramsTest.FizzBuzz">
+  <component name="RunManager" selected="Gradle.StackTest.bigNumber">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="forth.Main" />
       <module name="ForthJ.main" />
@@ -135,7 +142,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CommandFactoryTest.testConfigFileNotFound" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CommandFactoryTest.getWrongCommand" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -148,7 +155,31 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;forth.CommandFactoryTest.testConfigFileNotFound&quot;" />
+            <option value="&quot;forth.CommandFactoryTest.getWrongCommand&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="ProgramsTest.Fibo" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;forth.ProgramsTest.Fibo&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -183,7 +214,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="StackTest.checkFullStack" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="StackTest.bigNumber" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -196,29 +227,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;forth.commands.StackTest.checkFullStack&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="Tests in 'ForthJ.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
+            <option value="&quot;forth.commands.StackTest.bigNumber&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -231,18 +240,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="Gradle.CommandFactoryTest.testConfigFileNotFound" />
+      <item itemvalue="Gradle.CommandFactoryTest.getWrongCommand" />
+      <item itemvalue="Gradle.ProgramsTest.Fibo" />
+      <item itemvalue="Gradle.StackTest.bigNumber" />
       <item itemvalue="Gradle.ProgramsTest.FizzBuzz" />
-      <item itemvalue="Gradle.StackTest.checkFullStack" />
-      <item itemvalue="Gradle.Tests in 'ForthJ.test'" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.StackTest.bigNumber" />
+        <item itemvalue="Gradle.ProgramsTest.Fibo" />
+        <item itemvalue="Gradle.CommandFactoryTest.getWrongCommand" />
         <item itemvalue="Gradle.ProgramsTest.FizzBuzz" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Gradle.Tests in 'ForthJ.test'" />
-        <item itemvalue="Gradle.StackTest.checkFullStack" />
-        <item itemvalue="Gradle.CommandFactoryTest.testConfigFileNotFound" />
       </list>
     </recent_temporary>
   </component>

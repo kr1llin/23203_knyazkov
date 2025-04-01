@@ -48,8 +48,11 @@ public class Interpreter {
                     LOGGER.debug("Executing '{}' command", cmd);
                     cmd.execute(context);
                 } else {
-                    int number = Integer.parseInt(token);
-                    context.getStack().push(number);
+                    long value = Long.parseLong(token);
+                    if (value > Integer.MAX_VALUE || value < Integer.MIN_VALUE) {
+                        throw new CommandExecutionException(token, "Number isn't in integer bounds");
+                    }
+                    context.getStack().push((int) value);
                 }
             } catch (CommandException | IOException e) {
                 LOGGER.debug("Exception command: ", e.getMessage());

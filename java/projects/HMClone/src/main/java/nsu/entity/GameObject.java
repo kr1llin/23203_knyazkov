@@ -1,26 +1,48 @@
 package nsu.entity;
 
 
+import nsu.display.Camera;
+import nsu.game.state.State;
 import nsu.obj_core.Position;
 import nsu.obj_core.Size;
 import nsu.obj_core.Rotation;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.io.IOException;
 
 public abstract class GameObject {
     protected Position position;
     protected Size size;
     protected Rotation rotation;
+    protected boolean isAlive = false;
+    protected boolean isShooting = false;
 
     public GameObject(){
+        isAlive = true;
         position = new Position(50, 50);
         size = new Size(100, 100);
         rotation = new Rotation();
     }
 
+
+    public GameObject(Position position){
+        isAlive = true;
+        this.position = new Position(position);
+        this.rotation = new Rotation();
+    }
+
+    public void kill(){
+        isAlive = false;
+    }
+
     public Position getPosition() {
         return position;
+    }
+
+    public boolean isShooting(){
+        return isShooting;
     }
 
     public Size getSize() {
@@ -33,6 +55,29 @@ public abstract class GameObject {
 
     public abstract void update();
     public abstract Image getSprite() throws IOException; // CHANGE: separate graphics loader based on gameObject
+
+    public AffineTransform getAffineTransform(State state, GameObject gameObject)
+    {
+        Camera camera = state.getCamera();
+
+        double screenX = gameObject.getPosition().getX() - camera.getPosition().getX();
+        double screenY = gameObject.getPosition().getY() - camera.getPosition().getY();
+        int height = gameObject.getSize().getHeight();
+        int width = gameObject.getSize().getWidth();
+
+        AffineTransform transform = new AffineTransform();
+        transform.translate(screenX, screenY);
+        transform.translate(-width / 2.0, -height / 2.0);
+        return transform;
+    }
+
+    public void stopShooting() {
+        isShooting = false;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
 }
 
 //import javafx.scene.Node;

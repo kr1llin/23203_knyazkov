@@ -38,11 +38,20 @@ public class Motion {
         vector.multiply(velocity);
     }
 
+    public void update(){
+        vector.multiply(velocity);
+    }
+
     public boolean isMoving() {
         return vector.length() > 0;
     }
     public Vector2D getVector() {
         return vector;
+    }
+
+    public void setVector(Vector2D direction) {
+        vector = direction;
+        vector.normilize();
     }
 }
 

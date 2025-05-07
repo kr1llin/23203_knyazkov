@@ -1,5 +1,6 @@
 package forth.commands;
 
+import forth.CommandExecutionException;
 import forth.ExecutionContext;
 import forth.Interpreter;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,7 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class IFCommandTest {
+class IfElseCommandTest {
     ExecutionContext ctx;
     Interpreter interpreter;
 
@@ -30,4 +31,13 @@ class IFCommandTest {
         assertEquals(3, ctx.getCurrentTokenIndex());
     }
 
+    @Test
+    void unbalancedIf() {
+        assertThrows(CommandExecutionException.class, () -> interpreter.executeLine("0 if 100"));
+    }
+
+    @Test
+    void unbalancedElse() {
+        assertThrows(CommandExecutionException.class, () -> interpreter.executeLine("1 if 100 else "));
+    }
 }

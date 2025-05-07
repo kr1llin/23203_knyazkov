@@ -3,20 +3,22 @@ package nsu;
 import nsu.game.Game;
 import nsu.game.GameLoop;
 
+import java.awt.*;
+import java.io.IOException;
+
 
 /*
 TODO:
-    Rotation to mouse
-    Camera (and add big level)
-    Level + Collision (add health bars to it)
-    Enemies
-    Weapons types
-    Simple AI (aggression area)
-    Dialogs
+    Rotation to mouse (+)
+    Camera (and add big level) (+-)
+    Level + Collision (add health bars to it) (++)
+    Enemies (+)
+    Weapons types (-)
+    Simple AI (aggression area) (-)
  */
 
 public class HMClone {
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException, FontFormatException {
         new Thread(new GameLoop(new Game(1000, 1000))).start();
     }
 }

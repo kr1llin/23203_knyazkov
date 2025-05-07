@@ -1,6 +1,7 @@
 package nsu.display;
 
 import nsu.entity.GameObject;
+import nsu.game.state.LevelState;
 import nsu.game.state.State;
 import nsu.obj_core.Position;
 import nsu.obj_core.Size;
@@ -23,12 +24,12 @@ public class Camera {
         this.objectWithFocus = Optional.of(object);
     }
 
-    public void update(State state){
+    public void update(LevelState state){
         if (objectWithFocus.isPresent()) {
             Position objectPosition = objectWithFocus.get().getPosition();
 
-            this.position.setX(objectPosition.getX() - windowSize.getWidth() / 2);
-            this.position.setY(objectPosition.getY() - windowSize.getHeight() / 2);
+            this.position.setX(objectPosition.getX() + (double) objectWithFocus.get().getSize().getWidth() /2 - (double) windowSize.getWidth() / 2);
+            this.position.setY(objectPosition.getY() + (double) objectWithFocus.get().getSize().getHeight() /2 - (double) windowSize.getHeight() / 2);
 
             clampWithinBounds(state);
         }
@@ -45,7 +46,7 @@ public class Camera {
         );
     }
 
-    private void clampWithinBounds(State state) {
+    private void clampWithinBounds(LevelState state) {
         if (position.getX() < 0) {
             position.setX(0);
         }
@@ -54,12 +55,12 @@ public class Camera {
             position.setY(0);
         }
 
-        if (position.getX() + windowSize.getWidth() > state.getLevel().getWidth()){
-            position.setX(state.getLevel().getWidth() - windowSize.getWidth());
+        if (position.getX() + windowSize.getWidth() > state.getWorld().getWidth()){
+            position.setX(state.getWorld().getWidth() - windowSize.getWidth());
         }
 
-        if (position.getY() + windowSize.getHeight() > state.getLevel().getHeight()){
-            position.setY(state.getLevel().getHeight() - windowSize.getHeight());
+        if (position.getY() + windowSize.getHeight() > state.getWorld().getHeight()){
+            position.setY(state.getWorld().getHeight() - windowSize.getHeight());
         }
     }
 

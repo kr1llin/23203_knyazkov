@@ -23,6 +23,14 @@ public class UserController implements Controller {
         return input.isPressed(KeyEvent.VK_DOWN);
     }
 
+    public boolean isRequestingOne() {return input.isPressed(KeyEvent.VK_1);}
+    public boolean isRequestingTwo() {return input.isPressed(KeyEvent.VK_2);}
+
+    @Override
+    public boolean isRequestingShift() {
+        return input.isPressed(KeyEvent.VK_BACK_SPACE);
+    }
+
     @Override
     public boolean isRequestingLeft() {
         return input.isPressed(KeyEvent.VK_LEFT);
@@ -33,6 +41,8 @@ public class UserController implements Controller {
         return input.isPressed(KeyEvent.VK_RIGHT);
     }
 
+
+
     @Override
     public boolean cursorMoved() {
         return input.isMouseMoved();
@@ -40,7 +50,7 @@ public class UserController implements Controller {
 
     @Override
     public Position getMousePosition() {
-        return input.getMousePosition();
+        return input.getMousePosition() == null ? new Position(0,0) : input.getMousePosition();
     }
 
     @Override

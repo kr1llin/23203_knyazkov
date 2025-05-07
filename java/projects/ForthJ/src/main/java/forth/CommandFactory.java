@@ -11,7 +11,7 @@ import java.util.*;
 
 
 public class CommandFactory {
-    private static final Logger LOGGER = LogManager.getLogger();
+//    private static final Logger LOGGER = LogManager.getLogger();
 
     /**<p><b>CommandFactory(String configFile)</b> - loads {@link Command} classes from config file</p>
      *
@@ -60,7 +60,7 @@ public class CommandFactory {
      * @throws CommandInstantiationException if there is an error during command instantiation
      */
     public Command getCommand(String name) {
-        LOGGER.debug("Trying to get \"{}\" command", name);
+//        LOGGER.debug("Trying to get \"{}\" command", name);
         if (inIgnoreList(name)) {
             return new IgnoreCommand();
         }
@@ -78,7 +78,7 @@ public class CommandFactory {
             return cmd;
         } catch (IllegalAccessException | InstantiationException | InvocationTargetException |
                  NoSuchMethodException e) {
-            LOGGER.debug("Exception getting {} command, exception is {}", name, e.toString());
+//            LOGGER.debug("Exception getting {} command, exception is {}", name, e.toString());
             throw new CommandInstantiationException(name, e);
         }
     }

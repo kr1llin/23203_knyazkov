@@ -9,28 +9,34 @@ import nsu.game.state.*;
 import nsu.entity.Player;
 import nsu.obj_core.Size;
 
+import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    public static int SPRITE_SIZE = 64;
-
     private final Display display;
     private Input input;
-    private State state;
+    private GameStateManager stateManager;
 
-    public Game(int width, int height){
+    private int width;
+    private int height;
+
+    public Game(int width, int height) throws IOException, FontFormatException {
+        this.width = width;
+        this.height = height;
         input = new Input();
         display = new Display(width, height, input);
-        state = new LevelState(new Size(width, height), input);
+        stateManager = new GameStateManager();
+        stateManager.changeState(new LevelState(stateManager, display, input));
     }
 
-    public void update(){
-        state.update();
+    public void update() throws IOException {
+        stateManager.update();
     }
 
     public void render(){
-        display.render(state);
+        display.render(stateManager.getCurrentState());
     }
 
 }

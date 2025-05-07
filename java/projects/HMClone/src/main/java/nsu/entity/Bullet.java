@@ -1,41 +1,54 @@
 package nsu.entity;
 
-import nsu.display.Camera;
-import nsu.game.Game;
 import nsu.game.state.State;
+import nsu.obj_core.collission.CollisionVisitor;
 import nsu.obj_core.Position;
 import nsu.obj_core.Size;
-
-import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Bullet extends MovingEntity{
     int BULLET_WIDTH =  25;
     int BULLET_HEIGHT = 25;
-    int BULLET_SPEED = 5;
+    static int speed = 2;
+    int damage = 5;
 
-    public Bullet(Position position) {
-        super(position, 5);
+    public Bullet(Position position, Position direction) {
+        super(position, speed);
+        changeDirectionTo(direction);
         size = new Size(BULLET_WIDTH, BULLET_HEIGHT);
     }
 
     @Override
-    public void update() {
+    public void update(State state) {
         // bullet takes in constructor player position
-        // normilizes direction (unit vector by mouse position)
-        super.update();
+        // normalizes direction (unit vector by mouse position)
+        super.update(state);
     }
 
     @Override
-    public Image getSprite() {
-        BufferedImage image = new BufferedImage(BULLET_WIDTH, BULLET_HEIGHT, BufferedImage.TYPE_INT_RGB);
-        Graphics2D graphics = image.createGraphics();
+    public void accept(CollisionVisitor visitor, GameObject other) {
+        visitor.visit(this, other);
+    }
 
-        graphics.setColor(Color.ORANGE);
-        graphics.fillRect(0,0, BULLET_WIDTH, BULLET_HEIGHT);
-        graphics.dispose();
-        return image;
+    public int getDamage(){
+        return damage;
+    }
+
+    public int getSpeed(){
+        return speed;
+    }
+
+    boolean hit = false;
+
+    public int hit() {
+        if (!hit) {
+            hit = true;
+            return damage;
+        } else {
+            return 0;
+        }
+    }
+
+    public void die() {
+        isAlive = false;
     }
 }

@@ -15,7 +15,7 @@ import org.apache.logging.log4j.LogManager;
  *
  */
 public class Interpreter {
-    private static final Logger LOGGER = LogManager.getLogger();
+//    private static final Logger LOGGER = LogManager.getLogger();
 
     public Interpreter() throws IOException {
     }
@@ -45,7 +45,7 @@ public class Interpreter {
             try {
                 Command cmd = context.getFactory().getCommand(token);
                 if (cmd != null) {
-                    LOGGER.debug("Executing '{}' command", cmd);
+//                    LOGGER.debug("Executing '{}' command", cmd);
                     cmd.execute(context);
                 } else {
                     long value = Long.parseLong(token);
@@ -55,7 +55,7 @@ public class Interpreter {
                     context.getStack().push((int) value);
                 }
             } catch (CommandException | IOException e) {
-                LOGGER.debug("Exception command: ", e.getMessage());
+//                LOGGER.debug("Exception command: ", e.getMessage());
                 throw new CommandExecutionException(token, e.getMessage());
             }
         }

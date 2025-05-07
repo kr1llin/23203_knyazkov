@@ -3,6 +3,7 @@ package forth.commands;
 import forth.CommandExecutionException;
 import forth.ExecutionContext;
 import forth.Interpreter;
+import forth.StackException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -56,6 +57,9 @@ public class StackTest {
 
     @Test
     void stackOverflow(){
-
+//        for (long i = 0; i < Integer.MAX_VALUE; i++){
+//            ctx.getStack().push(10);
+//        }
+//        assertThrows(StackException.class, () -> ctx.getStack().push(10));
     }
 }

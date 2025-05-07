@@ -1,8 +1,10 @@
 package nsu.game;
 
+import java.io.IOException;
+
 public class GameLoop implements Runnable{
 
-    private Game game;
+    private final Game game;
 
     private boolean running;
     private final double updateRate = 1.0d / 60.0d; // slice
@@ -25,10 +27,13 @@ public class GameLoop implements Runnable{
 
             // to be sure it's updating in fixed intervals
             if (accumulator >= updateRate) {
-
                 // 60 times per second update
                 while (accumulator >= updateRate) {
-                    update();
+                    try {
+                        update();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                     accumulator -= updateRate;
                 }
             render();
@@ -36,7 +41,7 @@ public class GameLoop implements Runnable{
         }
     }
 
-    private void update() {
+    private void update() throws IOException {
         game.update();
     }
     private void render(){

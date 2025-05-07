@@ -15,4 +15,8 @@ public interface Controller {
     boolean isShooting();
     boolean cursorMoved();
     Position getMousePosition();
+
+    boolean isRequestingOne();
+    boolean isRequestingTwo();
+    boolean isRequestingShift();
 }

@@ -1,39 +1,33 @@
 package nsu.entity;
 
 import nsu.controller.Controller;
-import nsu.display.Camera;
+import nsu.game.state.State;
 import nsu.graphics.AnimationManager;
-import nsu.graphics.SpriteLibrary;
-import nsu.obj_core.Motion;
-import nsu.obj_core.Position;
-import nsu.obj_core.Size;
-import nsu.obj_core.Vector2D;
+import nsu.obj_core.*;
+import nsu.obj_core.collission.CollisionBox;
 
 import java.awt.*;
 
 public abstract class MovingEntity extends GameObject {
-    protected  Controller controller = null;
-    protected  Motion motion = null;
-    protected  AnimationManager animationManager = null;
-    protected  Camera camera = null;
+    protected Controller controller = null;
+    protected Motion motion = null;
+    protected AnimationManager animationManager = null;
     protected double velocity = 5;
 
-    public MovingEntity(Controller controller, SpriteLibrary spriteLibrary, Camera camera) {
+
+    public MovingEntity(Controller controller) {
         super();
         this.controller = controller;
         this.motion = new Motion(velocity);
-        this.camera = camera;
-        animationManager = new AnimationManager(spriteLibrary.getUnit("player"));
     }
+
     public void changeDirectionTo(Position targetWorldPosition) {
         double dx = targetWorldPosition.getX() - position.getX();
         double dy = targetWorldPosition.getY() - position.getY();
         Vector2D delta = new Vector2D(dx, dy);
         double length = delta.length();
         if (length > 0) {
-            motion.setVector(new Vector2D(
-                    (dx / length) * velocity,
-                    (dy / length) * velocity
+            motion.setVector(new Vector2D(dx, dy
             ));
         }
     }
@@ -45,27 +39,53 @@ public abstract class MovingEntity extends GameObject {
     }
 
     @Override
-    public void update(){
+    public void update(State state) {
         motion.update();
         position.apply(motion);
-//        rotation.apply(controller.getMousePosition(), this.position, camera);
-//        if (controller.isShooting()){
-//            isShooting = true;
-//        }
     }
 
-    protected void decideAnimation(){
+
+    protected void decideAnimation() {
         if (motion.isMoving()) {
             animationManager.playAnimation("walk");
-        }
-        else {
+        } else {
             animationManager.playAnimation("idle");
         }
     }
 
     @Override
-    public Image getSprite()  {
-        return animationManager.getSprite();
+    public CollisionBox getCollisionBox() {
+        return new CollisionBox(
+                new Rectangle(
+                        (int) (position.intX() + motion.getVector().getX()),
+                        (int) (position.intY() + motion.getVector().getY()),
+                        (int) size.getWidth(),
+                        (int) size.getHeight()
+                )
+        );
     }
 
+    public void stopMoving() {
+        motion.setVector(new Vector2D(0, 0));
+    }
+
+    public void stopMovingSide(String collisionSide) {
+        motion.blockSide(collisionSide);
+    }
+
+    public void startMovingSide(String collisionSide) {
+        motion.unblockSide(collisionSide);
+    }
+
+    public double getVelocity() {
+        return velocity;
+    }
+
+    public Motion getMotion() {
+        return motion;
+    }
+
+    public Controller getController() {
+        return controller;
+    }
 }

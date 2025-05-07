@@ -47,4 +47,16 @@ public class Position {
         x += vector.getX();
         y += vector.getY();
     }
+
+    public Position add(int i, int i1) {
+        x +=i;
+        y += i1;
+        return this;
+    }
+
+    public Vector2D subtract(Position bCenter) {
+        x -= bCenter.getX();
+        y += bCenter.getY();
+        return new Vector2D(x,y);
+    }
 }

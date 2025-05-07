@@ -8,6 +8,10 @@ public class Vector2D {
         this.y = y;
     }
 
+    public static double distance(Position a, Position b) {
+        return Math.sqrt(Math.pow(a.getX() - b.getX(), 2) + Math.pow(a.getY() - b.getY(), 2));
+    }
+
     public void multiply(double velocity){
         x *= velocity;
         y *= velocity;
@@ -25,10 +29,25 @@ public class Vector2D {
         return Math.sqrt(x*x + y*y);
     }
 
-    public void normilize(){
-        if (length() != 0) {
-            x = x == 0 ? 0 : x / length();
-            y = y == 0 ? 0 : y / length();
+    public void normalize(){
+        double len = length();
+        if (len != 0) {
+            x /= len;
+            y /= len;
         }
     }
+
+    public void setX(double  v) {
+        x = v;
+    }
+
+    public void setY(double v){
+        y =v;
+    }
+
+    public void setVector(Vector2D initVect) {
+        x = initVect.x;
+        y = initVect.y;
+    }
+
 }

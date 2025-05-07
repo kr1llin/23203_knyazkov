@@ -1,52 +1,37 @@
 package nsu.game.state;
 
-import nsu.controller.UserController;
 import nsu.display.Camera;
+import nsu.display.Display;
 import nsu.entity.GameObject;
+import nsu.entity.MovingEntity;
 import nsu.entity.Player;
-import nsu.graphics.SpriteLibrary;
-import nsu.level.Tile;
 import nsu.obj_core.*;
 import nsu.input.Input;
-import nsu.level.Level;
 
+import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public abstract class State {
-    protected Level stateLevel;
-    protected final List<GameObject> gameObjects;
+    protected GameStateManager stateManager;
+    protected Display display;
     protected Input input;
-    protected SpriteLibrary spriteLibrary;
-    protected Camera camera;
+    protected StateName name;
 
-    public State(Size windowSize, Input input) {
+
+    public State(GameStateManager stateManager, Display display, Input input) {
+        this.stateManager = stateManager;
+        this.display = display;
         this.input = input;
-        gameObjects = new ArrayList<>();
-        spriteLibrary = new SpriteLibrary();
-        camera = new Camera(windowSize);
     }
 
-    public void update(){
-        gameObjects.forEach(gameObject -> {
-            if (gameObject.isAlive()) {
-                gameObject.update();
-            }
-        });
-        camera.update(this);
-        input.clearMouseClick();
-    }
-
-
-    public List<GameObject> getGameObjects() {
-        return gameObjects;
-    }
-
-    public Level getLevel(){
-        return stateLevel;
-    }
-
-    public Camera getCamera() {
-        return camera;
+    public abstract void update();
+    public abstract void handleInput() throws IOException;
+    public abstract void enter();
+    public abstract void exit();
+    public StateName getName() {
+        return name;
     }
 }

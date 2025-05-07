@@ -1,8 +1,10 @@
 package nsu.obj_core;
 
-public class Size {
-    private int width;
-    private int height;
+import java.awt.*;
+
+public class Size extends Dimension {
+    private double width;
+    private double height;
 
     public Size(int width, int height) {
         this.width = width;
@@ -14,11 +16,11 @@ public class Size {
         this.height = size.getHeight();
     }
 
-    public int getWidth() {
+    public double getWidth() {
         return width;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 }

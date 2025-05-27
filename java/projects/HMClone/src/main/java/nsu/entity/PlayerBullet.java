@@ -1,6 +1,7 @@
 package nsu.entity;
 
 import nsu.obj_core.Position;
+import nsu.obj_core.collission.CollisionBox;
 
 public class PlayerBullet extends Bullet{
     private final int playerBulletSpeed = 2;

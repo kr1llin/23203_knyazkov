@@ -1,5 +1,6 @@
 package nsu.game;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class GameLoop implements Runnable{
@@ -45,6 +46,8 @@ public class GameLoop implements Runnable{
         game.update();
     }
     private void render(){
-        game.render();
+        SwingUtilities.invokeLater(game::render);
+//        SwingUtilities.invokeLater(game::render);
+//        game.render();
     }
 }

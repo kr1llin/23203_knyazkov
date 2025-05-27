@@ -1,9 +1,12 @@
 package nsu.entity;
 
 import nsu.game.state.State;
+import nsu.obj_core.collission.CollisionBox;
 import nsu.obj_core.collission.CollisionVisitor;
 import nsu.obj_core.Position;
 import nsu.obj_core.Size;
+
+import java.awt.*;
 
 public class Bullet extends MovingEntity{
     int BULLET_WIDTH =  25;
@@ -46,6 +49,16 @@ public class Bullet extends MovingEntity{
         } else {
             return 0;
         }
+    }
+    public CollisionBox getCollisionBox(){
+        return new CollisionBox(
+                new Rectangle(
+                        (int) (position.intX() + motion.getVector().getX()),
+                        (int) (position.intY() + motion.getVector().getY()),
+                        (int) size.getWidth() + 5,
+                        (int) size.getHeight() + 5
+                )
+        );
     }
 
     public void die() {

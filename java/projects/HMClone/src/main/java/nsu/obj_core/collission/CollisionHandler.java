@@ -53,5 +53,10 @@ public class CollisionHandler implements CollisionVisitor {
         if (other instanceof Enemy){
             box.decreaseHealth(((Enemy) other).hit());
         }
+        if (other instanceof Player){
+            String side = getCollisionSide(other, box);
+            ((Player)other).stopMovingSide(side);
+            resolveOverlap(other, box);
+        }
     }
 }

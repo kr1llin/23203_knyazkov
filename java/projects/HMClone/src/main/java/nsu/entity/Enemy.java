@@ -116,8 +116,8 @@ public class Enemy extends MovingEntity {
         if (health > 0) {
             this.health -= by;
         } else {
-            kill();
             notifyDeath();
+            kill();
         }
     }
 }

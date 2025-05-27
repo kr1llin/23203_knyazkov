@@ -15,9 +15,10 @@ import java.io.File;
 import java.io.IOException;
 
 public class Display extends JFrame {
-    private final Canvas canvas;
+    private final JPanel gamePanel;
     private final RenderModule renderer;
     private final Size size;
+    private State currentState; // Текущее состояние для рендеринга
 
     public Display(int width, int height, Input input) throws IOException, FontFormatException {
         setTitle("CRAZY WIZARD GANG");
@@ -25,47 +26,44 @@ public class Display extends JFrame {
         setResizable(false);
 
         this.renderer = new RenderModule();
+        this.size = new Size(width, height);
 
-        size = new Size(width, height);
-        canvas = new Canvas();
-        canvas.setPreferredSize(new Dimension(width, height));
-        canvas.setFocusable(false);
-        canvas.addMouseListener(input);
-        canvas.addMouseMotionListener(input);
+        gamePanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                if (currentState != null) {
+                    renderer.render(currentState, g, this);
+                    renderer.renderUI(currentState, g, this);
+                }
+            }
+        };
 
-        add(canvas);
-        addKeyListener(input);
+        gamePanel.setPreferredSize(new Dimension(width, height));
+        gamePanel.setDoubleBuffered(true);
+        gamePanel.setFocusable(true);
+
+        gamePanel.addMouseListener(input);
+        gamePanel.addMouseMotionListener(input);
+        gamePanel.addKeyListener(input);
+
+        add(gamePanel);
         pack();
-
-        canvas.createBufferStrategy(3); // to remove flickering
-
-        setLocationRelativeTo(null); // window will pop up centered
+        setLocationRelativeTo(null);
         setVisible(true);
 
-        GraphicsEnvironment ge =
-                GraphicsEnvironment.getLocalGraphicsEnvironment();
-        Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("/home/krillin/code/nsu/23203_knyazkov/java/projects/HMClone/src/main/resources/fonts/ARCADECLASSIC.TTF"));
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        Font customFont = Font.createFont(Font.TRUETYPE_FONT,
+                new File("/home/krillin/code/nsu/23203_knyazkov/java/projects/HMClone/src/main/resources/fonts/ARCADECLASSIC.TTF"));
         ge.registerFont(customFont);
     }
 
     public void render(State state) {
-        BufferStrategy bufferStrategy = canvas.getBufferStrategy();
-        Graphics graphics = bufferStrategy.getDrawGraphics(); // abstract class for drawing (but needs explicit resource release
-
-        graphics.setColor(Color.WHITE);
-        graphics.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
-        renderer.render(state, graphics, canvas); // for now, it's just game objects
-        renderer.renderUI(state, graphics, canvas);
-
-        graphics.dispose(); // for garbage collector
-        bufferStrategy.show();
-
-        Toolkit.getDefaultToolkit().sync();
+        this.currentState = state;
+        gamePanel.repaint();
     }
 
-    public Size getSize(){
+    public Size getSize() {
         return size;
     }
 }
-

@@ -24,9 +24,11 @@ public class Player extends MovingEntity {
 
     private int timeSinceLastAttack = 0;
     private final int attackCooldown = 20;
+    private final int playerHealth = 300;
 
     public Player(Controller controller, Camera camera, State st) {
         super(controller);
+        health = playerHealth;
         weapons = new ArrayList<>();
         setSize(new Size(SpriteLibrary.getSpriteSize(), SpriteLibrary.getSpriteSize()));
         weapons.add(new Gun(this));

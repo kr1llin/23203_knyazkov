@@ -32,11 +32,6 @@ public class Weapon extends GameObject {
     }
 
     @Override
-    public Image getSprite() throws IOException {
-        return null;
-    }
-
-    @Override
     public CollisionBox getCollisionBox() {
         return null;
     }

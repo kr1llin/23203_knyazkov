@@ -16,19 +16,19 @@ import nsu.obj_core.listeners.EnemyListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class LevelState extends State implements EnemyListener {
     String LEVEL0 = "/home/krillin/code/nsu/23203_knyazkov/java/projects/HMClone/src/main/resources/levels/level1.txt";
     Player player = null;
-    private List<GameObject> gameObjects = new ArrayList<>();;
-    private Camera camera;
-    private World world;
+    private final List<GameObject> gameObjects = new CopyOnWriteArrayList<>();
+    private final Camera camera;
+    private final World world;
 
-    private int enemyCounter = 0;
+    private final AtomicInteger enemyCounter = new AtomicInteger(0);
 
     public LevelState(GameStateManager stateManager, Display display, Input input) throws IOException {
         super(stateManager, display, input);
@@ -41,16 +41,34 @@ public class LevelState extends State implements EnemyListener {
     @Override
     public void update() {
         sortObjectsByPosition();
-        List<GameObject> currentObjects = new ArrayList<>(gameObjects);
-
         checkCollisions();
-        currentObjects.forEach(gameObject -> {
-            if (gameObject instanceof Player) {
-                gameObject.update(this);
-            } else if (gameObject.isAlive()) {
-                gameObject.update(this);
-            } else gameObjects.remove(gameObject);
-        });
+
+        List<GameObject> toRemove = new ArrayList<>();
+
+        synchronized (gameObjects) {
+            for (GameObject obj : gameObjects) {
+                if (!obj.isAlive()) {
+                    if (obj instanceof Enemy) {
+                        enemyCounter.decrementAndGet();
+                    }
+                    toRemove.add(obj);
+                } else {
+                    obj.update(this);
+                }
+            }
+            gameObjects.removeAll(toRemove);
+        }
+//        for (GameObject gameObject : gameObjects) {
+//            if (gameObject.isAlive()) {
+//                gameObject.update(this);
+//            } else {
+//                gameObjects.remove(gameObject);
+//                if (gameObject instanceof Enemy) {
+//                    enemyCounter.decrementAndGet();
+//                }
+//            }
+//        }
+//
         camera.update(this);
         input.clearMouseClick();
         checkGameOver();
@@ -64,15 +82,14 @@ public class LevelState extends State implements EnemyListener {
     }
 
     private void checkGameVictory() {
-        if (enemyCounter == 0){
+        if (enemyCounter.get() == 0){
             stateManager.changeState(new VictoryState(stateManager, display, input));
         }
     }
 
-    public int getEnemyCounter(){
-        return enemyCounter;
+    public int getEnemyCounter() {
+        return enemyCounter.get();
     }
-
     @Override
     public void handleInput(){
 //        input.clearMouseClick();
@@ -94,7 +111,10 @@ public class LevelState extends State implements EnemyListener {
 //    }
 
     private void sortObjectsByPosition() {
-        gameObjects.sort(Comparator.comparing(gameObject -> gameObject.getPosition().getY()));
+        List<GameObject> sortedList = new ArrayList<>(gameObjects);
+        sortedList.sort(Comparator.comparing(gameObject -> gameObject.getPosition().getY()));
+        gameObjects.clear();
+        gameObjects.addAll(sortedList);
     }
 
     public World getWorld(){
@@ -157,7 +177,7 @@ public class LevelState extends State implements EnemyListener {
                 objectToAdd = enemy;
                 objectToAdd.setPosition(new Position(posX + centerOffsetX, posY + centerOffsetY));
                 gameObjects.add(enemy.getWeapon());
-                enemyCounter++;
+                enemyCounter.incrementAndGet();
                 break;
             }
             case 1: {
@@ -188,6 +208,8 @@ public class LevelState extends State implements EnemyListener {
 
     @Override
     public void onDeath() {
-        enemyCounter -= 1;
+//        if (enemyCounter.get() > 0) {
+//            enemyCounter.decrementAndGet();
+//        }
     }
 }

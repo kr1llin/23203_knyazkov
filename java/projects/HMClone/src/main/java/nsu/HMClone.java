@@ -3,6 +3,7 @@ package nsu;
 import nsu.game.Game;
 import nsu.game.GameLoop;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
@@ -13,13 +14,23 @@ TODO:
     Camera (and add big level) (+-)
     Level + Collision (add health bars to it) (++)
     Enemies (+)
-    Weapons types (-)
-    Simple AI (aggression area) (-)
+    Weapons types (+-)
+    Simple AI (aggression area) (+-)
  */
 
 public class HMClone {
     public static void main(String[] args) throws IOException, FontFormatException {
-        new Thread(new GameLoop(new Game(1000, 1000))).start();
+        Game game = new Game(1000, 1000);
+        Thread gameThread = new Thread(new GameLoop(game));
+        gameThread.start();
+//        SwingUtilities.invokeLater(() -> {
+//            try {
+//                Game game = new Game(1000, 1000);
+//                new Thread(new GameLoop(game)).start();
+//            } catch (IOException | FontFormatException e) {
+//                e.printStackTrace();
+//            }
+//        });
     }
 }
 

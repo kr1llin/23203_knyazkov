@@ -16,8 +16,7 @@ import java.util.List;
 
 public class Game {
     private final Display display;
-    private Input input;
-    private GameStateManager stateManager;
+    private final GameStateManager stateManager;
 
     private int width;
     private int height;
@@ -25,7 +24,7 @@ public class Game {
     public Game(int width, int height) throws IOException, FontFormatException {
         this.width = width;
         this.height = height;
-        input = new Input();
+        Input input = new Input();
         display = new Display(width, height, input);
         stateManager = new GameStateManager();
         stateManager.changeState(new LevelState(stateManager, display, input));

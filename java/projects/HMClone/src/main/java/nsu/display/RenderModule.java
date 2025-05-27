@@ -8,6 +8,7 @@ import nsu.graphics.SpriteLibrary;
 import nsu.level.Tile;
 import nsu.level.World;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
@@ -20,7 +21,7 @@ public class RenderModule {
 //        animationManager = new AnimationManager();
     }
 
-    public void render(State state, Graphics graphics, Canvas canvas) {
+    public void render(State state, Graphics graphics, JPanel canvas) {
         Graphics2D g2d = (Graphics2D) graphics;
         AffineTransform originalTransform = g2d.getTransform();
 
@@ -30,7 +31,6 @@ public class RenderModule {
             case ST_LEVEL -> {
                 renderLevel((LevelState)state, graphics);
 
-                // ADD TRANSFORMATION METHOD TO OBJECTS (every object has its own transformations)
                 ((LevelState)state).getGameObjects().forEach(gameObject -> {
                     if (gameObject.isAlive()) {
                         AffineTransform transform = gameObject.getAffineTransform((LevelState) finalState, gameObject);
@@ -67,7 +67,7 @@ public class RenderModule {
     }
 
     // :)
-    void renderUI(State state, Graphics g, Canvas canvas){
+    void renderUI(State state, Graphics g, JPanel canvas){
         if (state instanceof LevelState levelState){
             Player player = levelState.getPlayer();
             g.setColor(Color.BLACK);
